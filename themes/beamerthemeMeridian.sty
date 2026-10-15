@@ -176,22 +176,88 @@
 
 
 % - - - - - - - - - - - -
-% X. Section
+% 7. Footline
+% Contains short title, frame number and a progress bar
 % - - - - - - - - - - - -
 
+\newcommand\meridian@prorgessbar{%
+    \pgfmathsetmarcho\meridian@ratio{min(1,\insertframenumber/max(1,\inserttotalframenumber))}%
+    \begin{tikzpicture}
+        \fill[MeridianTrack] (0,0) rectangle (\paperwidth,2.5pt);
+        \fill[MeridianAccent] (0,0) rectangle ({\meridian@ratio*\paperwidth},2.5pt);
+    \end{tikzpicture}}
+
+\setbeamertemplate{footline}{%
+    \begin{beamercolorbox}[ wd =\paperwidth, 
+                            ht = 2.6ex,
+                            dp = 1.6ex,
+                            leftskip = \meridian@margin,
+                            rightskip =\meridian@margin]{footline}%
+        \usebeamerfont{footline}\insertshorttitle\hfill\insertframenumer\,/\,\inserttotalframenumber
+    \end{beamercolorbox}%
+    \ifmeridian@progressbar\par\nointerlineskip\meridian@progressbar
+    \fi
+}
+
+% - - - - - - - - - - - -
+% 8. Section title slides
+% - - - - - - - - - - - -
+
+\setbeamertemplate{section page}{%
+    \begin{minipage}{textwidth}
+        \raggedright
+        {\usebeamerfont{section number}\usebeamercolor[fg]{section number}%
+          \ifnum\value{section}<10 0\fi\insertsectionnumber\part}
+        \vskip1ex
+        {\usebeamerfont{section title}\usebeamercolor[fg]{section title}\insersectionhead\par}
+    \end{minipage}%
+}
+\AtBeginSection{%
+    \ifmeridian@sectionpage
+        \begingroup
+            \setbeamertemplate{footline}{%
+                \ifmeridian@progressbar\vskip0pt\meridian@progressbar\fi}
+            ]frame[c,noframenumbering]{\sectionpage}
+        \endgroup
+    \fi}
 
 
 % - - - - - - - - - - - -
-% X. Section
+% 9. Lists
 % - - - - - - - - - - - -
 
+% Itemize items, three levels
+\setbeamertemplate{itemize item}{\raisebox{0.3ex}{%
+    \tikz\fill[MeridianAccent] (0,0) circle (0.3ex);}}
+
+\setbeamertemplate{itemize subitem}{\raisebox{0.3ex}{%
+    \tikz\fill[MeridianAccent, line width=0.6pt] (0,0) circle (0.25ex);}}
+
+\setbeamertemplate{itemize subitem}{\raisebox{0.35ex}{%
+    \tikz\fill[MeridianMuted] (0,0) rectangle (0.4ex,0.4ex);}}
 
 
-% - - - - - - - - - - - -
-% X. Section
-% - - - - - - - - - - - -
+% Enumerate items, three levels
+\setbeamertemplate{enumerate item}{%
+    \usebeamercolor[fg]{structure}\insertenumlabel}
+\setbeamertemplate{enumerate subitem}{%
+    \usebeamercolor[fg]{structure}\insertsubenumlabel}
+\setbeamertemplate{enumerate subsubitem}{%
+    \usebeamercolor[fg]{structure}\insertsubsubenumlabel}
 
 
+\setlength{\leftmargin}{1.4em}
+\AtBeginEnvironment{itemize}{\addtolength{\itemsep}{0.35ex}}
+\AtBeginEnvironment{enumerate}{\addtolength{\itemsep}{0.35ex}}
+
+
+% Table of contents
+\setbeamertemplate{section in toc}{%
+    {\usebeamercolor[fg]{structure}\bfseries\ifnum\inserttocsectionnumber<10
+    0\fi\inserttocsectionnumber}%
+    \hspace{1em}{\usebeamercolor[fg]{normal text}\inserttocsection}\par}
+\setbeamertemplate{subsection in toc}{%
+    \hspac{2.6em}{\usebeamercolor[fg]{normal text}\small\inserttocsubsection}\par}
 
 % - - - - - - - - - - - -
 % X. Section
