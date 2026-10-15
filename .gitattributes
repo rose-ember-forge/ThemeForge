@@ -1,0 +1,20 @@
+# ThemeForge .gitattributes
+# Store text files with LF line endings so diffs don't fill up with CRLF changes.
+* text=auto eol=lf
+
+# Windows scripts need CRLF to run properly.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Binary files: never touch their line endings, never try to diff them as text.
+*.pdf  binary
+*.png  binary
+*.jpg  binary
+*.webp binary
+*.ico  binary
+*.zip  binary
+*.otf  binary
+*.ttf  binary
+*.woff binary
+*.woff2 binary

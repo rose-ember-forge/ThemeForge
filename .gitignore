@@ -1,0 +1,45 @@
+# ThemeForge .gitignore
+# Rule of thumb: commit what you wrote, ignore what a command can rebuild.
+
+# --- LaTeX build artefacts ---
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.vrb
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+*.xdv
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+_minted*/
+
+# --- Compiled output (rebuilt from source) ---
+*.pdf
+build/
+site/dist/
+*.zip
+# To commit a few showcase PDFs anyway, un-comment the next line:
+# !examples/showcase/*.pdf
+
+# --- Python ---
+__pycache__/
+*.pyc
+.venv/
+
+# --- Editors ---
+# Remove this line if you want to share LaTeX Workshop recipes in .vscode/settings.json
+.vscode/
+*.swp
+*~
+
+# --- OS clutter ---
+Thumbs.db
+desktop.ini
+.DS_Store
