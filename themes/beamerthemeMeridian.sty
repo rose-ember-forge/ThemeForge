@@ -54,33 +54,40 @@
 % Same set of colours, switched around for each variant.
 % - - - - - - - - - - - -
 
+% Variant light
 \def\meridian@variant@light{%
   \definecolor{MeridianPaper}{HTML}{FFFFFF}
-  \definecolor{MeridianInk}{HTML}{1F2430}     % 15.5 / 13.2
-  \definecolor{MeridianMuted}{HTML}{5A6070}   %  6.3 /  5.3
-  \definecolor{MeridianTrack}{HTML}{E4E6EC}   % decorative
-  \definecolor{MeridianAccent}{HTML}{3043B8}  %  8.0 /  6.8
-  \definecolor{MeridianAlert}{HTML}{B3261E}   %  6.5 /  5.6
-  \definecolor{MeridianExample}{HTML}{1A7346} %  5.9 /  5.0
+  \definecolor{MeridianInk}{HTML}{1F2430}     
+  \definecolor{MeridianMuted}{HTML}{5A6070}   
+  \definecolor{MeridianTrack}{HTML}{E4E6EC}   
+  \definecolor{MeridianAccent}{HTML}{3043B8}  
+  \definecolor{MeridianAlert}{HTML}{B3261E}   
+  \definecolor{MeridianExample}{HTML}{1A7346} 
   \definecolor{MeridianOnAccent}{HTML}{FFFFFF}}
+
+% Variantt paper
 \def\meridian@variant@paper{%
   \definecolor{MeridianPaper}{HTML}{F8F6F1}
-  \definecolor{MeridianInk}{HTML}{24211D}     % 14.8 / 12.8
-  \definecolor{MeridianMuted}{HTML}{5E5850}   %  6.5 /  5.6
+  \definecolor{MeridianInk}{HTML}{24211D}     
+  \definecolor{MeridianMuted}{HTML}{5E5850}   
   \definecolor{MeridianTrack}{HTML}{E6E1D6}
-  \definecolor{MeridianAccent}{HTML}{1F5F8B}  %  6.3 /  5.5
-  \definecolor{MeridianAlert}{HTML}{A8321C}   %  6.2 /  5.4
-  \definecolor{MeridianExample}{HTML}{2F6B2A} %  6.0 /  5.2
+  \definecolor{MeridianAccent}{HTML}{1F5F8B}  
+  \definecolor{MeridianAlert}{HTML}{A8321C}   
+  \definecolor{MeridianExample}{HTML}{2F6B2A} 
   \definecolor{MeridianOnAccent}{HTML}{FFFFFF}}
+
+% Variant dark
 \def\meridian@variant@dark{%
   \definecolor{MeridianPaper}{HTML}{16181D}
-  \definecolor{MeridianInk}{HTML}{E8EAEE}     % 14.7 / 12.6
-  \definecolor{MeridianMuted}{HTML}{A2A8B4}   %  7.4 /  6.4
+  \definecolor{MeridianInk}{HTML}{E8EAEE}     
+  \definecolor{MeridianMuted}{HTML}{A2A8B4}   
   \definecolor{MeridianTrack}{HTML}{2C3038}
-  \definecolor{MeridianAccent}{HTML}{8C9EFF}  %  7.1 /  6.1
-  \definecolor{MeridianAlert}{HTML}{FF8F80}   %  8.0 /  6.9
-  \definecolor{MeridianExample}{HTML}{7FD49B} % 10.0 /  8.5
+  \definecolor{MeridianAccent}{HTML}{8C9EFF}  
+  \definecolor{MeridianAlert}{HTML}{FF8F80}   
+  \definecolor{MeridianExample}{HTML}{7FD49B} 
   \definecolor{MeridianOnAccent}{HTML}{16181D}}
+
+
 \ifcsname meridian@variant@\meridian@variant\endcsname
   \csname meridian@variant@\meridian@variant\endcsname
 \else
@@ -142,6 +149,7 @@
 % - - - - - - - - - - - -
 % 4. Geometry
 % - - - - - - - - - - - -
+
 \def\meridian@margin{0.07\paperwidth}
 \setbeamersize{text margin left=0.07\paperwidth, text margin right=0.07\paperwidth}
 \setbeamertemplate{navigation symbols}{}
@@ -183,8 +191,9 @@
 
 \setbeamertemplate{frametitle}{%
   \nointerlineskip
-  \begin{beamercolorbox}[wd=\paperwidth, leftskip=\meridian@margin,
-                         rightskip=\meridian@margin plus 1fil]{frametitle}%
+  \begin{beamercolorbox}[   wd=\paperwidth, 
+                            leftskip=\meridian@margin,
+                            rightskip=\meridian@margin plus 1fil]{frametitle}%
     \vskip1.9ex
     \themeforge@ifblank{\insertsectionhead}{}{%
       {\usebeamerfont{frametitle eyebrow}\usebeamercolor[fg]{frametitle eyebrow}%
