@@ -1,0 +1,97 @@
+% ThemeForge demo slides deck.
+% 
+% 
+% 
+% 
+\documentclass[11pt, aspectratio=169]{beamer}
+\providecommand\ThemeName{}
+\providecommand\ThemeOptions{}
+
+\edef\UseTheme{\noexpand\usetheme[\ThemeOptions]{\ThemeName}}\UseTheme
+
+\usepackage{booktabs}
+\usepackage{appendixnumberbeamer}
+\hypersetup{pdflang=en-GB, pdfdisplaydoctitle=true}
+
+\title[New Beamer]{Modern Slides with Beamer}
+\subtitle{A tour of the \ThemeName{} theme}
+\author[Rose C.]{Rosario Corazon}
+\institute{ThemeForge}
+\date{\today}
+
+\begin{document}
+
+% Title frame. 
+% `plain` to keep normal frame elements interfering with the title.
+% `noframenumbering` so the frame counter skips the title page
+\begin{frame}[plain, noframenumbering]
+    \titlepage    
+\end{frame}
+
+
+\begin{frame}[Agenda]
+    \tableofcontents
+\end{frame}
+
+\Section{Typography}
+
+% \begin{frame}{Text and Emphasis}{Readable from the back of the room}
+%     A good slide carries one idea. Body text is set large, with a comfortable line length and \alert{alerted text} for the one takeaway. \emph{Emphasis} stays subtle, and \texttt{monospace} for code.
+
+%     \medskip
+%     Inline maths sits on the baseline: $math\ equation$, and displays breathe:
+%     \[
+%         display\ math\ equation
+%     \]
+% \end{frame}
+
+\begin{frame}{Text and Emphasis}{Readable from the back of the room}
+    A good slide carries one idea. Body text is set large, with a comfortable line length and \alert{alerted text} for the one takeaway. \emph{Emphasis} stays subtle, and \texttt{monospace} for code.
+
+    \medskip
+    Inline maths sits on the baseline: $E_n = (n + \frac{1}{2})\hbar\omega$, and displays breathe:
+    \[
+        i\hbar \frac{\partial}{\partial t}\Psi(\mathbf{r}, t) = \left[ -\frac{\hbar^2}{2m}\nabla^2 + V(\mathbf{r}, t) \right] \Psi(\mathbf{r}, t)
+    \]
+\end{frame}
+
+\begin{frame}{Lists}
+    
+\end{frame}
+
+
+\begin{frame}{Blocks}
+    \begin{block}{Definition}
+        A \emph{theme} controls the colours, fonts and layout of every slide.
+    \end{block}
+    \begin{alertblock}{Watch out!}
+        Never rey on colour alone to carry a meaning.
+    \end{alertblock}
+    \begin{exampleblock}{Example}
+        \texttt{\textbackslash usetheme[accent = 0F766E]\{\ThemeName\}}
+    \end{exampleblock}
+\end{frame}
+
+
+\begin{frame}{Tables and Figures}
+    
+\end{frame}
+
+% Slide demonstrating standout option
+\begin{frame}[standout]
+    Questions?
+\end{frame}
+
+\appendix
+\begin{frame}{Backup Slide}
+    Appendix slides are not counted for the total.\\
+    Package \texttt{appendixnumberbeamer} ensures that.
+\end{frame}
+
+
+% \begin{frame}
+    
+% \end{frame}
+
+
+\end{document}
