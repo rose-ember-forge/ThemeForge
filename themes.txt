@@ -1,0 +1,6 @@
+# One theme per line: the theme name, then every variant to build.
+# Use - for a theme that has no variant option (it's built with no options).
+# Lines starting with # are ignored.
+Meridian light paper dark
+# Nocturne slate midnight aubergine
+# Atelier  paper linen walnut
