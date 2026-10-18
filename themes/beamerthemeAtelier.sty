@@ -1,0 +1,106 @@
+% - - - - - - - - - - - -
+% - - - - - - - - - - - -
+ beamerthemeAtelier.sty
+ Part of the ThemeForge Collection
+ An editorial theme.
+ Warm tones and serif typography.
+ 
+ Usage:     \usetheme{Atelier}
+            \usetheme[variant = walnut, body = sans]{Atelier}
+
+ Options:   variant = paper|linen|walnut    colour scheme (default paper)
+            accent = <HEX>                  overrirde the variant's accent colour
+            body = serif|sans               typeface for body text (default serif. Titles stay serif despite sans body)
+            progressbar = true|false        hairline progress bar (default false)
+            sectionpage = true|false        (default true)
+            fonts = true|false              load Libertinus fonts if installed
+    
+% - - - - - - - - - - - -
+% - - - - - - - - - - - -
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemeAtelier}[ThemeForge 20261019 Atelier Theme v1.0]
+
+\mode<presentation>
+
+% - - - - - - - - - - - -
+% 1. Options
+% - - - - - - - - - - - -
+\newif\ifatelier@progressbar    \atelier@progressbarfalse
+\newif\ifatelier@sectionpage    \atelier@sectionpagetrue
+\newif\ifatelier@fonts          \atelier@fontstrue
+\newif\ifatelier@serifbody      \atelier@serifbodytrue
+
+\def\aterlieraccent{}
+\def\aterliarvariant{paper}
+
+\DeclareOptionBeamer{variant}{\def\aterlier@variant{#1}}
+\DeclareOptionBeamer{accent}{\def\atelier@accent{#1}}
+\DeclareOptionBeamer{body}{%
+    \def\atelier@tmp{#1}\def\atelier@sans{sans}%
+    \ifx\atelier@tmp\atelier@sans\atelier@seribodyfalse\else\atelier@serifbodytrue\fi}
+\DeclareOptionBeamer{progressbar}[true]{\csname atelier@progressbar#1\endcsname}
+\DeclareOptionBeamer{sectionpage}[true]{\csname atelier@sectionpage#1\endcsname}
+\DeclareOptionBeamer{fonts}[true]{\csname atelier@fonts#1\endcsname}
+\ProcessOptionsBeamer
+
+\RequirePackage{tikz}
+\RequirePackage{tcolorbox}
+\RequirePackage{etoolbox}
+
+\providecommand{\themeforge@ifblank}[3]{%
+    \setbox0 \hbox{\let\\\relax#1}
+    \ifdim\wd0=0pt #2\else #3}
+
+
+% - - - - - - - - - - - -
+% 2. Colours
+% - - - - - - - - - - - -
+
+% Variant paper
+\def\atelier@variant@paper{
+    \definecolor{AtelierPaper}{HTML}{F7F2E8}
+    \definecolor{AtelierPanel}{HTML}{EDE4D3}
+    \definecolor{AtelierInk}{HTML}{2A2421}
+    \definecolor{AtelierMuted}{HTML}{6B5E55}
+    \definecolor{AtelierRule}{HTML}{CDBFA8}
+    \definecolor{AtelierAccent}{HTML}{A8432A}
+    \definecolor{AtelierAlert}{HTML}{962032}
+    \definecolor{AtelierExample}{HTML}{48612A}
+}
+
+% Variant linen
+\def\atelier@variant@linen{
+    \definecolor{AtelierPaper}{HTML}{F2F3F0}
+    \definecolor{AtelierPanel}{HTML}{E3E6E1}
+    \definecolor{AtelierInk}{HTML}{1F2326}
+    \definecolor{AtelierMuted}{HTML}{575E63}
+    \definecolor{AtelierRule}{HTML}{BFC6C2}
+    \definecolor{AtelierAccent}{HTML}{2F5D8A}
+    \definecolor{AtelierAlert}{HTML}{9A2530}
+    \definecolor{AtelierExample}{HTML}{3F6630}
+}
+
+% Variant walnut
+\def\atelier@variant@walnut{
+    \definecolor{AtelierPaper}{HTML}{241C17}
+    \definecolor{AtelierPanel}{HTML}{33281F}
+    \definecolor{AtelierInk}{HTML}{F2E8DA}
+    \definecolor{AtelierMuted}{HTML}{C2B29F}
+    \definecolor{AtelierRule}{HTML}{5A4A3C}
+    \definecolor{AtelierAccent}{HTML}{E0A458}
+    \definecolor{AtelierAlert}{HTML}{F08C7A}
+    \definecolor{AtelierExample}{HTML}{A9C98A}
+}
+
+\ifcsname atelier@variant@\atelier@variant\endcsname
+    \csname atelier@variant\atelier@variant\endcsname
+\else
+    \PackageWarning{beamerthemeAtelier}{Unknown variant '\atelier@variant', using 'paper'. Choose paper, linen, or walnut.}%
+    \atelier@variant@paper
+\fi
+
+\ifx\atelier@accent\@empty\else
+    \definecolor{AteliertAccent}{HTML}{\atelier@accent}
+\fi
+
+\mode<all>
