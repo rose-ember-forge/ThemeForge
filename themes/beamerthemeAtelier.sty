@@ -195,5 +195,128 @@
 % 5. Title Page 
 % - - - - - - - - - - - -
 
+\setbeamertemplate{title page}{%
+    \vfill
+    \begin{minipage}{\textwidth}
+        \centering
+        \themeforge@ifblank{\insertinstitute}{}{%
+            {\usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute\par}\vskip{2.5ex}}
+        {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par}
+        \themeforge@ifblank{\insertsubtitle}{}{%
+            \vskip{1ex}
+            {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}}
+        \vskip{3ex}
+        \atelier@ornament[5em]\par
+        \vskip{3ex}
+        {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par}
+        \vskip{0.6ex}
+        {\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate\par}
+    \end{minipage}
+}
+
+% - - - - - - - - - - - -
+% 6. Frame Title 
+% - - - - - - - - - - - -
+
+\setbeamertemplate{template}{%
+    \nointerlineskip
+    \begin{beamercolorbox}[
+        wd = \paperwidth,
+        leftskip = \atelier@margin,
+        rightskip = \atelier@margin plus 1fil]{frametitle}
+        \vskip{2.6ex}
+        \noindent{\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}%
+            \strut\insertframetitle}\hfill
+        \themeforge@ifblank{\insertsectionhead}{}{%
+            {\usebeamerfont{section in head}\usebeamercolor[fg]{section in head}\insertsectionhead}}\par
+        \themeforge@ifblank{\insertframesubtitle}{}{%
+            {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\par}}%
+        \vskip{0.9ex}
+        {\color{AtelierRule}\hrule height 0.6pt}%
+        \vskip{0.4ex}
+    \end{beamercolorbox}
+}
+
+% - - - - - - - - - - - -
+% 7. Footline 
+% - - - - - - - - - - - -
+
+\newcommand{\atelier@progressbar}{5
+    \pgfmathsetmacr\atelier@ratio{%
+        min(1,\insertframenumber/max(1,\inserttotalframenumber))
+    }%
+    \begin{tikzpicture}
+        \fill[AtelierRule] (0,0) rectangle (\paperwidth,1pt);
+        \fill[AtelierAccent] (0,0) rectangle ({\aterlier@ratio*\paperwidth},1pt);
+    \end{tikzpicture}}
+
+\setbeamertemplate{footline}{%
+    \begin{beamercolorbox}[
+        wd = \paperwidth,
+        ht = 2.6ex,
+        dp = 2.4ex,
+        center
+    ]{footline}
+        \usebeamerfont{footline}
+        \insertshorttitle\enspace\raisebox{0.35ex}{\tikz\fill[AtelierAccent] (0,0) circle (0.12em);}\enspace\insertframenumber
+    \end{beamercolorbox}%
+    \ifatelier@progressbar\par\nointerlineskip\atelier@progressbar\fi
+}
+
+% - - - - - - - - - - - -
+% 8. Section divider slides 
+% - - - - - - - - - - - -
+
+\setbeamertemplate{section page}{%
+    \begin{minipage}{\textwidth}
+        \centering
+        {\usebeamerfont{section number}\usebeamercolor[fg]{section number}%
+            \Roman{section}\par}
+        \vskip{2.5ex}
+        \atelier@ornament\par
+    \end{minipage}%
+}
+
+\AtBeginSection{%
+    \ifatelier@sectionpage
+        \begingroup
+            \setbeamertemplate{footline}{}%
+            \frame[c,noframenumbering]{\sectionpage}%
+        \endgroup
+    \fi
+}
+
+% - - - - - - - - - - - -
+% 9. Lists and ToC 
+% - - - - - - - - - - - -
+
+% Itemize list, three levels
+\setbeamertemplate{itemize item}{
+    \raisebox{0.5ex}{\tikz\fill[AtelierAccent] (0,0) rectangle (0.65em,0.09em);}
+}
+\setbeamertemplate{itemize subitem}{
+    \raisebox{0.45ex}{\tikz\fill[AtelierAccent] (0,0) circle (0.13em);}
+}
+\setbeamertemplate{itemize subsubitem}{
+    \raisebox{0.45ex}{\tikz\draw[AtelierAccent, line width = 0,4pt] (0,0) circle (0.12em);}
+}
+
+% Enumerate list, three levels
+\setbeamertemplate{enumerate item}{{
+    \usebeamercolor[fg]{structure}%
+    \rmfamily\itshape\insertenumlabel.
+}}
+\setbeamertemplate{enumerate subitem}{{
+    \usebeamercolor[fg]{structure}%
+    \rmfamily\itshape\insertsubenumlabel
+}}
+\setbeamertemplate{enumerate subsubitem}{{
+    \usebeamercolor[fg]{structure}%
+    \rmfamily\itshape\insertsubsubenumlabel
+}}
+
+\setlength{\leftmargini}{1.4em}
+\AtBeginEnvironment{itemize}{\addtolength{\itemsep}{0.35ex}}
+\AtBeginEnvironment{enumerate}{\addtolength{\itemsep}{0.35ex}}
 
 \mode<all>

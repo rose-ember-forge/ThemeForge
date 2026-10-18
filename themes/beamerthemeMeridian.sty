@@ -257,13 +257,17 @@
 % 9. Lists
 % - - - - - - - - - - - -
 
+% Itemize list, three levels
 \setbeamertemplate{itemize item}{\raisebox{0.3ex}{\tikz\fill[MeridianAccent] (0,0) circle (0.3ex);}}
 \setbeamertemplate{itemize subitem}{\raisebox{0.3ex}{\tikz\draw[MeridianAccent, line width=0.6pt] (0,0) circle (0.25ex);}}
 \setbeamertemplate{itemize subsubitem}{\raisebox{0.35ex}{\tikz\fill[MeridianMuted] (0,0) rectangle (0.4ex,0.4ex);}}
+
+% Enumerate list, three levels
 \setbeamertemplate{enumerate item}{\usebeamercolor[fg]{structure}\bfseries\insertenumlabel.}
 \setbeamertemplate{enumerate subitem}{\usebeamercolor[fg]{structure}\insertsubenumlabel}
 \setbeamertemplate{enumerate subsubitem}{\usebeamercolor[fg]{structure}\insertsubsubenumlabel}
 \setlength{\leftmargini}{1.4em}
+
 \AtBeginEnvironment{itemize}{\addtolength{\itemsep}{0.35ex}}
 \AtBeginEnvironment{enumerate}{\addtolength{\itemsep}{0.35ex}}
 
