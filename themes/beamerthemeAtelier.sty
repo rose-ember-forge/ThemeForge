@@ -103,4 +103,97 @@
     \definecolor{AteliertAccent}{HTML}{\atelier@accent}
 \fi
 
+\setbeamercolor{normal text}{fg=AtelierInk, bg=AtelierPaper}
+\setbeamercolor{background canvas}{bg=AtelierPaper}
+\setbeamercolor{structure}{fg=AtelierAccent}
+\setbeamercolor{alerted text}{fg=AtelierAlert}
+\setbeamercolor{example text}{fg=AtelierExample}
+\setbeamercolor{title}{fg=AtelierInk}
+\setbeamercolor{subtitle}{fg=AtelierMuted}
+\setbeamercolor{author}{fg=AtelierInk}
+\setbeamercolor{institute}{fg=AtelierAccent}
+\setbeamercolor{date}{fg=AtelierMuted}
+\setbeamercolor{frametitle}{fg=AtelierInk}
+\setbeamercolor{framesubtitle}{fg=AtelierMuted}
+\setbeamercolor{section in head}{fg=AtelierAccent}
+\setbeamercolor{footline}{fg=AtelierMuted}
+\setbeamercolor{section number}{fg=AtelierAccent}
+\setbeamercolor{section title}{fg=AtelierInk}
+\setbeamercolor{block title}{fg=AtelierAccent}
+\setbeamercolor{block title alerted}{fg=AtelierAlert}
+\setbeamercolor{block title example}{fg=AtelierExample}
+\setbeamercolor{caption name}{fg=AtelierAccent}
+
+% - - - - - - - - - - - -
+% 3. Fonts 
+% - - - - - - - - - - - -
+
+\RequirePackage{iftex}
+\ifatelier@fonts
+    \iftutex
+    % XeLaTeX / LuaLaTex: load the Libertinus OpenType files directly
+    \RequirePackage{fontspec}
+    \IfFontExistsTF{LibertinusSerif-Regular.otf}{%
+        \setmainfont{LibertinusSerif}[%
+            Extension = .otf,
+            UprightFont = *-Regular,
+            Boldfont = *-Semibod,
+            ItalicFont = *-Italic, 
+            BoldItalicFont = *-SemiboldItalic
+            ]%
+        \setsansfont{LibertinusSans}[%
+            Extension = .otf,
+            UprightFont = *-Regular,
+            Boldfont = *-Semibod,
+            ItalicFont = *-Italic
+        ]
+        \setmonofont{LibertinusMono}[%
+            Extension = .otf,
+            UprightFont = *-Regular,
+            %Scale = 0.92
+        ]%
+    }{}
+    \else
+        \IfFileExists{libertinu.sty}{RequirePackage{libertinus}}{}
+    \fi
+\fi
+\ifatelier@serifbody \usefonttheme{serif}\fi
+\usefonttheme{professionalfonts}
+
+\setbeamerfont{title}{family=\rmfamily, size=\huge, series=\mdseries}
+\setbeamerfont{subtitle}{family=\rmfamily, size=\large, shape=\itshape}
+\setbeamerfont{author}{size=\normalsize, shape=\scshape}
+\setbeamerfont{institute}{size=\small, shape=\scshape}
+\setbeamerfont{date}{size=\small, shape=\itshape}
+\setbeamerfont{frametitle}{family=\rmfamily, size=\LARGE, series=\mdseries}
+\setbeamerfont{framesubtitle}{family=\rmfamily, size=\normalsize, shape=\itshape}
+\setbeamerfont{section in head}{size=\small, shape=\scshape}
+\setbeamerfont{footline}{size=\scriptsize, shape=\scshape}
+\setbeamerfont{section number}{family=\rmfamily, size=\fontsize{54}{56}\selectfont, shape=\itshape}
+\setbeamerfont{section title}{family=\rmfamily, size=\huge}
+\setbeamerfont{block title}{size=\normalsize, shape=\scshape}
+\setbeamerfont{standout}{family=\rmfamily, size=\Huge, shape=\itshape}
+
+% - - - - - - - - - - - -
+% 4. Geometry 
+% - - - - - - - - - - - -
+
+\def\atelier@margin{0.08\paperwidth}
+\setbeamersize{text margin left = 0.08\paperwidth, text margin right = 0.08\paperwidth}
+\setbeamertemplate{navigation symbols}{}
+
+% Ornament line -- diamond -- line
+\newcommand\atelier@ornament[1][4em]{%
+    \tikz[baseline = -0.6ex]{
+        \draw[AtelierRule, line width = 0.6pt] (-#1,0) -- (-0.35em,0);
+        \draw[AtelierRule, line width = 0.6pt] (0.35em, 0) -- (#1,0);
+        \fill[AtelierAccent] (0,0.18em) -- (0.18em, 0) -- (0,-0.18em) -- (-0.18em,0) -- cycle;
+    }
+}
+
+% - - - - - - - - - - - -
+% 5. Title Page 
+% - - - - - - - - - - - -
+
+
 \mode<all>
