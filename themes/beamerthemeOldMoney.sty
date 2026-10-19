@@ -1,0 +1,47 @@
+% - - - - - - - - - - - -
+% - - - - - - - - - - - -
+%  beamerthemeOldMoney.sty
+%  Part of the ThemeForge Collection
+%  Dark background, ivory text, gold ornaments
+%  Vibes of engraved invitation cards
+%
+%  Usage:     \usetheme[options]{OldMoney}
+%
+%  Options: variant = ink|emerald|ivory   colour scheme (default ink)
+% - - - - - - - - - - - -
+% - - - - - - - - - - - -
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemeMeridian}[ThemeForge 20261020 OldMoney Theme v.10]
+
+\mode<presentation>
+
+% - - - - - - - - - - - -
+% 1. Options 
+% - - - - - - - - - - - -
+
+\def\OM@variant{ink}
+\DeclareOptionsBeamer{variant}{\def\OM@variant{#1}}
+\ProcessOptionsBeamer
+
+\RequirePackage{tikz}
+\usetikzlibrary{shapes.geometric} % For the diamond ornaments
+
+
+% - - - - - - - - - - - -
+% 2. Colours 
+% - - - - - - - - - - - -
+
+% Variant Ink
+\def\OM@variant@ink{
+    \definecolor{OM-bg}{HTML}{}
+    \definecolor{name}{HTML}{}
+    \definecolor{name}{HTML}{}
+    \definecolor{name}{HTML}{}
+    \definecolor{name}{HTML}{}
+    \definecolor{name}{HTML}{}
+    \definecolor{name}{HTML}{}
+    \definecolor{name}{HTML}{}
+}
+
+\mode<all>
+\endinput
