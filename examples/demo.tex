@@ -4,8 +4,12 @@
 % 
 % 
 \documentclass[11pt, aspectratio=169]{beamer}
-\providecommand\ThemeName{}
+\providecommand\ThemeName{Atelier}
 \providecommand\ThemeOptions{}
+
+\makeatletter
+\def\input@path{{../themes/}}
+\makeatother
 
 \edef\UseTheme{\noexpand\usetheme[\ThemeOptions]{\ThemeName}}\UseTheme
 
