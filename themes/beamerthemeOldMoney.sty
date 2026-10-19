@@ -33,15 +33,82 @@
 
 % Variant Ink
 \def\OM@variant@ink{
-    \definecolor{OM-bg}{HTML}{}
-    \definecolor{name}{HTML}{}
-    \definecolor{name}{HTML}{}
-    \definecolor{name}{HTML}{}
-    \definecolor{name}{HTML}{}
-    \definecolor{name}{HTML}{}
-    \definecolor{name}{HTML}{}
-    \definecolor{name}{HTML}{}
+    \definecolor{OM-bg}{HTML}{0A0213}
+    \definecolor{OM-panel}{HTML}{181731}
+    \definecolor{OM-text}{HTML}{F1DEE4}
+    \definecolor{OM-gold}{HTML}{B68600}
+    \definecolor{OM-item}{HTML}{22D9A5}
+    \definecolor{OM-fill}{HTML}{48659C}
+    \definecolor{OM-alert}{HTML}{E8836B}
+    \definecolor{OM-example}{HTML}{8FBF8F}
 }
+
+% Variant Emerald
+\def\OM@variant@emerald{
+    \definecolor{OM-bg}{HTML}{0B241D}
+    \definecolor{OM-panel}{HTML}{153A30}
+    \definecolor{OM-text}{HTML}{F3EBDD}
+    \definecolor{OM-gold}{HTML}{CFA43E}
+    \definecolor{OM-item}{HTML}{7FD8C1}
+    \definecolor{OM-fill}{HTML}{3E7A68}
+    \definecolor{OM-alert}{HTML}{F09A80}
+    \definecolor{OM-example}{HTML}{B5DBA8}
+}
+
+% Variant Ivory
+\def\OM@variant@ivory{
+    \definecolor{OM-bg}{HTML}{F6F0E4}
+    \definecolor{OM-panel}{HTML}{EDE5D3}
+    \definecolor{OM-text}{HTML}{1E1A14}
+    \definecolor{OM-gold}{HTML}{7A5A00}
+    \definecolor{OM-item}{HTML}{0E6B58}
+    \definecolor{OM-fill}{HTML}{3D5A8A}
+    \definecolor{OM-alert}{HTML}{A8402A}
+    \definecolor{OM-example}{HTML}{3F6A35}
+}
+
+\ifcsname OM@variant@\OM@variant\endcsname
+    \csname OM@variant@\OM@variant\endcsname
+\else
+    \PackageWarning{beamerthemeOldMoney}{Unknown variant '\OM@variant', using 'ink'. Choose ink, emerald, or ivory.}%
+    \OM@variant@ink
+\fi
+
+\colorlet{OM-Muted}{OM-text!62!OM-bg}
+
+\setbeamercolor{title}{fg = OM-gold}
+\setbeamercolor{subtitle}{fg = OM-text}
+\setbeamercolor{author}{fg = OM-text}
+\setbeamercolor{institute}{fg = OM-item}
+\setbeamercolor{date}{fg = OM-muted}
+\setbeamercolor{frametitle}{fg = OM-gold}
+\setbeamercolor{framesubtitle}{fg = OM-text}
+\setbeamercolor{section title}{fg = OM-gold}
+\setbeamercolor{footline}{fg = OM-muted}
+\setbeamercolor{block title}{fg = OM-gold}
+\setbeamercolor{block title alerted}{fg = OM-alert}
+\setbeamercolor{block title example}{fg = OM-example}
+\setbeamercolor{standout}{fg = OM-bg, bg = OM-text}
+
+% - - - - - - - - - - - -
+%  3. Fonts
+% - - - - - - - - - - - -
+
+\IfFileExists{plex-serif.sty}{\RequirePackage{plex-serif}}{}
+\IfFileExists{plex-mono.sty}{\RequirePackage{plex-mono}}{}
+\usefonttheme{serif}
+
+\setbeamerfont{title}{size = \huge, series = \bfseries}
+\setbeamerfont{subtitle}{size = \large, series = \mdseries, shape = \itshape}
+\setbeamerfont{author}{size = \normalsize}
+\setbeamerfont{institute}{size = \small, shape = \scshape}
+\setbeamerfont{date}{size = \small}
+\setbeamerfont{frametitle}{size = \Large, series = \bfseries}
+\setbeamerfont{framesubtitle}{size = \normalsize, shape = \mdseries, shape = \itshape}
+\setbeamerfont{section title}{size = \LARGE, series = \bfseries}
+\setbeamerfont{section number}{size = \small, shape = \scshape}
+\setbeamerfont{footline}{size = \tiny}
+\setbeamerfont{block title}{size = \normalsize, series = \bfseries}
 
 \mode<all>
 \endinput
