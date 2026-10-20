@@ -142,8 +142,135 @@
 \setbeamertemplate{title page}{%
     \OMifempty{\insertsubtitle}{\OM@subtitlefalse}{\OM@subtitletrue}%
     \begin{tikzpicture}[remember picture, overlay]
-        \node at (0,0);
-    \end{tikzpicture}
+        \draw[OM-gold, line width = 0.8pt]
+            ([xshift = 0.035\paperwidth, yshift = 0.05\paperheight]current page.south west) rectangle %
+            ([xshift = -0.035\paperwidth, yshift = -0.05\paperheight]current page.north east);
+            
+        \draw[OM-gold, line width = 0.4pt]
+            ([xshift = 0.045\paperwidth, yshift = 0.065\paperheight]current page.south west) rectangle %
+            ([xshift = -0.045\paperwidth, yshift = -0.065\paperheight]current page.north east);
+        
+        \node[text width = 0.75\paperwidth, align = center, anchor = south] 
+            at ([yshift = 0.08\paperheight] current page.center) (Title)
+            {\usebeamerfont{title}\usebeamercolor[fg]{title}%
+            \hyphenpenalty = 10000% Titles are never to be hyphenated
+            \inserttitle\par};
+
+        % If there is a subtitle, the Rule goes under it.
+        % Otherwise, the Rule anchors itself to the bottom of the title
+        \ifOM@subtitle
+            \node[text width = 0.75\paperwidth, align = center, anchor = north] at ([yshift = -0.5ex] Title.south) (Subtitle) {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par};
+            \coordinate (Rule) at ([yshift = -2.5ex] Subtitle.south);
+        \else
+            \coordinate (Rule) at ([yshift = -2.5ex] Title.south);
+        \fi
+
+        % Ornament
+        \node[inner sep = 0pt] at (Rule) (Ornament) {\OMRule{0.22\paperwidth}};
+
+        % Author, institute, and date stacked under the ornament
+        \node[text width = 0.75\paperwidth, align = center, anchor = north] at ([yshift = -2.5ex] Ornament.south)
+            {%
+                {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertrauthot\par}
+                \OMifempty{\insertinstitute}{}{%
+                    \vskip0.6ex
+                    {\usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute\par}
+                }
+                \vskip0.6ex
+                {\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate\par}
+            };
+    \end{tikzpicture}%
+}
+
+\setbeamertemplate{frametitle}{%
+    \vskip2ex
+    {\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle\par}%
+    \ifx\insertframesubtitle\@empty\else
+        \vskip0.3ex
+        {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\par}%
+    \fi
+    \vskip1ex
+    \OMrule{\linewidth}%
+}
+
+
+\setbeamertemplate{footline}{%
+    \leavevmode
+    \hbox to \paperwidth{%
+        \hskip0.05\paperwidth
+	    \usebeamerfont{footline}\usebeamercolor[fg]{footline}%
+	    \sbox0{\insertshortauthor}%
+	    \sbox1{\insertshorttitle}%
+	    \ifdim\wd0>0pt
+	       \insertshortauthor
+	        \ifdim\wd1>0pt\enspace{\color{OM-gold}|}\enspace\insertshorttitle\fi
+	    \else
+	        \ifdim\wd1>0pt\insertshortttile\fi
+	    \fi
+	    \hfill
+	    \insertframenumer\,/\,\inserttotalframenumber
+	    \hskip0.05\paperwidth
+    }%
+    \vskip2.5ex
+}
+
+\setbeamertemplate{section page}{%
+    \centering
+    {\usebeamerfont{section number}\usebeamercolor[fg]{structure}%
+        Section \insertsectionnumber\par}
+    \vskip1.5ex
+    {\usebeamerfont{section title}\usebeamercolor[fg]{section title}\insertsectionhead\par}
+    \vskip2ex
+    \OMrule{0.22\paperwidth}\par
+}
+
+\AtBeginSection{%
+    \ifbeamer@inframe\else
+    \begingroup
+        \setbeamertemplate{footline}{}
+        \frame[c, noframenumbering]{\sectionpage}
+    \endgroup
+    \fi
+}
+
+
+% - - - - - - - - - - - -
+% 6. Inner Theme
+% - - - - - - - - - - - -
+
+\setbeamersize{%
+    text margin left = 0.05\paperwidth,
+    text margin right = 0.05\paperwidth
+}
+
+% Lists
+
+% Itemize
+
+\setbeamertemplate{itemize item}{%
+    \raisebox{0.25ex}{\tikz{\fill[OM-teal, rotate = 45] (0,0) rectangle (0.55ex, 0.55ex);}}%
+}
+
+\setbeamertemplate{itemize subitem}{%
+    \raisebox{0.3ex}{\tikz{\fill[OM-gold, line width = 0.5pt, rotate = 45] (0,0) rectangle (0.45ex, 0.45ex);}}%
+}
+
+\setbeamertemplate{itemize subsubitem}{%
+    \raisebox{0.4ex}{\tikz{\fill[OM-teal] (0,0) circle (0.18ex);}}%
+}
+
+
+% Enumerate
+\setbeamertemplate{enumerate item}{%
+    {\usebeamercolor[fg]{structure}\insertenumlabel.}%
+}
+
+\setbeamertemplate{enumerate subitem}{%
+    {\color{OM-gold}\insertsubenumlabel.}%
+}
+
+\setbeamertemplate{enumerate subsubitem}{%
+    {\color{OM-gold}\insertsubsubenumlabel.}%
 }
 
 
