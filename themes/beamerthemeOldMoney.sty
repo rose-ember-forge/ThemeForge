@@ -11,7 +11,7 @@
 % - - - - - - - - - - - -
 % - - - - - - - - - - - -
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemeMeridian}[ThemeForge 20261020 OldMoney Theme v.10]
+\ProvidesPackage{beamerthemeMeridian}[ThemeForge 20260705 OldMoney Theme v.1]
 
 \mode<presentation>
 
@@ -109,6 +109,43 @@
 \setbeamerfont{section number}{size = \small, shape = \scshape}
 \setbeamerfont{footline}{size = \tiny}
 \setbeamerfont{block title}{size = \normalsize, series = \bfseries}
+
+ 
+% - - - - - - - - - - - -
+% 4. Ornaments 
+% - - - - - - - - - - - -
+
+
+\newcommand{\OMrule}[1]{%
+    \tikz{%
+        \draw[OM-gold, line width = 0.6pt] (3pt,0) -- (#1-3pt, 0)
+        \node[diamond, fill = OM-gold, inner sep = 1.3pt] at (3pt, 0) {};
+        \node[diamond, fill = OM-gold, inner sep = 1.3pt] at (#1-3pt, 0) {};
+    }%
+}
+
+\newcommand\OMifempty[3]{%
+  \sbox0{#1}%
+  \ifdim\wd0=0pt #2\else #3\fi
+}
+
+
+% - - - - - - - - - - - -
+% 5. Outer Theme 
+% - - - - - - - - - - - -
+
+% Take out navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+% Title page
+\newif\ifOM@subtitle
+\setbeamertemplate{title page}{%
+    \OMifempty{\insertsubtitle}{\OM@subtitlefalse}{\OM@subtitletrue}%
+    \begin{tikzpicture}[remember picture, overlay]
+        \node at (0,0);
+    \end{tikzpicture}
+}
+
 
 \mode<all>
 \endinput
