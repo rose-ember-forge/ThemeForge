@@ -125,8 +125,12 @@
 % - - - - - - - - - - - -
 
 \ifmeridian@fonts
-  \IfFileExists{FiraSans.sty}{\RequirePackage[sfdefault,lining]{FiraSans}}{}
-  \IfFileExists{FiraMono.sty}{\RequirePackage[scale=0.88]{FiraMono}}{}
+  \IfFileExists{FiraSans.sty}{\RequirePackage[sfdefault,lining]{FiraSans}}{%
+    \PackageWarning{beamerthemeMeridian}{Fira Sans not found, using default fonts.\MessageBreak Install the TeX Live package `fira'.}
+  }
+  \IfFileExists{FiraMono.sty}{\RequirePackage[scale=0.88]{FiraMono}}{%
+    \PackageWarning{beamerthemeMeridian}{Fira Mono not found, using default fonts. \MessageBreak Install the TeX Live package `fira'.}
+  }
 \fi
 \usefonttheme{professionalfonts}
 

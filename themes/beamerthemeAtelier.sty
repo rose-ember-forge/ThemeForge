@@ -152,9 +152,13 @@
             UprightFont = *-Regular,
             Scale = 0.85
         ]%
-    }{}
+    }{%
+        \PackageWarning{beamerthemeAtelier}{Libertinus not found, using default font. \MessageBreak Install TeX Live package `libertinus'.}
+    }
     \else
-        \IfFileExists{libertinus.sty}{\RequirePackage{libertinus}}{}
+        \IfFileExists{libertinus.sty}{\RequirePackage{libertinus}}{%
+            \PackageWarning{beamerthemeAtelier}{Libertinus not found, using the default font.\MessageBreak Install TeX Live package `libertinus'.}
+        }
     \fi
 \fi
 \ifatelier@serifbody \usefonttheme{serif}\fi

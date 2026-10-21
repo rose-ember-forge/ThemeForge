@@ -94,8 +94,12 @@
 %  3. Fonts
 % - - - - - - - - - - - -
 
-\IfFileExists{plex-serif.sty}{\RequirePackage{plex-serif}}{}
-\IfFileExists{plex-mono.sty}{\RequirePackage{plex-mono}}{}
+\IfFileExists{plex-serif.sty}{\RequirePackage{plex-serif}}{%
+    \PackageWarning{beamerthemeOldMoney}{Plex Serif not found, using default fonts.\MessageBreak Install TeX Live package `plex'.}
+}
+\IfFileExists{plex-mono.sty}{\RequirePackage{plex-mono}}{%
+    \PackageWarning{beamerthemeOldMoney}{Plex Mono not found, using default fonts.\MessageBreak Install TeX Live package `plex'.}
+}
 \usefonttheme{serif}
 
 \setbeamerfont{title}{size = \huge, series = \bfseries}
