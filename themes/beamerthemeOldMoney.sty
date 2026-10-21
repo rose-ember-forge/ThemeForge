@@ -250,7 +250,6 @@
 % Lists
 
 % Itemize
-
 \setbeamertemplate{itemize item}{%
     \raisebox{0.25ex}{\tikz{\fill[OM-teal, rotate = 45] (0,0) rectangle (0.55ex, 0.55ex);}}%
 }
@@ -277,6 +276,27 @@
     {\color{OM-gold}\insertsubsubenumlabel.}%
 }
 
+\setbeamertemplate{blocks}[rounded][shadow = false]
+
+\setbeamertemplate{section in toc}{%
+    {\color{OM-gold}\inserttocsectionnumber.}\enspace\inserttocsection\par
+}
+
+\RequirePackage{etoolbox}
+\newif\ifOM@standout
+\define@key{beamerframe}{standout}[true]{%
+    \setkeys{beamerframe}{c, noframenumbering}%
+    \OM@standouttrue
+    \begingroup
+    \setbeamercolor{background canvas}{bg = OM-gold}%
+    \centering\usebeamerfont{title}\color{OM-bg}%
+}
+
+\apptocmd{\beamer@reseteecodes}{%
+    \if@OMstandout\endgroup\global\OM@standoutfalse\fi}{}{}
+
+\setbeamertemplate{caption}[numbered]
+\setbeamercolor{caption name}{fg = OM-gold}
 
 \mode<all>
 \endinput
