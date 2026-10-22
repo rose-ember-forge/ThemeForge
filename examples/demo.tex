@@ -68,8 +68,23 @@
 \end{frame}
 
 
-\begin{frame}{Tables and Figures}
-    
+\begin{frame}{Tables}
+    \scriptsize % I had to go overboard with the table, didn't I? 
+    \begin{table}
+    \centering
+        \begin{tabular}{|l|c|c|c|}
+            \toprule
+            & Co-efficients & Variables & Constants\\
+            \midrule
+            Actors & $\displaystyle A={\begin{bmatrix}a_{11}&a_{12}&\cdots &a_{1n}\\a_{21}&a_{22}&\cdots &a_{2n}\\\vdots &\vdots &\ddots &\vdots \\a_{m1}&a_{m2}&\cdots &a_{mn}\end{bmatrix}}$ & $\mathbf {x} ={\begin{bmatrix}x_{1}\\x_{2}\\\vdots \\x_{n}\end{bmatrix}}$ & $\mathbf {b} ={\begin{bmatrix}b_{1}\\b_{2}\\\vdots \\b_{m}\end{bmatrix}}.$\\
+            \midrule
+            Equation & \multicolumn{3}{c|}{$A\mathbf{x} = \mathbf{b}$}\\
+            \midrule
+            Story & \multicolumn{3}{c|}{${\displaystyle {\begin{cases}a_{11}x_{1}+a_{12}x_{2}+\dots +a_{1n}x_{n}=b_{1}\\a_{21}x_{1}+a_{22}x_{2}+\do`ts +a_{2n}x_{n}=b_{2}\\\vdots \\a_{m1}x_{1}+a_{m2}x_{2}+\dots +a_{mn}x_{n}=b_{m}\end{cases}}}$}\\
+            \bottomrule
+        \end{tabular}
+        \caption{A table. Good for show, not good as a table.}
+    \end{table}
 \end{frame}
 
 % Slide demonstrating standout option
