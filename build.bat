@@ -60,7 +60,7 @@ if "%~2"=="-" (
 )
 latexmk -pdf -silent -interaction=nonstopmode -halt-on-error ^
   -outdir=%OUTDIR% -jobname=%JOB% ^
-  -usepretex="\makeatletter\def\input@path{{%THEMEDIR%}}\makeatother\def\ThemeName{%~1}\def\ThemeOptions{%OPTS%}" ^
+  -usepretex="\makeatletter\def\input@path{{%THEMEDIR%%~1/}}\makeatother\def\ThemeName{%~1}\def\ThemeOptions{%OPTS%}" ^
   %DECK% >nul 2>&1
 if errorlevel 1 (
   echo   FAILED  %JOB%

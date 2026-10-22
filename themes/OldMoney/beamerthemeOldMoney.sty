@@ -52,7 +52,7 @@
 \def\OM@variant@ink{%
     \definecolor{OM-bg}{HTML}{0A0213}
     \definecolor{OM-panel}{HTML}{181731}
-    \definecolor{OM-text}{HTML}{7C337B}
+    \definecolor{OM-text}{HTML}{F1DEE4}
     \definecolor{OM-gold}{HTML}{B68600}
     \definecolor{OM-item}{HTML}{22D9A5}
     \definecolor{OM-fill}{HTML}{48659C}
@@ -92,6 +92,20 @@
 \fi
 
 \colorlet{OM-muted}{OM-text!62!OM-bg}
+
+% Global structures
+\setbeamercolor{normal text}{fg = OM-text, bg = OM-bg}
+\setbeamercolor{background canvas}{bg = OM-bg}
+\setbeamercolor{structure}{fg = OM-item}
+\setbeamercolor{alerted text}{fg = OM-fill}
+\setbeamercolor{example text}{fg = OM-example}
+
+% Palettes: some built-in beamer elements (and other people's outer themes)
+% read their colours from these, so filling them in keeps things consistent.
+\setbeamercolor{palette primary}{fg = OM-bg, bg = OM-gold}
+\setbeamercolor{palette secondary}{fg = OM-text, bg = OM-panel}
+\setbeamercolor{palette tertiary}{fg = OM-bg, bg = OM-item}
+\setbeamercolor{palette quaternary}{fg = OM-text, bg = OM-blue}
 
 \setbeamercolor{title}{fg = OM-gold}
 \setbeamercolor{subtitle}{fg = OM-text}
@@ -276,7 +290,7 @@
 }
 
 \setbeamertemplate{itemize subsubitem}{%
-    \raisebox{0.4ex}{\tikz{\fill[OM-item] (0,0) circle (0.18ex);}}%
+    \raisebox{0.4ex}{\tikz{\draw[OM-item, line width = 0.6pt, rotate = 45] (0,0) rectangle (0.45ex, 0.45ex) ;}}%
 }
 
 

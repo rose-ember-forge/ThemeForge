@@ -25,7 +25,7 @@ _minted*/
 build/
 site/dist/
 *.zip
-# To commit a few showcase PDFs anyway, un-comment the next line:
+# Uncomment the next line to push PDF demos
 # !examples/showcase/*.pdf
 
 # --- Python ---
@@ -34,7 +34,6 @@ __pycache__/
 .venv/
 
 # --- Editors ---
-# Remove this line if you want to share LaTeX Workshop recipes in .vscode/settings.json
 .vscode/
 *.swp
 *~
