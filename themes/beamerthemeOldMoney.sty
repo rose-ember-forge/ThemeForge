@@ -37,7 +37,7 @@
 % - - - - - - - - - - - -
 
 \def\OM@variant{ink}
-\DeclareOptionsBeamer{variant}{\def\OM@variant{#1}}
+\DeclareOptionBeamer{variant}{\def\OM@variant{#1}}
 \ProcessOptionsBeamer
 
 \RequirePackage{tikz}
@@ -49,10 +49,10 @@
 % - - - - - - - - - - - -
 
 % Variant Ink
-\def\OM@variant@ink{
+\def\OM@variant@ink{%
     \definecolor{OM-bg}{HTML}{0A0213}
     \definecolor{OM-panel}{HTML}{181731}
-    \definecolor{OM-text}{HTML}{F1DEE4}
+    \definecolor{OM-text}{HTML}{7C337B}
     \definecolor{OM-gold}{HTML}{B68600}
     \definecolor{OM-item}{HTML}{22D9A5}
     \definecolor{OM-fill}{HTML}{48659C}
@@ -61,7 +61,7 @@
 }
 
 % Variant Emerald
-\def\OM@variant@emerald{
+\def\OM@variant@emerald{%
     \definecolor{OM-bg}{HTML}{0B241D}
     \definecolor{OM-panel}{HTML}{153A30}
     \definecolor{OM-text}{HTML}{F3EBDD}
@@ -73,12 +73,12 @@
 }
 
 % Variant Ivory
-\def\OM@variant@ivory{
+\def\OM@variant@ivory{%
     \definecolor{OM-bg}{HTML}{F6F0E4}
     \definecolor{OM-panel}{HTML}{EDE5D3}
     \definecolor{OM-text}{HTML}{1E1A14}
     \definecolor{OM-gold}{HTML}{7A5A00}
-    \definecolor{OM-item}{HTML}{0E6B58}
+    \definecolor{OM-item}{HTML}{157B58}
     \definecolor{OM-fill}{HTML}{3D5A8A}
     \definecolor{OM-alert}{HTML}{A8402A}
     \definecolor{OM-example}{HTML}{3F6A35}
@@ -91,7 +91,7 @@
     \OM@variant@ink
 \fi
 
-\colorlet{OM-Muted}{OM-text!62!OM-bg}
+\colorlet{OM-muted}{OM-text!62!OM-bg}
 
 \setbeamercolor{title}{fg = OM-gold}
 \setbeamercolor{subtitle}{fg = OM-text}
@@ -105,7 +105,7 @@
 \setbeamercolor{block title}{fg = OM-gold}
 \setbeamercolor{block title alerted}{fg = OM-alert}
 \setbeamercolor{block title example}{fg = OM-example}
-\setbeamercolor{standout}{fg = OM-bg, bg = OM-text}
+% \setbeamercolor{standout}{fg = OM-bg, bg = OM-text}
 
 % - - - - - - - - - - - -
 %  3. Fonts
@@ -125,7 +125,7 @@
 \setbeamerfont{institute}{size = \small, shape = \scshape}
 \setbeamerfont{date}{size = \small}
 \setbeamerfont{frametitle}{size = \Large, series = \bfseries}
-\setbeamerfont{framesubtitle}{size = \normalsize, shape = \mdseries, shape = \itshape}
+\setbeamerfont{framesubtitle}{size = \normalsize, series = \mdseries, shape = \itshape}
 \setbeamerfont{section title}{size = \LARGE, series = \bfseries}
 \setbeamerfont{section number}{size = \small, shape = \scshape}
 \setbeamerfont{footline}{size = \tiny}
@@ -139,13 +139,13 @@
 
 \newcommand{\OMrule}[1]{%
     \tikz{%
-        \draw[OM-gold, line width = 0.6pt] (3pt,0) -- (#1-3pt, 0)
+        \draw[OM-gold, line width = 0.6pt] (3pt,0) -- (#1-3pt, 0);
         \node[diamond, fill = OM-gold, inner sep = 1.3pt] at (3pt, 0) {};
         \node[diamond, fill = OM-gold, inner sep = 1.3pt] at (#1-3pt, 0) {};
     }%
 }
 
-\newcommand\OMifempty[3]{%
+\newcommand{\OMifempty}[3]{%
   \sbox0{#1}%
   \ifdim\wd0=0pt #2\else #3\fi
 }
@@ -187,12 +187,12 @@
         \fi
 
         % Ornament
-        \node[inner sep = 0pt] at (Rule) (Ornament) {\OMRule{0.22\paperwidth}};
+        \node[inner sep = 0pt] at (Rule) (Ornament) {\OMrule{0.22\paperwidth}};
 
         % Author, institute, and date stacked under the ornament
         \node[text width = 0.75\paperwidth, align = center, anchor = north] at ([yshift = -2.5ex] Ornament.south)
             {%
-                {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertrauthot\par}
+                {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par}
                 \OMifempty{\insertinstitute}{}{%
                     \vskip0.6ex
                     {\usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute\par}
@@ -226,10 +226,10 @@
 	       \insertshortauthor
 	        \ifdim\wd1>0pt\enspace{\color{OM-gold}|}\enspace\insertshorttitle\fi
 	    \else
-	        \ifdim\wd1>0pt\insertshortttile\fi
+	        \ifdim\wd1>0pt\insertshorttitle\fi
 	    \fi
 	    \hfill
-	    \insertframenumer\,/\,\inserttotalframenumber
+	    \insertframenumber\,/\,\inserttotalframenumber
 	    \hskip0.05\paperwidth
     }%
     \vskip2.5ex
@@ -268,7 +268,7 @@
 
 % Itemize
 \setbeamertemplate{itemize item}{%
-    \raisebox{0.25ex}{\tikz{\fill[OM-teal, rotate = 45] (0,0) rectangle (0.55ex, 0.55ex);}}%
+    \raisebox{0.25ex}{\tikz{\fill[OM-item, rotate = 45] (0,0) rectangle (0.55ex, 0.55ex);}}%
 }
 
 \setbeamertemplate{itemize subitem}{%
@@ -276,7 +276,7 @@
 }
 
 \setbeamertemplate{itemize subsubitem}{%
-    \raisebox{0.4ex}{\tikz{\fill[OM-teal] (0,0) circle (0.18ex);}}%
+    \raisebox{0.4ex}{\tikz{\fill[OM-item] (0,0) circle (0.18ex);}}%
 }
 
 
@@ -310,7 +310,7 @@
 }
 
 \apptocmd{\beamer@reseteecodes}{%
-    \if@OMstandout\endgroup\global\OM@standoutfalse\fi}{}{}
+    \ifOM@standout\endgroup\global\OM@standoutfalse\fi}{}{}
 
 \setbeamertemplate{caption}[numbered]
 \setbeamercolor{caption name}{fg = OM-gold}
