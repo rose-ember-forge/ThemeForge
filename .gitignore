@@ -24,6 +24,7 @@ _minted*/
 *.pdf
 build/
 site/dist/
+anvil/
 *.zip
 # Uncomment the next line to push PDF demos
 # !examples/showcase/*.pdf
