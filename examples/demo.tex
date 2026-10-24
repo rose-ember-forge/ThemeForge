@@ -14,6 +14,7 @@
 
 \edef\UseTheme{\noexpand\usetheme[\ThemeOptions]{\ThemeName}}\UseTheme
 
+\usepackage{tikz,xcolor,listings}
 \usepackage{booktabs}
 \usepackage{appendixnumberbeamer}
 \hypersetup{pdflang=en-GB, pdfdisplaydoctitle=true}
@@ -23,6 +24,36 @@
 \author[Rose C.]{Rosario Corazon}
 \institute{ThemeForge}
 \date{\today}
+
+% Listings style configuration
+\definecolor{CodeBG}{HTML}{FBF1C7}
+\definecolor{CodeFG}{HTML}{282828}
+\definecolor{CodeRed}{HTML}{CC241D}
+\definecolor{CodeGreen}{HTML}{98971E}
+\definecolor{CodeBlue}{HTML}{458588}
+\definecolor{CodePurple}{HTML}{B16286}
+\definecolor{CodeOrange}{HTML}{D65D0E}
+\definecolor{CodeYellow}{HTML}{D79921}
+\definecolor{CodeGray}{HTML}{A89884}
+
+\lstdefinestyle{demoCode}{%
+    backgroundcolor = \color{CodeBG},
+    commentstyle = \color{CodeGray},
+    keywordstyle = \color{CodeRed},
+    numberstyle = \color{CodeBlue},
+    stringstyle = \color{CodeOrange},
+    basicstyle = \color{CodeFG}\ttfamily\tiny,
+    breaklines = true,
+    % captionpos = b,
+    keepspaces = true,
+    numbers = left,
+    numbersep = 5pt,
+    showspaces = false,
+    showstringspaces = false,
+    showtabs = false,
+    tabsize = 2
+}
+\lstset{style = demoCode}
 
 \begin{document}
 
@@ -51,9 +82,35 @@
 \end{frame}
 
 \begin{frame}{Lists}
-    
+    \begin{columns}[T]
+        \begin{column}{0.46\textwidth}
+            \begin{itemize}
+                \item One idea per bullet
+                \begin{itemize}
+                    \item Nested points
+                    \begin{itemize}
+                        \item stay legible
+                    \end{itemize}
+                    \item even three levels deep
+                \end{itemize}
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.46\textwidth}
+            \begin{enumerate}
+                \item Draft the story
+                \item Pick a theme
+                \begin{enumerate}
+                    \item Set the accent color
+                    \item Check the contrast
+                \end{enumerate}
+                \item Rehearse
+                \item Present
+            \end{enumerate}
+        \end{column}
+    \end{columns}
 \end{frame}
 
+\section{Components}
 
 \begin{frame}{Blocks}
     \begin{block}{Definition}
@@ -69,7 +126,7 @@
 
 
 \begin{frame}{Tables}
-    \scriptsize % I had to go overboard with the table, didn't I? 
+    \scriptsize
     \begin{table}
     \centering
         \begin{tabular}{|l|c|c|c|}
@@ -85,6 +142,62 @@
         \end{tabular}
         \caption{A table. Good for show, not good as a table.}
     \end{table}
+\end{frame}
+
+\begin{frame}[fragile]{Figures}
+\begin{columns}
+    \begin{column}{0.47\textwidth}
+        \centering
+        \begin{figure}
+        \begin{tikzpicture}[scale = 0.5, line join=round]
+            \pgfmathsetmacro{\a}{2.5}   % overall size
+            \pgfmathsetmacro{\b}{0.9}   % bar thickness
+            
+            \definecolor{Penrose1}{HTML}{F7B2B7}
+            \definecolor{Penrose2}{HTML}{F7717D}
+            \definecolor{Penrose3}{HTML}{DE639A}
+            % One chevron-shaped face, rotated three times.
+            % Each face gets its own brightness, like a lit solid.
+            \foreach \ang/\cA/\cB in {0/Penrose1/Penrose2,
+                                      120/Penrose2/Penrose3,
+                                      240/Penrose3/Penrose1}{
+              \begin{scope}[rotate=\ang]
+                \filldraw[draw=Penrose1!33!Penrose2!33!Penrose3,
+                            thick,
+                            shading=axis, 
+                            shading angle=-\ang,
+                            top color=\cA, 
+                            bottom color=\cB]
+                  ({-sqrt(3)/2*\a},{-0.5*\a}) -- ++(-\b,0)
+                  -- ({0.5*\b},{\a+3*sqrt(3)/2*\b})
+                  -- ({sqrt(3)/2*\a+2.5*\b},{-0.5*\a-sqrt(3)/2*\b})
+                  -- ++({-0.5*\b},{-sqrt(3)/2*\b})
+                  -- ({0.5*\b},{\a+sqrt(3)/2*\b})
+                  -- cycle;
+              \end{scope}
+            }
+          \end{tikzpicture}
+          \caption{A Penrose triangle}
+        \end{figure}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+    \begin{figure}
+        \begin{lstlisting}[language = TeX]
+\foreach \ang/\cA/\cB in {0/Penrose1/Penrose2, 120/Penrose2/Penrose3, 240/Penrose3/Penrose1}{
+    \begin{scope}[rotate=\ang]
+        \filldraw[draw=Penrose1!33!Penrose2!33!Penrose3, thick, shading=axis, shading angle=-\ang, top color=\cA, bottom color=\cB]
+        ({-sqrt(3)/2*\a},{-0.5*\a}) -- ++(-\b,0)
+        -- ({0.5*\b},{\a+3*sqrt(3)/2*\b})
+        -- ({sqrt(3)/2*\a+2.5*\b},{-0.5*\a-sqrt(3)/2*\b})
+        -- ++({-0.5*\b},{-sqrt(3)/2*\b})
+        -- ({0.5*\b},{\a+sqrt(3)/2*\b})
+        -- cycle;
+    \end{scope}}
+        \end{lstlisting}
+        \caption{A snipppet of code}
+        \end{figure}
+        \end{column}
+    \end{columns}   
 \end{frame}
 
 % Slide demonstrating standout option
