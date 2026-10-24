@@ -23,7 +23,7 @@
 \subtitle{A tour of the \ThemeName{} theme}
 \author[Rose C.]{Rosario Corazon}
 \institute{ThemeForge}
-\date{\today}
+\date[20260101]{1 January, 2026}
 
 % Listings style configuration
 \definecolor{CodeBG}{HTML}{FBF1C7}
@@ -37,12 +37,12 @@
 \definecolor{CodeGray}{HTML}{A89884}
 
 \lstdefinestyle{demoCode}{%
-    backgroundcolor = \color{CodeBG},
+    backgroundcolor = \usebeamercolor{normal text}\color{fg!8!bg},%\color{CodeBG},
     commentstyle = \color{CodeGray},
     keywordstyle = \color{CodeRed},
     numberstyle = \color{CodeBlue},
     stringstyle = \color{CodeOrange},
-    basicstyle = \color{CodeFG}\ttfamily\tiny,
+    basicstyle = \usebeamercolor{normal text}\color{bg!8!fg}\ttfamily\scriptsize,
     breaklines = true,
     % captionpos = b,
     keepspaces = true,
@@ -58,7 +58,7 @@
 \begin{document}
 
 % Title frame. 
-% `plain` to keep normal frame elements interfering with the title.
+% `plain` to keep normal frame elements from interfering with the title.
 % `noframenumbering` so the frame counter skips the title page
 \begin{frame}[plain, noframenumbering]
     \titlepage    
@@ -75,7 +75,7 @@
     A good slide carries one idea. Body text is set large, with a comfortable line length and \alert{alerted text} for the one takeaway. \emph{Emphasis} stays subtle, and \texttt{monospace} for code.
 
     \medskip
-    Inline maths sits on the baseline: $E_n = (n + \frac{1}{2})\hbar\omega$, and displays breathe:
+    Inline maths sits on the baseline: $E_n = (n + \tfrac{1}{2})\hbar\omega$, and displays breathe:
     \[
         i\hbar \frac{\partial}{\partial t}\Psi(\mathbf{r}, t) = \left[ -\frac{\hbar^2}{2m}\nabla^2 + V(\mathbf{r}, t) \right] \Psi(\mathbf{r}, t)
     \]
@@ -125,22 +125,22 @@
 \end{frame}
 
 
-\begin{frame}{Tables}
+\begin{frame}{Tables}%{A table good for show, not good as a table}
     \scriptsize
     \begin{table}
     \centering
-        \begin{tabular}{|l|c|c|c|}
+    \renewcommand{\arraystretch}{0.8}
+        \begin{tabular}{lccc}
             \toprule
             & Co-efficients & Variables & Constants\\
             \midrule
             Actors & $\displaystyle A={\begin{bmatrix}a_{11}&a_{12}&\cdots &a_{1n}\\a_{21}&a_{22}&\cdots &a_{2n}\\\vdots &\vdots &\ddots &\vdots \\a_{m1}&a_{m2}&\cdots &a_{mn}\end{bmatrix}}$ & $\mathbf {x} ={\begin{bmatrix}x_{1}\\x_{2}\\\vdots \\x_{n}\end{bmatrix}}$ & $\mathbf {b} ={\begin{bmatrix}b_{1}\\b_{2}\\\vdots \\b_{m}\end{bmatrix}}.$\\
             \midrule
-            Equation & \multicolumn{3}{c|}{$A\mathbf{x} = \mathbf{b}$}\\
+            Equation & \multicolumn{3}{c}{$A\mathbf{x} = \mathbf{b}$}\\
             \midrule
-            Story & \multicolumn{3}{c|}{${\displaystyle {\begin{cases}a_{11}x_{1}+a_{12}x_{2}+\dots +a_{1n}x_{n}=b_{1}\\a_{21}x_{1}+a_{22}x_{2}+\do`ts +a_{2n}x_{n}=b_{2}\\\vdots \\a_{m1}x_{1}+a_{m2}x_{2}+\dots +a_{mn}x_{n}=b_{m}\end{cases}}}$}\\
+            Story & \multicolumn{3}{c}{${\displaystyle {\begin{cases}a_{11}x_{1}+a_{12}x_{2}+\dots +a_{1n}x_{n}=b_{1}\\a_{21}x_{1}+a_{22}x_{2}+\dots +a_{2n}x_{n}=b_{2}\\\vdots \\a_{m1}x_{1}+a_{m2}x_{2}+\dots +a_{mn}x_{n}=b_{m}\end{cases}}}$}\\
             \bottomrule
         \end{tabular}
-        \caption{A table. Good for show, not good as a table.}
     \end{table}
 \end{frame}
 
@@ -182,18 +182,28 @@
     \end{column}
     \begin{column}{0.47\textwidth}
     \begin{figure}
-        \begin{lstlisting}[language = TeX]
-\foreach \ang/\cA/\cB in {0/Penrose1/Penrose2, 120/Penrose2/Penrose3, 240/Penrose3/Penrose1}{
-    \begin{scope}[rotate=\ang]
-        \filldraw[draw=Penrose1!33!Penrose2!33!Penrose3, thick, shading=axis, shading angle=-\ang, top color=\cA, bottom color=\cB]
-        ({-sqrt(3)/2*\a},{-0.5*\a}) -- ++(-\b,0)
-        -- ({0.5*\b},{\a+3*sqrt(3)/2*\b})
-        -- ({sqrt(3)/2*\a+2.5*\b},{-0.5*\a-sqrt(3)/2*\b})
-        -- ++({-0.5*\b},{-sqrt(3)/2*\b})
-        -- ({0.5*\b},{\a+sqrt(3)/2*\b})
-        -- cycle;
-    \end{scope}}
-        \end{lstlisting}
+%         \begin{lstlisting}[language = TeX]
+% \begin{scope}[rotate=\ang]
+%     \filldraw[draw=Penrose1!33!Penrose2!33!Penrose3, thick, shading=axis, shading angle=-\ang, top color=\cA, bottom color=\cB]
+%     ({-sqrt(3)/2*\a},{-0.5*\a}) -- ++(-\b,0)
+%     -- ({0.5*\b},{\a+3*sqrt(3)/2*\b})
+%     -- ({sqrt(3)/2*\a+2.5*\b},{-0.5*\a-sqrt(3)/2*\b})
+%     -- ++({-0.5*\b},{-sqrt(3)/2*\b})
+%     -- ({0.5*\b},{\a+sqrt(3)/2*\b})
+%     -- cycle;
+% \end{scope}
+%         \end{lstlisting}
+\begin{lstlisting}[language=Python]
+def generate_fibonacci(n):
+    """Yields the Fibonacci sequence up to n."""
+    a, b = 0, 1
+    while a < n:
+        yield a
+        a, b = b, a + b
+
+# Usage example
+print(list(generate_fibonacci(100)))
+    \end{lstlisting}
         \caption{A snippet of code}
         \end{figure}
         \end{column}
