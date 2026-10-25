@@ -1,6 +1,6 @@
 # ThemeForge
 
-Modern themes for LaTeX Beamer. One sentence on what makes them yours.
+Modern themes for LaTeX Beamer.
 
 ## Themes
 
