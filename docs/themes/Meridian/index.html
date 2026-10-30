@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset = "utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Meridian: ThemeForge</title>
+    <meta name="description" content="Meridan, a light and minimal theme for LaTeX Beamer.">
+    <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+
+    <header class="hero">
+        <a class="back" href="../../">&larr; All themes</a>
+        <h1>Meridian</h1>
+        <p>Light and Minimal: lots of whitespace, one accent colour</p>
+        <a class="button" href="https://github.com/rose-ember-forge/ThemeForge/releases/latest/download/ThemeForge-Meridian.zip">Download Meridian</a>
+    </header>
+
+    <main>
+
+        <section id="variants">
+            <h2>Variants</h2>
+            <div class="variants">
+                <figure>
+                    <img src="img/Meridian-light.png"
+                    alt="Meridian title slide light variant"
+                    loading = lazy>
+                    <figcaption><code>variant = light</code> (default)</figcaption>
+                </figure>
+                <figure>
+                    <img src="img/Meridian-paper.png"
+                    alt="Meridian title slide paper variant"
+                    loading = lazy>
+                    <figcaption><code>variant = paper</code> </figcaption>
+                </figure>
+                <figure>
+                    <img src="img/Meridian-dark.png"
+                    alt="Meridian title slide dark variant"
+                    loading = lazy>
+                    <figcaption><code>variant = dark</code> </figcaption>
+                </figure>
+            </div>
+        </section>
+    
+        <section id="slides">
+            <h2>Inside the deck</h2>
+            <div class="variants">
+                <figure>
+                    <img src="img/Meridian-light-p3.png" 
+                    alt="Meridian Section Divider Slide"
+                    loading="lazy">
+                    <figcaption>Section divider slide</figcaption>
+                </figure>
+                <figure>
+                    <img src="img/Meridian-light-p4.png"
+                    alt="Meridian slide with inline and display math"
+                    loading="lazy">
+                    <figcaption>Math: Inline and Display</figcaption>
+                </figure>
+                <figure>
+                    <img src="img/Meridian-light-p5.png"
+                    alt="Meridian slide with lists"
+                    loading="lazy">
+                    <figcaption>Lists: <code>enumerate</code> and <code>itemize</code></figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section id="usage">
+            <h2>Usage</h2>
+            <pre><code>\documentclass{beamer}
+\usetheme[variant=dark]{Meridian}
+            </code></pre>
+        </section>
+
+        <section id="options">
+            <h2>Options</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Values</th>
+                        <th>What it does</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>variant</code></td>
+                        <td><code>light</code>, <code>dark</code>, <code>paper</code></td>
+                        <td>Colour Scheme</td>
+                    </tr>
+                    <tr>
+                        <td><code>accent</code></td>
+                        <td>a hex colour</td>
+                        <td>Replaces a variant's accent colour</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="fonts">
+            <h2>Fonts</h2>
+            <p>Meridian uses Fira Sans and Fira Mono. On TeX Live:</p>
+            <pre><code>tlmgr install fira</code></pre>
+        </section>
+
+    </main>
+
+    <footer>
+        <p><a href="../../">ThemeForge</a> is released under the LaTeX Project Public License 1.3c.</p>
+    </footer>
+
+</body>
+</html>
