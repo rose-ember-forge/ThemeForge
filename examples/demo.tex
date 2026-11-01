@@ -5,7 +5,7 @@
 % 
 \documentclass[11pt, aspectratio=169]{beamer}
 \providecommand\ThemeName{Meridian}
-\providecommand\ThemeOptions{paper}
+\providecommand\ThemeOptions{variant=paper}
 
 % Lines required for standalone compiling within the project files
 % \makeatletter
@@ -54,6 +54,30 @@
     tabsize = 2
 }
 \lstset{style = demoCode}
+
+\setbeamertemplate{frametitle continuation}[from second][(cont.)]
+
+\begin{filecontents}[overwrite]{dummyrefs.bib}
+    % Dummy references for testing
+    @book{RoCoArtPresenting,
+        author      =   {Corazon, Rosario},
+        title       =   {The Art of Presenting},
+        publisher   =   {{RoCo} Publishing},
+        year        =   {2031},
+        address     =   {Nihilo},
+        edition     =   {1st}
+    }
+
+    @article{LenigmaCodex,
+        author      =   {Lenigma, Fina and St.Puzzle, Fir},
+        title       =   {A Treatise on Codex Cryptisma},
+        journal     =   {Journal of Cryptic Crypts},
+        year        =   {2024},
+        volume      =   {$\beta$},
+        number      =   {4},
+        pages       =   {123--132}
+    }
+\end{filecontents}
 
 \begin{document}
 
@@ -222,9 +246,11 @@ print(list(generate_fibonacci(100)))
 \end{frame}
 
 
-% \begin{frame}
-    
-% \end{frame}
+\begin{frame}[allowframebreaks]{References}
+    \nocite{*}
+    \bibliographystyle{plain}
+    \bibliography{dummyrefs}
+\end{frame}
 
 
 \end{document}
