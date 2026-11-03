@@ -1,114 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset = "utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Meridian: ThemeForge</title>
-    <meta name="description" content="Meridan, a light and minimal theme for LaTeX Beamer.">
-    <link rel="stylesheet" href="../../style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Meridian</title>
+<meta name="description" content="Meridian, a clean light beamer theme: variants, accent colour and the usage line to paste.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Fira+Sans:wght@400;700&display=swap">
+<link rel="stylesheet" href="../../style.css">
 </head>
 <body>
 
-    <header class="hero">
-        <a class="back" href="../../">&larr; All themes</a>
-        <h1>Meridian</h1>
-        <p>Light and Minimal: lots of whitespace, one accent colour</p>
-        <a class="button" href="https://github.com/rose-ember-forge/ThemeForge/releases/latest/download/ThemeForge-Meridian.zip">Download Meridian</a>
-    </header>
+<header class="site-head">
+    <div class="wrap">
+        <a class="brand" href="../../">ThemeForge</a>
+        <nav aria-label="Main">
+        <a href="../../">Themes</a>
+        <a href="#">Guide</a>
+        <a href="https://github.com/rose-ember-forge/ThemeForge">GitHub</a>
+        </nav>
+    </div>
+</header>
 
-    <main>
+<main>
+<div class="wrap">
 
-        <section id="variants">
-            <h2>Variants</h2>
-            <div class="variants">
-                <figure>
-                    <a class = "zoom" href="img/Meridian-light.png"><img src="img/Meridian-light.png"
-                    alt="Meridian title slide light variant"
-                    loading = lazy></a>
-                    <figcaption><code>variant = light</code> (default)</figcaption>
-                </figure>
-                <figure>
-                    <a class = "zoom" href="img/Meridian-paper.png"><img src="img/Meridian-paper.png"
-                    alt="Meridian title slide paper variant"
-                    loading = lazy></a>
-                    <figcaption><code>variant = paper</code> </figcaption>
-                </figure>
-                <figure>
-                    <a class = "zoom" href="img/Meridian-dark.png"><img src="img/Meridian-dark.png"
-                    alt="Meridian title slide dark variant"
-                    loading = lazy></a>
-                    <figcaption><code>variant = dark</code> </figcaption>
-                </figure>
+    <!-- Intro: name, one-line pitch, download -->
+    <section class="intro">
+    <div class="crumb"><a href="../../">Themes</a> / Meridian</div>
+    <h1>Meridian</h1>
+    <p>A clean, light theme with generous whitespace and a single accent colour. Three variants, a slim progress bar, and colours that stay readable on a washed-out projector.</p>
+    <div class="actions">
+        <a class="button" href="#">Download Meridian</a>
+    </div>
+    </section>
+
+    <!-- Look switcher. "Site default" removes data-look. -->
+    <section class="look" aria-labelledby="look-label">
+    <span class="label" id="look-label">See this page in Meridian's colours</span>
+    <div class="seg" role="group" aria-labelledby="look-label">
+        <button type="button" data-look-btn="default" aria-pressed="true">ThemeForge default</button>
+        <button type="button" data-look-btn="light" aria-pressed="false">Light</button>
+        <button type="button" data-look-btn="paper" aria-pressed="false">Paper</button>
+        <button type="button" data-look-btn="dark" aria-pressed="false">Dark</button>
+    </div>
+    </section>
+
+    <!-- Screenshots: six real slides, three rows of two.
+         data-slide names the file: "" = title page, "p3" = page 3, and so on.
+         theme-page.js swaps every src (and the zoom link) when the variant changes. -->
+    <section class="shots" aria-labelledby="shots-title">
+        <h2 id="shots-title">Inside the deck</h2>
+        <div class="gallery">
+            <figure>
+                <a class="zoom" href="img/Meridian-paper.png"><img data-slide="" data-desc="title page" src="img/Meridian-paper.png" alt="Meridian title page, paper variant" width="1280" height="720"></a>
+                <figcaption>Title page</figcaption>
+            </figure>
+            <figure>
+                <a class="zoom" href="img/Meridian-paper-p3.png"><img data-slide="p3" data-desc="page 3" src="img/Meridian-paper-p3.png" alt="Meridian page 3, paper variant" width="1280" height="720" loading="lazy"></a>
+                <figcaption>Page 3</figcaption>
+            </figure>
+            <figure>
+                <a class="zoom" href="img/Meridian-paper-p4.png"><img data-slide="p4" data-desc="page 4" src="img/Meridian-paper-p4.png" alt="Meridian page 4, paper variant" width="1280" height="720" loading="lazy"></a>
+                <figcaption>Page 4</figcaption>
+            </figure>
+            <figure>
+                <a class="zoom" href="img/Meridian-paper-p5.png"><img data-slide="p5" data-desc="page 5" src="img/Meridian-paper-p5.png" alt="Meridian page 5, paper variant" width="1280" height="720" loading="lazy"></a>
+                <figcaption>Page 5</figcaption>
+            </figure>
+            <figure>
+                <a class="zoom" href="img/Meridian-paper-refs.png"><img data-slide="refs" data-desc="references slide" src="img/Meridian-paper-refs.png" alt="Meridian references slide, paper variant" width="1280" height="720" loading="lazy"></a>
+                <figcaption>References</figcaption>
+            </figure>
+            <figure>
+                <a class="zoom" href="img/Meridian-paper-standout.png"><img data-slide="standout" data-desc="standout slide" src="img/Meridian-paper-standout.png" alt="Meridian standout slide, paper variant" width="1280" height="720" loading="lazy"></a>
+                <figcaption>Standout</figcaption>
+            </figure>
+        </div>
+        <p class="note" id="shots-cap">Compiled with variant=paper. Click a slide to enlarge it.</p>
+    </section>
+
+    <!-- Live slide, full width: try an accent colour before you compile -->
+    <section class="try" aria-labelledby="try-title">
+        <h2 id="try-title">Try an accent colour</h2>
+        <figure class="live-figure">
+            <div class="live" id="live" data-variant="paper" role="img" aria-label="Live preview of a Meridian content slide with the chosen accent colour">
+                <div class="eyebrow">Results</div>
+                <div class="ftitle">What the survey showed</div>
+                <ul>
+                    <li>Three in four readers preferred the light variant</li>
+                    <li>Dark won in rooms with no blinds</li>
+                </ul>
+                <div class="block"><b>Takeaway</b>Pick the variant for the room, not the screen.</div>
+                <div class="foot">
+                    <div class="track"><div class="bar"></div></div>
+                    <div class="footline"><span>R. Example · Seminar</span><span>4 / 10</span></div>
+                </div>
             </div>
-        </section>
-    
-        <section id="slides">
-            <h2>Inside the deck</h2>
-            <div class="variants">
-                <figure>
-                    <a class = "zoom" href="img/Meridian-light-p3.png"><img src="img/Meridian-light-p3.png" 
-                    alt="Meridian Section Divider Slide"
-                    loading="lazy"></a>
-                    <figcaption>Section divider slide</figcaption>
-                </figure>
-                <figure>
-                    <a class = "zoom" href="img/Meridian-light-p4.png"><img src="img/Meridian-light-p4.png"
-                    alt="Meridian slide with inline and display math"
-                    loading="lazy"></a>
-                    <figcaption>Math: Inline and Display</figcaption>
-                </figure>
-                <figure>
-                    <a class = "zoom" href="img/Meridian-light-p5.png"><img src="img/Meridian-light-p5.png"
-                    alt="Meridian slide with lists"
-                    loading="lazy"></a>
-                    <figcaption>Lists: <code>enumerate</code> and <code>itemize</code></figcaption>
-                </figure>
+            <figcaption>Live preview: follows the variant above and the accent colour below</figcaption>
+        </figure>
+
+        <!-- Customisation: Check out how the colours work -->
+        <details class="panel" id="customise">
+        <summary>Customise the accent colour</summary>
+        <div class="inner">
+            <div class="swatches" role="group" aria-label="Preset accents">
+            <button type="button" class="swatch" data-hex="#0F766E" aria-pressed="false" aria-label="Teal 0F766E"></button>
+            <button type="button" class="swatch" data-hex="#6B3FA0" aria-pressed="false" aria-label="Plum 6B3FA0"></button>
+            <button type="button" class="swatch" data-hex="#A34A00" aria-pressed="false" aria-label="Amber A34A00"></button>
+            <button type="button" class="swatch" data-hex="#334155" aria-pressed="false" aria-label="Slate 334155"></button>
+            <button type="button" class="swatch" data-hex="#5EC4B6" aria-pressed="false" aria-label="Mint 5EC4B6, for the dark variant"></button>
+            <button type="button" class="swatch" data-hex="#F2B35E" aria-pressed="false" aria-label="Gold F2B35E, for the dark variant"></button>
             </div>
-        </section>
+            <div class="picker">
+            <label for="accent-input">Or pick any colour</label>
+            <input type="color" id="accent-input" value="#1f5f8b">
+            <button type="button" class="button quiet" id="accent-reset">Reset to Meridian’s accent</button>
+            </div>
+            <p class="contrast" id="contrast" aria-live="polite"></p>
+        </div>
+        </details>
+    </section>
 
-        <section id="usage">
-            <h2>Usage</h2>
-            <pre><code>\documentclass{beamer}
-\usetheme[variant=dark]{Meridian}
-            </code></pre>
-        </section>
+    <!-- Line to copy and paste into source -->
+    <section class="snippet" aria-labelledby="snippet-title">
+    <h2 id="snippet-title">Use it</h2>
+    <p>Put the theme file next to your <code>.tex</code> file, then add this line after <code>\documentclass{beamer}</code>:</p>
+    <div class="row">
+        <pre><code id="snippet">\usetheme{Meridian}</code></pre>
+        <button type="button" class="button" id="copy">Copy</button>
+    </div>
+    <div class="copied" id="copied" aria-live="polite"></div>
+    </section>
 
-        <section id="options">
-            <h2>Options</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Option</th>
-                        <th>Values</th>
-                        <th>What it does</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>variant</code></td>
-                        <td><code>light</code>, <code>dark</code>, <code>paper</code></td>
-                        <td>Colour Scheme</td>
-                    </tr>
-                    <tr>
-                        <td><code>accent</code></td>
-                        <td>a hex colour</td>
-                        <td>Replaces a variant's accent colour</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+</div>
+</main>
+  
+<footer class="site-foot">
+    <div class="wrap">ThemeForge · Free beamer themes under the LPPL 1.3c</div>
+</footer>
 
-        <section id="fonts">
-            <h2>Fonts</h2>
-            <p>Meridian uses Fira Sans and Fira Mono. On TeX Live:</p>
-            <pre><code>tlmgr install fira</code></pre>
-        </section>
-
-    </main>
-
-    <footer>
-        <p><a href="../../">ThemeForge</a> is released under the LaTeX Project Public License 1.3c.</p>
-    </footer>
-<script src = "../../zoom.js"></script>
+<script>
+window.THEME = {
+    name: "Meridian",
+    defaultVariant: "paper",
+    hasAccent: true,
+    variants: {
+    light: { paper: "#FFFFFF", accent: "#3043B8" },
+    paper: { paper: "#F8F6F1", accent: "#1F5F8B" },
+    dark:  { paper: "#16181D", accent: "#8C9EFF" }
+    }
+};
+</script>
+<script src="../../theme-page.js"></script>
+<script src="../../zoom.js"></script>
 </body>
 </html>
