@@ -27,11 +27,11 @@
 % Usage:     \usetheme[options]{Meridian}
 % 
 % Options: 
-%    variant = light|paper|dark      changes colour scheme (default light)
-%    accent = <HEX code>             overrides the accent colour of the variant
-%    progressbar = true|false        adds a slim progress bar in the footline (default true)
-%    sectionpage = true|false        a full slide for each \section (default true)
-%    fonts = true|false              load Fira Sans/Fira Mono if installed
+%    variant = zenith|horizon|nadir     changes colour scheme (default light)
+%    accent = <HEX code>                overrides the accent colour of the variant
+%    progressbar = true|false           adds a slim progress bar in the footline (default true)
+%    sectionpage = true|false           a full slide for each \section (default true)
+%    fonts = true|false                 load Fira Sans/Fira Mono if installed
 % - - - - - - - - - - - -
 % - - - - - - - - - - - -
 \NeedsTeXFormat{LaTeX2e}
@@ -46,7 +46,7 @@
 \newif\ifmeridian@sectionpage \meridian@sectionpagetrue
 \newif\ifmeridian@fonts       \meridian@fontstrue
 \def\meridian@accent{}
-\def\meridian@variant{light}
+\def\meridian@variant{horizon}
 
 \DeclareOptionBeamer{variant}{\def\meridian@variant{#1}}
 \DeclareOptionBeamer{accent}{\def\meridian@accent{#1}}
@@ -71,7 +71,7 @@
 % - - - - - - - - - - - -
 
 % Variant light
-\def\meridian@variant@light{%
+\def\meridian@variant@zenith{%
   \definecolor{MeridianPaper}{HTML}{FFFFFF}
   \definecolor{MeridianInk}{HTML}{1F2430}     
   \definecolor{MeridianMuted}{HTML}{5A6070}   
@@ -82,7 +82,7 @@
   \definecolor{MeridianOnAccent}{HTML}{FFFFFF}}
 
 % Variantt paper
-\def\meridian@variant@paper{%
+\def\meridian@variant@horizon{%
   \definecolor{MeridianPaper}{HTML}{F8F6F1}
   \definecolor{MeridianInk}{HTML}{24211D}     
   \definecolor{MeridianMuted}{HTML}{5E5850}   
@@ -93,7 +93,7 @@
   \definecolor{MeridianOnAccent}{HTML}{FFFFFF}}
 
 % Variant dark
-\def\meridian@variant@dark{%
+\def\meridian@variant@nadir{%
   \definecolor{MeridianPaper}{HTML}{16181D}
   \definecolor{MeridianInk}{HTML}{E8EAEE}     
   \definecolor{MeridianMuted}{HTML}{A2A8B4}   
@@ -108,8 +108,8 @@
   \csname meridian@variant@\meridian@variant\endcsname
 \else
   \PackageWarning{beamerthemeMeridian}{Unknown variant `\meridian@variant',
-    using `light'. Choose light, paper or dark}%
-  \meridian@variant@light
+    using `horizon'. Choose zenith, horizon, or nadir}%
+  \meridian@variant@horizon
 \fi
 \ifx\meridian@accent\@empty\else
   \definecolor{MeridianAccent}{HTML}{\meridian@accent}

@@ -86,7 +86,7 @@ Functions for:
             if (link) link.href = file;
         });
         var cap = document.getElementById("shots-cap");
-        if (cap) cap.textContent = "Compiled with variant=" + v + ". Click a slide to enlarge it.";
+        if (cap) cap.textContent = "Compiled with variant = " + v + ". Click a slide to enlarge it.";
 
         // Live slide and accent picker: only for themes with an accent option
         if (T.hasAccent) {

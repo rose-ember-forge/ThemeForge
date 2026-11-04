@@ -9,7 +9,7 @@ Loaded after main page style.css
     --font-heading: "Fira Sans", "Segoe UI", system-ui, sans-serif;
     --font-body: "Fira Sans", "Segoe UI", system-ui, sans-serif;
 }
-:root[data-look="Meridian-light"] {
+:root[data-look="Meridian-zenith"] {
     --bg:			#FFFFFF;
 	--surface:		#FFFFFF;
 	--ink:			#1F2430;
@@ -21,7 +21,7 @@ Loaded after main page style.css
     --shadow:       rgba(0, 0, 0, .10);
     color-scheme: light;
 }
-:root[data-look="Meridian-paper"] {
+:root[data-look="Meridian-horizon"] {
     --bg:			#F8F6F1;
     --surface:		#FFFDF8;
     --ink:			#24211D;
@@ -33,7 +33,7 @@ Loaded after main page style.css
     --shadow:       rgba(0, 0, 0, .10);
     color-scheme: light;
 }
-:root[data-look="Meridian-dark"] {
+:root[data-look="Meridian-nadir"] {
     --bg:			#16181D;
     --surface:		#1D2026;
     --ink:			#E8EAEE;
@@ -53,12 +53,12 @@ Loaded after main page style.css
 	--pt: calc(100cqw / 455.24);   /* one TeX point on this slide */
 	--ex: calc(5.8 * var(--pt));   /* 1ex of Fira Sans at 11pt */
 
-	/* ---- colours (light variant; the blocks below swap them) ---- */
-	--s-paper:  #FFFFFF;
-	--s-ink:    #1F2430;
-	--s-muted:  #5A6070;
-	--s-track:  #E4E6EC;
-	--s-accent: #3043B8;           /* theme-page.js overrides this */
+	/* ---- colours (horizon variant; the blocks below swap them) ---- */
+	--s-paper:      #F8F6F1;
+	--s-ink:        #24211D;
+	--s-muted:      #5E5850;
+	--s-track:      #E6E1D6;
+    --s-accent:     #1F5F8B;         /* theme-page.js overrides this */
 
 	/* ---- geometry from the .sty ---- */
 	--margin: calc(0.07 * 455.24 * var(--pt));   /* text margin = 0.07\paperwidth */
@@ -80,13 +80,14 @@ Loaded after main page style.css
 	display: grid;
 	grid-template-rows: auto 1fr auto auto;
 }
-.live[data-variant="paper"] {
-	--s-paper: #F8F6F1;
-	--s-ink:   #24211D;
-	--s-muted: #5E5850;
-	--s-track: #E6E1D6;
+.live[data-variant="zenith"] {
+    --s-paper:  #FFFFFF;
+	--s-ink:    #1F2430;
+	--s-muted:  #5A6070;
+	--s-track:  #E4E6EC;
+	/* --s-accent: #3043B8;  */
 }
-.live[data-variant="dark"] {
+.live[data-variant="nadir"] {
 	--s-paper: #16181D;
 	--s-ink:   #E8EAEE;
 	--s-muted: #A2A8B4;
