@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Page not found · ThemeForge</title>
+<meta name="robots" content="noindex">
+<!--
+    GitHub Pages serves this file for ANY address that doesn't exist,
+    at any depth: /ThemeForge/guide/, /ThemeForge/themes/Atelier/, ...
+    The browser still shows the address that was asked for, so relative
+    paths like "style.css" would point to the wrong folder.
+    That's why every path on this page starts with /ThemeForge/.
+-->
+<link rel="stylesheet" href="style.css">
+<style>
+    /* Only this page uses these rules, so they live here, not in style.css */
+    .void {
+        min-height: 60vh;
+        display: grid;
+        place-content: center;
+        justify-items: center;
+        gap: 12px;
+        text-align: center;
+        padding-block: 48px;
+    }
+    .void .big {
+        font-family: var(--font-heading);
+        font-size: clamp(5rem, 22vw, 11rem);
+        line-height: 1;
+        font-weight: 700;
+        color: color-mix(in srgb, var(--ink) 12%, var(--bg));   /* a faint, sunken number */
+        margin: 0;
+    }
+    .void h1 { 
+        margin: 0; 
+        font-size: clamp(1.6rem, 4vw, 2.2rem); 
+    }
+    .void p { 
+        margin: 0; 
+        max-width: 36rem; 
+        color: var(--muted); 
+    }
+    .void .actions { 
+        justify-content: center; 
+        margin-top: 12px; 
+    }
+</style>
+</head>
+<body>
+
+<header class="site-head">
+    <div class="wrap">
+        <a class="brand" href="index.html">ThemeForge</a>
+        <nav aria-label="Main">
+            <a href="https://github.com/rose-ember-forge/ThemeForge" target="_blank" rel="noopener">GitHub</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="void">
+        <p class="big" aria-hidden="true">404</p>
+        <h1>Nothing here yet</h1>
+        <p>This page doesn't exist, or it hasn't been written yet.<br>ThemeForge is still growing, so check back later.</p>
+        <div class="actions">
+            <a class="button" href="index.html">Browse the themes</a>
+            <a class="button quiet" href="https://github.com/rose-ember-forge/ThemeForge" target="_blank" rel="noopener">See the project on GitHub</a>
+        </div>
+    </section>
+</main>
+
+<footer class="site-foot">
+    <div class="wrap">ThemeForge · Free beamer themes under the LPPL 1.3c</div>
+</footer>
+
+</body>
+</html>
