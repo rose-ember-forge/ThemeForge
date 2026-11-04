@@ -352,8 +352,9 @@ code {
 }
 .gallery figcaption, .live-figure figcaption, .note {
 	margin: 0;
-	font-size: .85rem;
+	font-size: .95rem;
 	color: var(--muted);
+	text-align: center;
 }
 .gallery .zoom img {
 	aspect-ratio: 16 / 9;
