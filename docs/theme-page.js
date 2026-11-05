@@ -86,7 +86,10 @@ Functions for:
             if (link) link.href = file;
         });
         var cap = document.getElementById("shots-cap");
-        if (cap) cap.textContent = "Compiled with variant = " + v + ". Click a slide to enlarge it.";
+        if (cap) cap.textContent = (state.look === "default" 
+                ? "Compiled with default variant (" + v + "). " 
+                : "Compiled with variant = " + v + ". " )
+                + "Click a slide to enlarge it.";
 
         // Live slide and accent picker: only for themes with an accent option
         if (T.hasAccent) {
@@ -163,6 +166,19 @@ Functions for:
             note.textContent = "Press Ctrl + C to copy.";
         });
     });
+
+    var bar = document.querySelector(".look-bar");
+    if (bar && "IntersectionObserver" in window) {
+        var marker = document.createElement("div");
+        marker.setAttribute("aria-hidden", "true");
+        marker.style.cssText = "height:1px; margin-bottom:-1px;";
+        bar.before(marker);
+        var stickTop = parseFloat(getComputedStyle(bar).top) || 0;
+        new IntersectionObserver(function (entries) {
+            var e = entries[0];
+            bar.classList.toggle("is-floating", !e.isIntersecting && e.boundingClientRect.top < stickTop);
+        }, { rootMargin: "-" + (stickTop + 1) + "px 0px 0px 0px" }).observe(marker);
+    }
 
     load();
     render();
