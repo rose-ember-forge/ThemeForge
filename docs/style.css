@@ -46,7 +46,7 @@
 
 /* Fade to change looks */
 body, .card, .panel, pre {
-    transition: background-color 250ms ease, color 250ms ease, border-color 250ms ease;
+    transition: background-color 800ms ease, color 1300ms ease, border-color 800ms ease;
 }
 @media (prefers-reduced-motion: reduce) {
     * {transition: none !important;}
@@ -330,10 +330,10 @@ code {
 .look-bar .seg { 
 	/* box-shadow: 0 4px 14px var(--shadow);  */
 	pointer-events: auto;
-	transition: translate 475ms ease, 
-				background-color 200ms ease,
-				box-shadow 200ms ease,
-				border-color 200ms ease;
+	transition: translate 500ms ease, 
+				background-color 500ms ease,
+				box-shadow 500ms ease,
+				border-color 500ms ease;
 }
 
 .look-bar.is-floating .seg {
@@ -430,11 +430,11 @@ code {
 	font-family: var(--font-heading); 
 }
 .panel .inner { 
-	padding: 0 18px 18px; 
+	padding: 0 28px 18px; 
 	display: grid; 
 	gap: 14px; 
 }
-.panel[open] > summary { border-bottom: 1px solid var(--line); }
+.panel[open] > summary { background: linear-gradient(var(--line), var(--line)) center bottom / 95% 1px no-repeat; }
 .panel[open] .inner { padding-top: 18px; }
 .swatches { 
 	display: flex; 
