@@ -19,6 +19,7 @@
     --on-accent:    #FFFFFF;
     --code-bg:      #ECEEF2;
     --shadow:       rgba(0, 0, 0, 0.10);
+	--edge: 		color-mix(in srgb, var(--ink) 30%, transparent);
 
     /* Fonts */
     --font-heading:     "TeX Gyre Pagella", "Palatino Linotype", Palatino, serif;
@@ -433,6 +434,8 @@ code {
 	display: grid; 
 	gap: 14px; 
 }
+.panel[open] > summary { border-bottom: 1px solid var(--line); }
+.panel[open] .inner { padding-top: 18px; }
 .swatches { 
 	display: flex; 
 	gap: 10px; 
@@ -472,6 +475,29 @@ code {
 .contrast.warn { color: var(--ink); }
 .contrast.warn::before { content: "⚠ "; }
 
+@media (min-width: 720px) {
+	.panel .inner {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 20rem);
+		grid-template-rows: auto auto auto 1fr;   /* the empty 4th row soaks up the key's extra height */
+		align-items: start;
+	}
+	.panel .inner > * { grid-column: 1; }
+	.panel .inner > .grades { grid-column: 2; grid-row: 1 / -1; }
+}
+.grades {
+	padding: 12px 14px;
+	border-radius: 8px;
+	background: color-mix(in srgb, var(--ink) 5%, var(--surface));
+	font-size: .85rem;
+	line-height: 1.45;
+	color: var(--muted);
+}
+.grades h3 { margin: 0 0 6px; font-size: .95rem; color: var(--ink); }
+.grades p { margin: 0 0 8px; }
+.grades dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; }
+.grades dt { font-weight: 700; color: var(--ink); }
+.grades dd { margin: 0; }
+
 /* Snippet + copy button */
 .snippet { 
 	display: grid; 
@@ -492,6 +518,76 @@ code {
 	color: var(--muted); 
 	min-height: 1.4em; 
 }
+
+.live-stage {
+	container-type: inline-size;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	gap: 16px;
+	width: 100%;
+	/* Keep the slide no taller than about 55% of the screen, so the heading,
+	   slide, squares and the Customise button fit on one screen.
+	   55vh x 16/9 is the slide's width at that height; 140px is the squares' column. */
+	max-width: calc(55vh * 16 / 9 + 16px + 140px);
+	max-width: calc(55svh * 16 / 9 + 16px + 140px);   /* svh ignores the phone's sliding address bar */
+	margin-inline: auto;
+}
+.live-slot { 
+	container-type: inline-size; /* the slide's 100cqw = this box */
+}   
+
+.pairs {
+	--t: min(9cqw, 104px);           /* square side: 9% of the stage, at most 104px */
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;  /* spread the four squares over the slide's height */
+	gap: 8px;
+}
+.pair {
+	display: grid;
+	justify-items: center;
+	gap: 4px;
+}
+.pair-chip {
+	width: var(--t);
+	aspect-ratio: 1;
+	display: grid;
+	place-content: center;
+	text-align: center;
+	border-radius: 12px;
+	box-shadow: 0 0 0 1px var(--edge);
+	font-family: inherit;
+}
+.pair-chip b {
+	font-size: calc(var(--t) * .36);
+	line-height: 1;
+}
+.pair-ratio {
+	font-size: max(10px, calc(var(--t) * .12));
+	margin-top: 4px;
+	font-variant-numeric: tabular-nums;
+}
+.pair-name {
+	font-size: .75rem;
+	line-height: 1.2;
+	color: var(--muted);
+	white-space: nowrap;
+}
+
+/* Narrow tray: the squares move under the slide, in one row */
+@container live-figure (max-width: 760px) {
+	.live-stage { grid-template-columns: minmax(0, 1fr); }
+	.pairs {
+		--t: min(17cqw, 88px);
+		flex-direction: row;
+		justify-content: space-around;
+	}
+	.pair-name { white-space: normal; text-align: center; max-width: calc(var(--t) + 16px); }
+}
+
 
 /* Footer */
 footer { 

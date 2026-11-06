@@ -45,6 +45,15 @@ Functions for:
         return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
     }
 
+    function mix(a, b, share) {
+        var x = parseInt(a.slice(1), 16), y = parseInt(b.slice(1), 16), out = "#";
+        [16, 8, 0].forEach(function (shift) {
+            var c = Math.round(((x >> shift) & 255) * share + ((y >> shift) & 255) * (1 - share));
+            out += (c < 16 ? "0" : "") + c.toString(16);
+        });
+        return out.toUpperCase();
+    }
+
     function save() {
         try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) { /* private window, etc. */ }
     }
@@ -108,6 +117,25 @@ Functions for:
                 ? "Contrast " + ratio.toFixed(1) + ":1 on the " + v + " background. Good for visibility."
                 : "Contrast " + ratio.toFixed(1) + ":1 on the " + v + " background. Accent might not stand out. Aim for 4.5:1 or more.";
             msg.classList.toggle("warn", ratio < 4.5);
+
+            var cs = getComputedStyle(live);
+            var colours = {
+                paper:  cs.getPropertyValue("--s-paper").trim(),
+                ink:    cs.getPropertyValue("--s-ink").trim(),
+                accent: accent
+            };
+            colours.tint = mix(colours.accent, colours.paper, 0.10);   // the block background
+            
+            document.querySelectorAll(".pair").forEach(function (pair) {
+                var chip = pair.querySelector(".pair-chip");
+                var fg = colours[pair.dataset.fg], bg = colours[pair.dataset.bg];
+                chip.style.color = fg;
+                chip.style.background = bg;
+                var r = contrast(fg, bg);
+                var grade = r >= 4.5 ? "AA" : r >= 3 ? "large" : "low";
+                pair.querySelector(".pair-ratio").textContent = r.toFixed(1) + " " + grade;
+                chip.title = pair.dataset.fg + " on " + pair.dataset.bg + "\nContrast = " + r.toFixed(2) + ":1\n";
+            });
         }
 
         // The snippet. Written the same way as in the guide: no spaces around "=".

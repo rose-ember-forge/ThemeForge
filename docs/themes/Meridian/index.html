@@ -89,25 +89,37 @@
     <section class="try" aria-labelledby="try-title">
         <h2 id="try-title">Try an accent colour</h2>
         <figure class="live-figure">
-            <div class="live" id="live" data-variant="zenith" role="img" aria-label="Live preview of a Meridian content slide with the chosen accent colour">
+        <div class="live-stage">
+            <div class="live-slot">
+            <div class="live" id="live" data-variant="horizon" role="img" aria-label="Live preview of a Meridian content slide with the chosen accent colour">
                 <div class="ft">
-                    <div class="eyebrow">Results</div>
-                    <div class="ftitle">What the survey showed</div>
-                    <div class="fsub">Readers' votes, autumn 2026</div>
+                    <div class="eyebrow">Rule-of-Thumb</div>
+                    <div class="ftitle">Picking the right accent</div>
+                    <div class="fsub">Legibility matters</div>
                     <div class="rule"></div>
                 </div>
                 <div class="body">
                     <ul>
-                        <li>Three in four readers preferred the light variant</li>
-                        <li>Dark won in rooms with no blinds</li>
+                        <li>Everything on a slide is meant to be seen.</li>
+                        <li>Ambient lighting also affects visibility.</li>
                     </ul>
-                    <div class="block"><b>Takeaway</b>Pick the variant for the room, not the screen.</div>
+                    <div class="block"><b>Takeaway</b>Pick the variant-accent combination for the room, not the screen.</div>
                 </div>
                 <div class="fl"><span>ThemeForge</span><span>3 / 8</span></div>
                 <div class="track"><div class="bar"></div></div>
             </div>
+            </div>
+
+                <ul class="pairs" aria-label="Contrast of the slide's colour pairs">
+                    <li class="pair" data-fg="ink" data-bg="paper"><span class="pair-chip"><b>Aa</b><span class="pair-ratio"></span></span><span class="pair-name">Ink on paper</span></li>
+                    <li class="pair" data-fg="accent" data-bg="paper"><span class="pair-chip"><b>Aa</b><span class="pair-ratio"></span></span><span class="pair-name">Accent on paper</span></li>
+                    <li class="pair" data-fg="accent" data-bg="tint"><span class="pair-chip"><b>Aa</b><span class="pair-ratio"></span></span><span class="pair-name">Accent on block</span></li>
+                    <li class="pair" data-fg="paper" data-bg="accent"><span class="pair-chip"><b>Aa</b><span class="pair-ratio"></span></span><span class="pair-name">Paper on accent</span></li>
+                </ul>
+        </div>
             <figcaption>Live preview: Check out the combination of the theme variant and accent.</figcaption>
         </figure>
+
 
         <!-- Customisation: Check out how the colours work -->
         <details class="panel" id="customise">
@@ -127,6 +139,15 @@
             <button type="button" class="button quiet" id="accent-reset">Reset to Meridian’s accent</button>
             </div>
             <p class="contrast" id="contrast" aria-live="polite"></p>
+            <aside class="grades" aria-labelledby="grades-title">
+                <h3 id="grades-title">Reading the squares</h3>
+                <p>Each square shows the contrast between its two colours, from 1:1 (the same colour) to 21:1 (black on white).</p>
+                <dl>
+                    <dt>AA</dt>    <dd>4.5 or higher. Meets the WCAG guideline for normal text.</dd>
+                    <dt>large</dt> <dd>3 to 4.5. Fine for large or bold text, such as titles.</dd>
+                    <dt>low</dt>   <dd>Below 3. Probably too low to be useful, especially on a projector.</dd>
+                </dl>
+            </aside>
         </div>
         </details>
     </section>

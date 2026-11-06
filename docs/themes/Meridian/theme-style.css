@@ -70,7 +70,7 @@ Loaded after main page style.css
 	background: var(--s-paper);
 	color: var(--s-ink);
 	border-radius: 8px;
-	box-shadow: 0 0 0 1px var(--line);
+	box-shadow: 0 0 0 1px var(--edge);
 
 	font-family: "Fira Sans", "Segoe UI", system-ui, sans-serif;
 	font-size: calc(11 * var(--pt));             /* \normalsize */
@@ -116,7 +116,7 @@ Loaded after main page style.css
 	width: calc(2.2 * 14.4 * var(--pt));          /* 2.2em of the \Large title font */
 	height: calc(1.6 * var(--pt));
 	background: var(--s-accent);
-	margin-top: calc(0.8 * var(--ex) + 14.5 * var(--pt));  /* \vskip0.8ex, plus one empty line: in TeX the rule sits on a new baseline */
+	margin-top: calc(0.8 * var(--ex) + 10.5 * var(--pt)) ;  /* \vskip0.8ex, plus one empty line: in TeX the rule sits on a new baseline */
 }
 
 /* ---- Body: beamer centres frame content vertically by default [c] ---- */
@@ -131,7 +131,7 @@ Loaded after main page style.css
 /* 9. Lists: accent dot, radius 0.3ex, raised 0.3ex; \leftmargini = 1.4em */
 .live ul {
 	margin: 0;
-	padding: 0 0 0 1.4em;
+	padding: 0 0 1.5ex 1.4em;
 	list-style: none;
 	display: grid;
 	gap: calc(0.35 * var(--ex) + 1.2 * var(--pt));  /* the theme's extra 0.35ex, plus a little of beamer's own */
@@ -182,3 +182,5 @@ Loaded after main page style.css
 	background: var(--s-accent);
 }
 
+/* fonts to use for the contrast display */
+.pair-chip { font-family: "Fira Sans", "Segoe UI", system-ui, sans-serif; }
