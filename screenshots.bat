@@ -16,7 +16,7 @@ rem Pages to capture, as label:page. The label ends the file name and is
 rem what goes in data-slide="..." on the theme page. "title" is special:
 rem it gets no label, so the title slide is just <Theme>-<variant>.png.
 rem demo.tex is shared, so these numbers are the same for every theme.
-set "PAGES=title:1 p3:3 p4:4 p5:5 standout:10 refs:12"
+set "PAGES=title:1 divider:3 math:4 lists:5 tables:8 figures:9 standout:10 refs:12"
 set "WIDTH=1280"
 set "PDFDIR=build"
 
