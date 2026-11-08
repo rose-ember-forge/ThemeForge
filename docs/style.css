@@ -421,7 +421,7 @@ code {
 .panel { 
 	background: var(--surface); 
 	border: 1px solid var(--line); 
-	border-radius: 10px; 
+	border-radius: 12px; 
 }
 .panel > summary { 
 	cursor: pointer; 
@@ -557,7 +557,7 @@ code {
 	display: grid;
 	place-content: center;
 	text-align: center;
-	border-radius: 12px;
+	border-radius: 10px;
 	box-shadow: 0 0 0 1px var(--edge);
 	font-family: inherit;
 }

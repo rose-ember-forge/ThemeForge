@@ -1,7 +1,7 @@
 % - - - - - - - - - - - -
 % - - - - - - - - - - - -
 %
-% beamerthemeAtelier.sty
+% beamerthemeFabrica.sty
 % Part of the ThemeForge Collection
 % Copyright (C) 2026 Raghunandan Rajkumar
 % 
@@ -15,15 +15,15 @@
 %
 % This work has the LPPL maintenance status `maintained'.
 % The Current Maintainer of this work is Raghunandan Rajkumar.
-% This work consists of the file beamerthemeAtelier.sty.
+% This work consists of the file beamerthemeFabrica.sty.
 %
 % - - - - - - - - - - - -
 % - - - - - - - - - - - -
 %
 %  An editorial theme.
 %  Warm tones and serif typography.
-%  Usage:     \usetheme{Atelier}
-%             \usetheme[options]{Atelier}
+%  Usage:     \usetheme{Fabrica}
+%             \usetheme[options]{Fabrica}
 %
 %  Options:   variant = paper|linen|walnut    colour scheme (default paper)
 %             accent = <HEX>                  override the variant's accent colour
@@ -35,29 +35,29 @@
 % - - - - - - - - - - - -
 % - - - - - - - - - - - -
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemeAtelier}[2026/10/19 v0.1 ThemeForge Atelier theme]
+\ProvidesPackage{beamerthemeFabrica}[2026/10/19 v0.1 ThemeForge Fabrica theme]
 
 \mode<presentation>
 
 % - - - - - - - - - - - -
 % 1. Options
 % - - - - - - - - - - - -
-\newif\ifatelier@progressbar    \atelier@progressbarfalse
-\newif\ifatelier@sectionpage    \atelier@sectionpagetrue
-\newif\ifatelier@fonts          \atelier@fontstrue
-\newif\ifatelier@serifbody      \atelier@serifbodytrue
+\newif\iffabrica@progressbar    \fabrica@progressbarfalse
+\newif\iffabrica@sectionpage    \fabrica@sectionpagetrue
+\newif\iffabrica@fonts          \fabrica@fontstrue
+\newif\iffabrica@serifbody      \fabrica@serifbodytrue
 
-\def\atelier@accent{}
-\def\atelier@variant{paper}
+\def\fabrica@accent{}
+\def\fabrica@variant{paper}
 
-\DeclareOptionBeamer{variant}{\def\atelier@variant{#1}}
-\DeclareOptionBeamer{accent}{\def\atelier@accent{#1}}
+\DeclareOptionBeamer{variant}{\def\fabrica@variant{#1}}
+\DeclareOptionBeamer{accent}{\def\fabrica@accent{#1}}
 \DeclareOptionBeamer{body}{%
-    \def\atelier@tmp{#1}\def\atelier@sans{sans}%
-    \ifx\atelier@tmp\atelier@sans\atelier@serifbodyfalse\else\atelier@serifbodytrue\fi}
-\DeclareOptionBeamer{progressbar}[true]{\csname atelier@progressbar#1\endcsname}
-\DeclareOptionBeamer{sectionpage}[true]{\csname atelier@sectionpage#1\endcsname}
-\DeclareOptionBeamer{fonts}[true]{\csname atelier@fonts#1\endcsname}
+    \def\fabrica@tmp{#1}\def\fabrica@sans{sans}%
+    \ifx\fabrica@tmp\fabrica@sans\fabrica@serifbodyfalse\else\fabrica@serifbodytrue\fi}
+\DeclareOptionBeamer{progressbar}[true]{\csname fabrica@progressbar#1\endcsname}
+\DeclareOptionBeamer{sectionpage}[true]{\csname fabrica@sectionpage#1\endcsname}
+\DeclareOptionBeamer{fonts}[true]{\csname fabrica@fonts#1\endcsname}
 \ProcessOptionsBeamer
 
 \RequirePackage{tikz}
@@ -74,79 +74,79 @@
 % - - - - - - - - - - - -
 
 % Variant paper
-\def\atelier@variant@paper{%
-    \definecolor{AtelierPaper}{HTML}{F7F2E8}
-    \definecolor{AtelierPanel}{HTML}{EDE4D3}
-    \definecolor{AtelierInk}{HTML}{2A2421}
-    \definecolor{AtelierMuted}{HTML}{6B5E55}
-    \definecolor{AtelierRule}{HTML}{CDBFA8}
-    \definecolor{AtelierAccent}{HTML}{A8432A}
-    \definecolor{AtelierAlert}{HTML}{D02032}
-    \definecolor{AtelierExample}{HTML}{48612A}
+\def\fabrica@variant@paper{%
+    \definecolor{FabricaPaper}{HTML}{F7F2E8}
+    \definecolor{FabricaPanel}{HTML}{EDE4D3}
+    \definecolor{FabricaInk}{HTML}{2A2421}
+    \definecolor{FabricaMuted}{HTML}{6B5E55}
+    \definecolor{FabricaRule}{HTML}{CDBFA8}
+    \definecolor{FabricaAccent}{HTML}{A8432A}
+    \definecolor{FabricaAlert}{HTML}{D02032}
+    \definecolor{FabricaExample}{HTML}{48612A}
 }
 
 % Variant linen
-\def\atelier@variant@linen{%
-    \definecolor{AtelierPaper}{HTML}{F2F3F0}
-    \definecolor{AtelierPanel}{HTML}{E3E6E1}
-    \definecolor{AtelierInk}{HTML}{1F2326}
-    \definecolor{AtelierMuted}{HTML}{575E63}
-    \definecolor{AtelierRule}{HTML}{BFC6C2}
-    \definecolor{AtelierAccent}{HTML}{2F5D8A}
-    \definecolor{AtelierAlert}{HTML}{9A2530}
-    \definecolor{AtelierExample}{HTML}{3F6630}
+\def\fabrica@variant@linen{%
+    \definecolor{FabricaPaper}{HTML}{F2F3F0}
+    \definecolor{FabricaPanel}{HTML}{E3E6E1}
+    \definecolor{FabricaInk}{HTML}{1F2326}
+    \definecolor{FabricaMuted}{HTML}{575E63}
+    \definecolor{FabricaRule}{HTML}{BFC6C2}
+    \definecolor{FabricaAccent}{HTML}{2F5D8A}
+    \definecolor{FabricaAlert}{HTML}{9A2530}
+    \definecolor{FabricaExample}{HTML}{3F6630}
 }
 
 % Variant walnut
-\def\atelier@variant@walnut{%
-    \definecolor{AtelierPaper}{HTML}{241C17}
-    \definecolor{AtelierPanel}{HTML}{33281F}
-    \definecolor{AtelierInk}{HTML}{F2E8DA}
-    \definecolor{AtelierMuted}{HTML}{C2B29F}
-    \definecolor{AtelierRule}{HTML}{5A4A3C}
-    \definecolor{AtelierAccent}{HTML}{E0A458}
-    \definecolor{AtelierAlert}{HTML}{F08C7A}
-    \definecolor{AtelierExample}{HTML}{A9C98A}
+\def\fabrica@variant@walnut{%
+    \definecolor{FabricaPaper}{HTML}{241C17}
+    \definecolor{FabricaPanel}{HTML}{33281F}
+    \definecolor{FabricaInk}{HTML}{F2E8DA}
+    \definecolor{FabricaMuted}{HTML}{C2B29F}
+    \definecolor{FabricaRule}{HTML}{5A4A3C}
+    \definecolor{FabricaAccent}{HTML}{E0A458}
+    \definecolor{FabricaAlert}{HTML}{F08C7A}
+    \definecolor{FabricaExample}{HTML}{A9C98A}
 }
 
-\ifcsname atelier@variant@\atelier@variant\endcsname
-    \csname atelier@variant@\atelier@variant\endcsname
+\ifcsname fabrica@variant@\fabrica@variant\endcsname
+    \csname fabrica@variant@\fabrica@variant\endcsname
 \else
-    \PackageWarning{beamerthemeAtelier}{Unknown variant '\atelier@variant', using 'paper'. Choose paper, linen, or walnut.}%
-    \atelier@variant@paper
+    \PackageWarning{beamerthemeFabrica}{Unknown variant '\fabrica@variant', using 'paper'. Choose paper, linen, or walnut.}%
+    \fabrica@variant@paper
 \fi
 
-\ifx\atelier@accent\@empty\else
-    \definecolor{AtelierAccent}{HTML}{\atelier@accent}
+\ifx\fabrica@accent\@empty\else
+    \definecolor{FabricaAccent}{HTML}{\fabrica@accent}
 \fi
 
-\setbeamercolor{normal text}{fg=AtelierInk, bg=AtelierPaper}
-\setbeamercolor{background canvas}{bg=AtelierPaper}
-\setbeamercolor{structure}{fg=AtelierAccent}
-\setbeamercolor{alerted text}{fg=AtelierAlert}
-\setbeamercolor{example text}{fg=AtelierExample}
-\setbeamercolor{title}{fg=AtelierInk}
-\setbeamercolor{subtitle}{fg=AtelierMuted}
-\setbeamercolor{author}{fg=AtelierInk}
-\setbeamercolor{institute}{fg=AtelierAccent}
-\setbeamercolor{date}{fg=AtelierMuted}
-\setbeamercolor{frametitle}{fg=AtelierInk}
-\setbeamercolor{framesubtitle}{fg=AtelierMuted}
-\setbeamercolor{section in head}{fg=AtelierAccent}
-\setbeamercolor{footline}{fg=AtelierMuted}
-\setbeamercolor{section number}{fg=AtelierAccent}
-\setbeamercolor{section title}{fg=AtelierInk}
-\setbeamercolor{block title}{fg=AtelierAccent}
-\setbeamercolor{block title alerted}{fg=AtelierAlert}
-\setbeamercolor{block title example}{fg=AtelierExample}
-\setbeamercolor{caption name}{fg=AtelierAccent}
+\setbeamercolor{normal text}{fg=FabricaInk, bg=FabricaPaper}
+\setbeamercolor{background canvas}{bg=FabricaPaper}
+\setbeamercolor{structure}{fg=FabricaAccent}
+\setbeamercolor{alerted text}{fg=FabricaAlert}
+\setbeamercolor{example text}{fg=FabricaExample}
+\setbeamercolor{title}{fg=FabricaInk}
+\setbeamercolor{subtitle}{fg=FabricaMuted}
+\setbeamercolor{author}{fg=FabricaInk}
+\setbeamercolor{institute}{fg=FabricaAccent}
+\setbeamercolor{date}{fg=FabricaMuted}
+\setbeamercolor{frametitle}{fg=FabricaInk}
+\setbeamercolor{framesubtitle}{fg=FabricaMuted}
+\setbeamercolor{section in head}{fg=FabricaAccent}
+\setbeamercolor{footline}{fg=FabricaMuted}
+\setbeamercolor{section number}{fg=FabricaAccent}
+\setbeamercolor{section title}{fg=FabricaInk}
+\setbeamercolor{block title}{fg=FabricaAccent}
+\setbeamercolor{block title alerted}{fg=FabricaAlert}
+\setbeamercolor{block title example}{fg=FabricaExample}
+\setbeamercolor{caption name}{fg=FabricaAccent}
 
 % - - - - - - - - - - - -
 % 3. Fonts 
 % - - - - - - - - - - - -
 
 \RequirePackage{iftex}
-\ifatelier@fonts
+\iffabrica@fonts
     \iftutex
     % XeLaTeX / LuaLaTex: load the Libertinus OpenType files directly
     \RequirePackage{fontspec}
@@ -170,15 +170,15 @@
             Scale = 0.85
         ]%
     }{%
-        \PackageWarning{beamerthemeAtelier}{Libertinus not found, using default font. \MessageBreak Install TeX Live package `libertinus'.}
+        \PackageWarning{beamerthemeFabrica}{Libertinus not found, using default font. \MessageBreak Install TeX Live package `libertinus'.}
     }
     \else
         \IfFileExists{libertinus.sty}{\RequirePackage{libertinus}}{%
-            \PackageWarning{beamerthemeAtelier}{Libertinus not found, using the default font.\MessageBreak Install TeX Live package `libertinus'.}
+            \PackageWarning{beamerthemeFabrica}{Libertinus not found, using the default font.\MessageBreak Install TeX Live package `libertinus'.}
         }
     \fi
 \fi
-\ifatelier@serifbody \usefonttheme{serif}\fi
+\iffabrica@serifbody \usefonttheme{serif}\fi
 \usefonttheme{professionalfonts}
 
 \setbeamerfont{title}{family=\rmfamily, size=\huge, series=\mdseries}
@@ -199,16 +199,16 @@
 % 4. Geometry 
 % - - - - - - - - - - - -
 
-\def\atelier@margin{0.08\paperwidth}
+\def\fabrica@margin{0.08\paperwidth}
 \setbeamersize{text margin left = 0.08\paperwidth, text margin right = 0.08\paperwidth}
 \setbeamertemplate{navigation symbols}{}
 
 % Ornament line -- diamond -- line
-\newcommand\atelier@ornament[1][4em]{%
+\newcommand\fabrica@ornament[1][4em]{%
     \tikz[baseline = -0.6ex]{
-        \draw[AtelierRule, line width = 0.6pt] (-#1,0) -- (-0.35em,0);
-        \draw[AtelierRule, line width = 0.6pt] (0.35em, 0) -- (#1,0);
-        \fill[AtelierAccent] (0,0.18em) -- (0.18em, 0) -- (0,-0.18em) -- (-0.18em,0) -- cycle;
+        \draw[FabricaRule, line width = 0.6pt] (-#1,0) -- (-0.35em,0);
+        \draw[FabricaRule, line width = 0.6pt] (0.35em, 0) -- (#1,0);
+        \fill[FabricaAccent] (0,0.18em) -- (0.18em, 0) -- (0,-0.18em) -- (-0.18em,0) -- cycle;
     }
 }
 
@@ -227,7 +227,7 @@
             \vskip1ex
             {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}}
         \vskip3ex
-        \atelier@ornament[5em]\par
+        \fabrica@ornament[5em]\par
         \vskip3ex
         {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par}
         \vskip0.6ex
@@ -244,8 +244,8 @@
     \nointerlineskip
     \begin{beamercolorbox}[
         wd = \paperwidth,
-        leftskip = \atelier@margin,
-        rightskip = \atelier@margin plus 1fil]{frametitle}
+        leftskip = \fabrica@margin,
+        rightskip = \fabrica@margin plus 1fil]{frametitle}
         \vskip2.6ex
         \noindent{\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}%
             \strut\insertframetitle}\hfill
@@ -254,7 +254,7 @@
         \themeforge@ifblank{\insertframesubtitle}{}{%
             {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\par}}%
         \vskip0.9ex
-        {\color{AtelierRule}\hrule height 0.6pt}%
+        {\color{FabricaRule}\hrule height 0.6pt}%
         \vskip0.4ex
     \end{beamercolorbox}
 }
@@ -263,13 +263,13 @@
 % 7. Footline 
 % - - - - - - - - - - - -
 
-\newcommand{\atelier@progressbar}{%
-    \pgfmathsetmacro\atelier@ratio{%
+\newcommand{\fabrica@progressbar}{%
+    \pgfmathsetmacro\fabrica@ratio{%
         min(1,\insertframenumber/max(1,\inserttotalframenumber))
     }%
     \begin{tikzpicture}
-        \fill[AtelierRule] (0,0) rectangle (\paperwidth,1pt);
-        \fill[AtelierAccent] (0,0) rectangle ({\aterlier@ratio*\paperwidth},1pt);
+        \fill[FabricaRule] (0,0) rectangle (\paperwidth,1pt);
+        \fill[FabricaAccent] (0,0) rectangle ({\aterlier@ratio*\paperwidth},1pt);
     \end{tikzpicture}}
 
 \setbeamertemplate{footline}{%
@@ -280,9 +280,9 @@
         center
     ]{footline}
         \usebeamerfont{footline}
-        \insertshorttitle\enspace\raisebox{0.35ex}{\tikz\fill[AtelierAccent] (0,0) circle (0.12em);}\enspace\insertframenumber
+        \insertshorttitle\enspace\raisebox{0.35ex}{\tikz\fill[FabricaAccent] (0,0) circle (0.12em);}\enspace\insertframenumber
     \end{beamercolorbox}%
-    \ifatelier@progressbar\par\nointerlineskip\atelier@progressbar\fi
+    \iffabrica@progressbar\par\nointerlineskip\fabrica@progressbar\fi
 }
 
 % - - - - - - - - - - - -
@@ -297,12 +297,12 @@
         \vskip1.5ex
         {\usebeamerfont{section title}\usebeamercolor[fg]{section title}\insertsectionhead\par}
         \vskip2.5ex
-        \atelier@ornament\par
+        \fabrica@ornament\par
     \end{minipage}%
 }
 
 \AtBeginSection{%
-    \ifatelier@sectionpage
+    \iffabrica@sectionpage
         \begingroup
             \setbeamertemplate{footline}{}%
             \frame[c,noframenumbering]{\sectionpage}%
@@ -316,13 +316,13 @@
 
 % Itemize list, three levels
 \setbeamertemplate{itemize item}{%
-    \raisebox{0.5ex}{\tikz\fill[AtelierAccent] (0,0) rectangle (0.65em,0.09em);}
+    \raisebox{0.5ex}{\tikz\fill[FabricaAccent] (0,0) rectangle (0.65em,0.09em);}
 }
 \setbeamertemplate{itemize subitem}{%
-    \raisebox{0.45ex}{\tikz\fill[AtelierAccent] (0,0) circle (0.13em);}
+    \raisebox{0.45ex}{\tikz\fill[FabricaAccent] (0,0) circle (0.13em);}
 }
 \setbeamertemplate{itemize subsubitem}{%
-    \raisebox{0.45ex}{\tikz\draw[AtelierAccent, line width = 0.4pt] (0,0) circle (0.12em);}
+    \raisebox{0.45ex}{\tikz\draw[FabricaAccent, line width = 0.4pt] (0,0) circle (0.12em);}
 }
 
 % Enumerate list, three levels
@@ -357,15 +357,15 @@
 % - - - - - - - - - - - -
 
 \tcbset{
-    atelier/block/.style = {%
+    fabrica/block/.style = {%
         enhanced,
         arc = 2pt,
         frame hidden, 
         boxrule = 0pt,
-        colback = AtelierPanel,
-        colbacktitle = AtelierPanel,
+        colback = FabricaPanel,
+        colbacktitle = FabricaPanel,
         coltitle = #1,
-        colupper = AtelierInk,
+        colupper = FabricaInk,
         fonttitle = \usebeamerfont{block title},
         left = 10pt, 
         right = 10pt,
@@ -379,19 +379,19 @@
     }%
 }
 
-\newcommand\atelier@blockbegin[1]{%
+\newcommand\fabrica@blockbegin[1]{%
     \par%
     \themeforge@ifblank{\insertblocktitle}%
-        {\begin{tcolorbox}[atelier/block = #1]}%
-        {\begin{tcolorbox}[atelier/block = #1, title = {\insertblocktitle}]}%
+        {\begin{tcolorbox}[fabrica/block = #1]}%
+        {\begin{tcolorbox}[fabrica/block = #1, title = {\insertblocktitle}]}%
     \usebeamercolor[fg]{normal text}%
 }
 
-\setbeamertemplate{block begin}{\atelier@blockbegin{AtelierAccent}}
+\setbeamertemplate{block begin}{\fabrica@blockbegin{FabricaAccent}}
 \setbeamertemplate{block end}{\end{tcolorbox}}
-\setbeamertemplate{block alerted begin}{\atelier@blockbegin{AtelierAlert}}
+\setbeamertemplate{block alerted begin}{\fabrica@blockbegin{FabricaAlert}}
 \setbeamertemplate{block alerted end}{\end{tcolorbox}}
-\setbeamertemplate{block example begin}{\atelier@blockbegin{AtelierExample}}
+\setbeamertemplate{block example begin}{\fabrica@blockbegin{FabricaExample}}
 \setbeamertemplate{block example end}{\end{tcolorbox}}
 
 % - - - - - - - - - - - -
@@ -401,18 +401,18 @@
 \setbeamertemplate{caption}[numbered]
 \setbeamerfont{caption}{size = \small, shape = \itshape}
 
-\newif\ifatelier@standout
+\newif\iffabrica@standout
 \define@key{beamerframe}{standout}[true]{%
     \setkeys{beamerframe}{c,noframenumbering}%
-    \atelier@standouttrue
+    \fabrica@standouttrue
     \begingroup
-    \setbeamercolor{background canvas}{bg = AtelierInk}%
+    \setbeamercolor{background canvas}{bg = FabricaInk}%
     \setbeamercolor{alerted text}{fg = AterlierPanel}%
     \setbeamertemplate{footline}{}%
-    \centering\usebeamerfont{standout}\color{AtelierPaper}
+    \centering\usebeamerfont{standout}\color{FabricaPaper}
 }
 \apptocmd{\beamer@reseteecodes}{%
-    \ifatelier@standout\endgroup\global\atelier@standoutfalse\fi}{}{}
+    \iffabrica@standout\endgroup\global\fabrica@standoutfalse\fi}{}{}
 
 \mode<all>
 \endinput
