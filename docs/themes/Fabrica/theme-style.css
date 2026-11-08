@@ -4,44 +4,52 @@ Fabrica page theme.
 Loaded after main page style.css
 */
 
+/* Fonts */
+@font-face { font-family: "Libertinus Serif"; font-weight: 400; font-style: normal; font-display: swap; src: url("../../fonts/LibertinusSerif-Regular-subset.woff2") format("woff2"); }
+@font-face { font-family: "Libertinus Serif"; font-weight: 400; font-style: italic; font-display: swap; src: url("../../fonts/LibertinusSerif-Italic-subset.woff2") format("woff2"); }
+@font-face { font-family: "Libertinus Serif"; font-weight: 700; font-style: normal; font-display: swap; src: url("../../fonts/LibertinusSerif-Bold-subset.woff2") format("woff2"); }
+@font-face { font-family: "Libertinus Sans"; font-weight: 400; font-style: normal; font-display: swap; src: url("../../fonts/LibertinusSans-Regular-subset.woff2") format("woff2"); }
+@font-face { font-family: "Libertinus Sans"; font-weight: 700; font-style: normal; font-display: swap; src: url("../../fonts/LibertinusSans-Bold-subset.woff2") format("woff2"); }
+
 /* Looks */
 :root[data-look^="Fabrica-"] {
-    --font-heading: "Fira Sans", "Segoe UI", system-ui, sans-serif;
-    --font-body: "Fira Sans", "Segoe UI", system-ui, sans-serif;
+    --font-heading: "Libertinus Serif", "Georgia", serif;
+    --font-body: "Libertinus Serif", "Georgia", serif;
+	font-size-adjust: 0.5;
 }
 :root[data-look="Fabrica-linen"] {
     --bg:			#F2F3F0;
-	--surface:		#E3E6E1;
+	--surface:		#F3F4F1;
 	--ink:			#1F2326;
 	--muted:		#575E63;
     --line:			#BFC6C2;
 	--accent:		#2F5D8A;
-	--on-accent:	#FFFFFF;
-	--code-bg:		#F1F2F6;
+	--on-accent:	#F2F3F0;
+	--code-bg:		#E3E6E1;
     --shadow:       rgba(0, 0, 0, .10);
     color-scheme: light;
 }
 :root[data-look="Fabrica-paper"] {
-    --bg:			#F8F6F1;
-    --surface:		#FFFDF8;
-    --ink:			#24211D;
-    --muted:		#5E5850;
-    --line:			#E6E1D6;
-    --accent:		#1F5F8B;
-    --on-accent:	#FFFFFF;
-    --code-bg:		#EFEBE2;
+    --bg:			#F7F2E8;
+    --surface:		#F9F4EA;
+    --ink:			#2A2421;
+    --muted:		#685E55;
+    --line:			#CDBFA8;
+    --accent:		#A8432A;
+    --on-accent:	#F7F2E8;
+    --code-bg:		#EDE4D3;
     --shadow:       rgba(0, 0, 0, .10);
     color-scheme: light;
 }
 :root[data-look="Fabrica-walnut"] {
-    --bg:			#16181D;
-    --surface:		#1D2026;
-    --ink:			#E8EAEE;
-    --muted:		#A2A8B4;
-    --line:			#2C3038;
-    --accent:		#8C9EFF;
-    --on-accent:	#16181D;
-    --code-bg:		#23272F;
+    --bg:			#241C17;
+    --surface:		#261E19;
+    --ink:			#F2E8DA;
+    --muted:		#C2B29F;
+    --line:			#5A4A3C;
+    --accent:		#E0A458;
+    --on-accent:	#241C17;
+    --code-bg:		#33281F;
     --shadow:       rgba(0, 0, 0, .40);
     color-scheme: dark;
 }
@@ -51,7 +59,7 @@ Loaded after main page style.css
 .live {
 	/* ---- unit ---- */
 	--pt: calc(100cqw / 455.24);   /* one TeX point on this slide */
-	--ex: calc(5.8 * var(--pt));   /* 1ex of Fira Sans at 11pt */
+	--ex: calc(4.72 * var(--pt));   /* 1ex of Fira Sans at 11pt */
 
 	/* ---- colours (paper variant; the blocks below swap them) ---- */
 	--s-paper:      #F8F6F1;
@@ -72,7 +80,7 @@ Loaded after main page style.css
 	border-radius: 8px;
 	box-shadow: 0 0 0 1px var(--edge);
 
-	font-family: "Fira Sans", "Segoe UI", system-ui, sans-serif;
+	font-family: "Libertinus Serif", "Georgia", serif;
 	font-size: calc(11 * var(--pt));             /* \normalsize */
 	line-height: 1.2;                            /* TeX's \baselineskip is about 1.2 x size */
 

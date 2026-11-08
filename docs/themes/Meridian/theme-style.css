@@ -4,6 +4,11 @@ Meridian page theme.
 Loaded after main page style.css
 */
 
+/* Fonts */
+@font-face { font-family: "Fira Sans"; font-weight: 400; font-style: normal; font-display: swap; src: url("../../fonts/FiraSans-Regular-subset.woff2") format("woff2"); }
+@font-face { font-family: "Fira Sans"; font-weight: 700; font-style: normal; font-display: swap; src: url("../../fonts/FiraSans-Bold-subset.woff2") format("woff2"); }
+@font-face { font-family: "Fira Mono"; font-weight: 400; font-style: normal; font-display: swap; src: url("../../fonts/FiraMono-Regular-subset.woff2") format("woff2"); }
+
 /* Looks */
 :root[data-look^="Meridian-"] {
     --font-heading: "Fira Sans", "Segoe UI", system-ui, sans-serif;
