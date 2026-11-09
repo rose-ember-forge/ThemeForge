@@ -7,8 +7,8 @@ Modern themes for LaTeX Beamer.
 | Theme    | Style            | Variants             |
 | -------- | ---------------- | -------------------- |
 | Meridian | light, minimal   | light, paper, dark   |
-| Atelier  | editorial, serif | paper, linen, walnut |
-| OldMoney | vintage feel     | ivory, emerald, ink  |
+| Fabrica  | editorial, serif | paper, linen, walnut |
+<!-- | OldMoney | vintage feel     | ivory, emerald, ink  | -->
 
 ## Install
 
