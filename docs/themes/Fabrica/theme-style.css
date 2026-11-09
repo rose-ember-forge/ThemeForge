@@ -15,7 +15,7 @@ Loaded after main page style.css
 :root[data-look^="Fabrica-"] {
     --font-heading: "Libertinus Serif", "Georgia", serif;
     --font-body: "Libertinus Serif", "Georgia", serif;
-	font-size-adjust: 0.5;
+	font-size-adjust: 0.43275;
 }
 :root[data-look="Fabrica-linen"] {
     --bg:			#F2F3F0;
@@ -62,11 +62,11 @@ Loaded after main page style.css
 	--ex: calc(4.72 * var(--pt));   /* 1ex of Fira Sans at 11pt */
 
 	/* ---- colours (paper variant; the blocks below swap them) ---- */
-	--s-paper:      #F8F6F1;
-	--s-ink:        #24211D;
-	--s-muted:      #5E5850;
-	--s-track:      #E6E1D6;
-    --s-accent:     #1F5F8B;         /* theme-page.js overrides this */
+	--s-paper:      #F7F2E8;
+	--s-ink:        #2A2421;
+	--s-muted:      #685E55;
+	--s-track:      #CDBFA8;
+    --s-accent:     #A8432A;         /* theme-page.js overrides this */
 
 	/* ---- geometry from the .sty ---- */
 	--margin: calc(0.07 * 455.24 * var(--pt));   /* text margin = 0.07\paperwidth */
@@ -89,17 +89,18 @@ Loaded after main page style.css
 	grid-template-rows: auto 1fr auto auto;
 }
 .live[data-variant="linen"] {
-    --s-paper:  #FFFFFF;
-	--s-ink:    #1F2430;
-	--s-muted:  #5A6070;
-	--s-track:  #E4E6EC;
-	/* --s-accent: #3043B8;  */
+    --s-paper:  #F2F3F0;
+	--s-ink:    #1F2326;
+	--s-muted:  #575E63;
+	--s-track:  #BFC6C2;
+	--s-accent: #2F5D8A; 
 }
 .live[data-variant="walnut"] {
-	--s-paper: #16181D;
-	--s-ink:   #E8EAEE;
-	--s-muted: #A2A8B4;
-	--s-track: #2C3038;
+	--s-paper: 	#241C17;
+	--s-ink:   	#F2E8DA;
+	--s-muted: 	#C2B29F;
+	--s-track:	#5A4A3C;
+	--s-accent:	#E0A458;
 }
 
 /* ---- 6. Frame title: eyebrow, title, subtitle, short accent rule ---- */
@@ -191,4 +192,4 @@ Loaded after main page style.css
 }
 
 /* fonts to use for the contrast display */
-.pair-chip { font-family: "Fira Sans", "Segoe UI", system-ui, sans-serif; }
+.pair-chip { font-family: "Libertinus Serif","Georgia", sans-serif; }
