@@ -1,0 +1,117 @@
+% themestats.tex: measure a theme for the website's live slide.
+%
+% \input{themestats} just before \end{document} in demo.tex. It adds one
+% slide at the very end (so no other page number moves) and writes the same
+% numbers to <jobname>-stats.txt. Leave it out of the decks you publish by
+% building them without \def\ShowStats.
+%
+% Everything is in TeX points (pt), rounded to 2 decimals.
+% On the website, 1pt = 100cqw / paper width.
+
+% \ifdefined\ShowStats
+
+% ---- Number formatting (expl3, part of every LaTeX since 2020) -----------
+\ExplSyntaxOn
+% A length as a number with exactly two decimals: 455.24408pt -> 455.24
+\cs_new:Npn \tfs_num:n #1
+  { \exp_args:Ne \__tfs_fixed:n { \fp_eval:n { round ( \dim_to_fp:n {#1} * 100 ) } } }
+\cs_new:Npn \__tfs_fixed:n #1
+  {
+    \int_div_truncate:nn {#1} {100} .
+    \int_compare:nNnT { \int_mod:nn {#1} {100} } < {10} {0}
+    \int_mod:nn {#1} {100}
+  }
+% Pad text with spaces to a fixed width: on the left (numbers line up on the
+% right) or on the right (labels, so the next column starts in one place).
+\cs_new:Npn \__tfs_lpad:nn #1#2
+  { \prg_replicate:nn { \int_max:nn {0} { #1 - \str_count:n {#2} } } {~} #2 }
+\cs_new:Npn \__tfs_rpad:nn #1#2
+  { #2 \prg_replicate:nn { \int_max:nn {0} { #1 - \str_count:n {#2} } } {~} }
+\cs_generate_variant:Nn \__tfs_lpad:nn { ne }
+\cs_generate_variant:Nn \__tfs_rpad:nn { ne }
+% Names usable outside expl3 syntax
+\cs_new:Npn \TFnum #1 { \tfs_num:n {#1} }
+\cs_new:Npn \TFlpad #1#2 { \__tfs_lpad:ne {#1} {#2} }
+\cs_new:Npn \TFrpad #1#2 { \__tfs_rpad:ne {#1} {#2} }
+\ExplSyntaxOff
+
+\makeatletter
+
+% ---- Output: one line in the text file + one table row on the slide ------
+% Column widths in the text file, in characters.
+\def\tf@wl{16}   % label
+\def\tf@wn{10}   % each number column
+\def\tf@wb{14}   % the baselineskip column (its heading is longer)
+\newwrite\tf@out
+\immediate\openout\tf@out=\jobname-stats.txt
+
+% \tf@line{label}{value}: a text line, label padded to one width.
+\newcommand\tf@line[2]{\immediate\write\tf@out{\TFrpad{\tf@wl}{#1}#2}}
+
+% A length: label, then the number right-aligned in its column.
+\newcommand\tf@len[2]{% #1 = label, #2 = length
+  \tf@line{#1}{\TFlpad{\tf@wn}{\TFnum{#2}}}%
+  \texttt{#1} & \TFnum{#2} &&\\
+}
+
+% Height of a beamer template, as drawn on this slide.
+\newcommand\tf@tpl[2]{% #1 = label, #2 = template name
+  \setbox0=\vbox{\usebeamertemplate*{#2}}%
+  \xdef\tf@h{\the\dimexpr\ht0+\dp0\relax}% keep it: each table cell is its own group
+  \tf@len{#1}{\tf@h}%
+}
+
+% A font: size, 1ex (x-height) and baselineskip, in three columns.
+\newcommand\tf@font[2]{% #1 = label, #2 = font switch
+  \begingroup #2% switch font inside a group, keep the numbers with \xdef
+    \xdef\tf@size{\f@size pt}%
+    \xdef\tf@ex{\the\fontdimen5\font}%
+    \xdef\tf@bl{\the\baselineskip}%
+  \endgroup
+  \tf@line{#1}{\TFlpad{\tf@wn}{\TFnum{\tf@size}}%
+               \TFlpad{\tf@wn}{\TFnum{\tf@ex}}%
+               \TFlpad{\tf@wb}{\TFnum{\tf@bl}}}%
+  \texttt{#1} & \TFnum{\tf@size} & \TFnum{\tf@ex} & \TFnum{\tf@bl}\\
+}
+
+% A heading row for the font columns.
+\newcommand\tf@fonthead{%
+  \noalign{% \noalign must come first in a table row, so the writes go inside it
+    \immediate\write\tf@out{}%
+    \tf@line{font}{\TFlpad{\tf@wn}{size}\TFlpad{\tf@wn}{1ex}\TFlpad{\tf@wb}{baselineskip}}%
+    \smallskip}%
+  \textit{font} & \textit{size} & \textit{1ex} & \textit{baselineskip}\\
+}
+
+\begin{frame}[noframenumbering]{Theme stats: \ThemeName}{Measured with a one-line subtitle}
+  \tiny
+  \tf@line{theme}{\ThemeName\space[\ThemeOptions]}%
+  \immediate\write\tf@out{}%
+  \begin{tabular}{@{}lrrr@{}}
+    \multicolumn{4}{@{}l}{\texttt{theme}\quad \ThemeName\space[\ThemeOptions]}\\
+    \tf@len{paper width}{\paperwidth}
+    \tf@len{paper height}{\paperheight}
+    \tf@len{text width}{\textwidth}
+    \tf@len{left margin}{\beamer@leftmargin}
+    \tf@len{right margin}{\beamer@rightmargin}
+    \tf@tpl{headline}{headline}
+    \tf@tpl{frametitle}{frametitle}
+    \tf@tpl{footline}{footline}
+    \tf@fonthead
+    \tf@font{normalsize}{\normalsize}
+    \tf@font{scriptsize}{\scriptsize}
+    \tf@font{footnotesize}{\footnotesize}
+    \tf@font{small}{\small}
+    \tf@font{large}{\large}
+    \tf@font{Large}{\Large}
+    \tf@font{frametitle}{\usebeamerfont{frametitle}}
+    \tf@font{framesubtitle}{\usebeamerfont{framesubtitle}}
+    \tf@font{title}{\usebeamerfont{title}}
+    \tf@font{block title}{\usebeamerfont{block title}}
+    \tf@font{footline}{\usebeamerfont{footline}}
+  \end{tabular}
+\end{frame}
+
+\immediate\closeout\tf@out
+\makeatother
+% \fi

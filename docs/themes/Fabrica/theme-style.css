@@ -15,7 +15,7 @@ Loaded after main page style.css
 :root[data-look^="Fabrica-"] {
     --font-heading: "Libertinus Serif", "Georgia", serif;
     --font-body: "Libertinus Serif", "Georgia", serif;
-	font-size-adjust: 0.43275;
+	font-size-adjust: 0.452;
 }
 :root[data-look="Fabrica-linen"] {
     --bg:			#F2F3F0;
@@ -57,39 +57,35 @@ Loaded after main page style.css
 .live, .live * { box-sizing: border-box; }
 
 .live {
-	/* ---- unit ---- */
-	--pt: calc(100cqw / 455.24);   /* one TeX point on this slide */
-	--ex: calc(4.72 * var(--pt));   /* 1ex of Fira Sans at 11pt */
-
-	/* ---- colours (paper variant; the blocks below swap them) ---- */
-	--s-paper:      #F7F2E8;
-	--s-ink:        #2A2421;
-	--s-muted:      #685E55;
-	--s-track:      #CDBFA8;
-    --s-accent:     #A8432A;         /* theme-page.js overrides this */
-
-	/* ---- geometry from the .sty ---- */
-	--margin: calc(0.07 * 455.24 * var(--pt));   /* text margin = 0.07\paperwidth */
-
+	--pt: calc(100cqw / 455.24);          /* one TeX point */
+	--em: calc(10.95 * var(--pt));        /* body size */
+	--ex: calc(4.70 * var(--pt));         /* 1ex, body: from your stats */
+	--ex-ft: calc(7.41 * var(--pt));      /* 1ex, frame title */
+	--ex-fl: calc(3.43 * var(--pt));      /* 1ex, footline */
+	--margin: calc(36.42 * var(--pt));    /* text margin = 0.08\paperwidth */
+  
+	--s-paper: #F7F2E8;  
+	--s-panel: #EDE4D3;  
+	--s-ink: #2A2421;
+	--s-muted: #6B5E55;  
+	--s-track: #CDBFA8;   
+	--s-accent: #A8432A;
+  
 	width: 100%;
 	aspect-ratio: 16 / 9;
-	position: relative;
+	display: grid;
+	grid-template-rows: auto 1fr auto;    /* frame title, body, footline */
 	overflow: hidden;
 	background: var(--s-paper);
 	color: var(--s-ink);
-	border-radius: 8px;
-	box-shadow: 0 0 0 1px var(--edge);
-
-	font-family: "Libertinus Serif", "Georgia", serif;
-	font-size: calc(11 * var(--pt));             /* \normalsize */
-	line-height: 1.2;                            /* TeX's \baselineskip is about 1.2 x size */
-
-	/* Rows like a beamer frame: frame title, body, footline, progress bar. */
-	display: grid;
-	grid-template-rows: auto 1fr auto auto;
+	font-family: "Libertinus Serif", Georgia, serif;
+	font-size: var(--em);
+	line-height: calc(13.6 * var(--pt));
+	font-size-adjust: none;               /* the page's look scales Libertinus; the slide must not */
 }
 .live[data-variant="linen"] {
     --s-paper:  #F2F3F0;
+	--s-panel:	#E3E6E1;
 	--s-ink:    #1F2326;
 	--s-muted:  #575E63;
 	--s-track:  #BFC6C2;
@@ -97,6 +93,7 @@ Loaded after main page style.css
 }
 .live[data-variant="walnut"] {
 	--s-paper: 	#241C17;
+	--s-panel: 	#33281F;
 	--s-ink:   	#F2E8DA;
 	--s-muted: 	#C2B29F;
 	--s-track:	#5A4A3C;
@@ -104,92 +101,100 @@ Loaded after main page style.css
 }
 
 /* ---- 6. Frame title: eyebrow, title, subtitle, short accent rule ---- */
-.live .ft {
-	padding: calc(1.9 * var(--ex) + 6 * var(--pt)) var(--margin) calc(0.4 * var(--ex));   /* \vskip1.9ex (+6pt: beamer's own head space) ... \vskip0.4ex */
+.live .ft     { 
+	padding-top: calc(2.6 * var(--ex-ft)); 
 }
-.live .eyebrow {                                  /* frametitle eyebrow: \scriptsize, bold, accent */
-	font-size: calc(8 * var(--pt));
-	font-weight: 700;
-	color: var(--s-accent);
-	margin-bottom: calc(0.5 * var(--ex) + 3 * var(--pt));   /* \vskip0.5ex, plus TeX's line spacing */
+.live .ft-row { 
+	display: flex; 
+	align-items: baseline; 
+	padding: 0 var(--margin); 
 }
-.live .ftitle {                                   /* frametitle: \Large, bold */
-	font-size: calc(14.4 * var(--pt));
-	font-weight: 700;
+.live .ftitle { 
+	font-size: calc(17.28 * var(--pt)); 
+	line-height: calc(22 * var(--pt)); 
 }
-.live .fsub {                                     /* framesubtitle: \normalsize, muted */
-	color: var(--s-muted);
-	margin-top: calc(0.3 * var(--ex));            /* \vskip0.3ex */
+.live .fsec   { 
+	margin-left: auto;                     /* \hfill */
+	font-size: calc(10 * var(--pt));
+	font-variant-caps: small-caps;
+	color: var(--s-accent); 
 }
-.live .rule {                                     /* \rule{2.2em}{1.6pt} in the accent */
-	width: calc(2.2 * 14.4 * var(--pt));          /* 2.2em of the \Large title font */
-	height: calc(1.6 * var(--pt));
-	background: var(--s-accent);
-	margin-top: calc(0.8 * var(--ex) + 10.5 * var(--pt)) ;  /* \vskip0.8ex, plus one empty line: in TeX the rule sits on a new baseline */
+.live .fsub   { 
+	padding: 0 var(--margin); 
+	font-style: italic; 
+	color: var(--s-muted); 
+}
+.live .rule   { 
+	margin: calc(0.9 * var(--ex-ft)) 0 calc(0.4 * var(--ex-ft));
+	border-top: calc(0.6 * var(--pt)) solid var(--s-track); 
 }
 
 /* ---- Body: beamer centres frame content vertically by default [c] ---- */
-.live .body {
-	padding: 0 var(--margin);
-	display: flex;
-	flex-direction: column;
+.live .body { 
+	display: flex; 
+	flex-direction: column; 
 	justify-content: center;
-	gap: calc(0.5 * var(--ex));                   /* the block's before skip, measured against the PDF */
+	padding: 0 var(--margin); 
+	gap: calc(1.2 * var(--ex));
+}
+.live ul    { 
+	list-style: none; 
+	margin: 0; 
+	padding-left: calc(1.4 * var(--em)); 
+}
+.live li + li { 
+	margin-top: calc(3 * var(--pt) + 0.35 * var(--ex)); 
+}   /* beamer's gap + 0.35ex: tune with the overlay */
+.live li::before {
+content: "";
+display: inline-block;
+width: calc(0.65 * var(--em));
+height: calc(0.09 * var(--em));
+background: var(--s-accent);
+vertical-align: calc(0.5 * var(--ex));                /* \raisebox{0.5ex} */
+margin-left: calc(-1.15 * var(--em));                 /* pull it into the indent... */
+margin-right: calc(0.5 * var(--em));                  /* ...leaving beamer's 0.5em label gap */
 }
 
-/* 9. Lists: accent dot, radius 0.3ex, raised 0.3ex; \leftmargini = 1.4em */
-.live ul {
-	margin: 0;
-	padding: 0 0 1.5ex 1.4em;
-	list-style: none;
-	display: grid;
-	gap: calc(0.35 * var(--ex) + 1.2 * var(--pt));  /* the theme's extra 0.35ex, plus a little of beamer's own */
-}
-.live li { position: relative; }
-.live li::before {
-	content: "";
-	position: absolute;
-	left: calc(-0.6 * var(--ex) - 0.5em);         /* the label sits in the left margin */
-	bottom: calc(0.3 * var(--ex) + 0.2em);
-	width: calc(0.6 * var(--ex));
-	height: calc(0.6 * var(--ex));
-	border-radius: 50%;
-	background: var(--s-accent);
-}
 
 /* 10. Blocks: accent!10!paper panel, 3pt accent bar on the left,
        left/right 8pt, top 3pt, bottom 5pt, title padding 5pt. */
-.live .block {
+/* .live .block {
 	background: color-mix(in srgb, var(--s-accent) 10%, var(--s-paper));
-	border-left: calc(3 * var(--pt)) solid var(--s-accent);
 	padding: calc(5 * var(--pt)) calc(8 * var(--pt)) calc(7 * var(--pt));
+	border-radius: 3px;
 }
 .live .block b {
 	display: block;
 	color: var(--s-accent);
 	margin-bottom: calc(6 * var(--pt));            /* bottomtitle 0pt + top 3pt + the title's line depth */
+/* } */
+
+.live .block   { 
+	margin: var(--ex) 0;
+	padding: 0 calc(10 * var(--pt)) calc(6 * var(--pt));
+	background: var(--s-panel);
+	border-radius: calc(2 * var(--pt)); 
+}
+.live .block b { 
+	display: block;
+	padding-top: calc(6 * var(--pt));
+	margin-bottom: calc(3 * var(--pt));
+	font-weight: 400;
+	font-variant-caps: small-caps;
+	color: var(--s-accent); 
 }
 
 /* ---- 7. Footline: ht=2.6ex, dp=1.6ex, \scriptsize, muted; then a 2.5pt progress bar ---- */
-.live .fl {
-	height: calc((2.6 + 1.6) * var(--ex));
-	padding: 0 var(--margin);
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding-top: calc(7 * var(--pt));             /* the text sits low in its box, as in the PDF */
+.live .fl  { height: calc(5 * var(--ex-fl));
+	display: flex; justify-content: center; align-items: center;
+	gap: calc(0.5 * 8 * var(--pt));          /* \enspace at 8pt */
 	font-size: calc(8 * var(--pt));
-	color: var(--s-muted);
-}
-.live .track {
-	height: calc(2.5 * var(--pt));
-	background: var(--s-track);
-}
-.live .bar {
-	height: 100%;
-	width: calc(3 / 8 * 100%);                    /* frame 3 of 8 */
-	background: var(--s-accent);
-}
+	font-variant-caps: small-caps;
+	color: var(--s-muted); }
+.live .dot { width: calc(0.24 * 8 * var(--pt)); height: calc(0.24 * 8 * var(--pt));
+	border-radius: 50%; background: var(--s-accent);
+	position: relative; top: calc(0.15 * var(--ex-fl)); }
 
 /* fonts to use for the contrast display */
 .pair-chip { font-family: "Libertinus Serif","Georgia", sans-serif; }

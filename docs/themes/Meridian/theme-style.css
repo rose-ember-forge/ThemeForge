@@ -130,7 +130,7 @@ Loaded after main page style.css
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	gap: calc(0.5 * var(--ex));                   /* the block's before skip, measured against the PDF */
+	gap: calc(1.2 * var(--ex));                   /* the block's before skip, measured against the PDF */
 }
 
 /* 9. Lists: accent dot, radius 0.3ex, raised 0.3ex; \leftmargini = 1.4em */
