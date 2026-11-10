@@ -8,40 +8,30 @@
 
 
 /* Colours */
+
+
 :root {
-    /* Colours */
-    --bg:           #F6F7F9;
-    --surface:      #FFFFFF;
-    --ink:          #1C1F26;
-    --muted:        #586070;
-    --line:         #D9DDE3;
-    --accent:       #7A2E3A;
-    --on-accent:    #FFFFFF;
-    --code-bg:      #ECEEF2;
-    --shadow:       rgba(0, 0, 0, 0.10);
+	color-scheme: light dark;
+	--bg:         light-dark(#F6F7F9, #131519) ;
+    --surface:    light-dark(#FFFFFF, #1B1E24) ;
+    --ink:        light-dark(#1C1F26, #E7E9ED) ;
+    --muted:      light-dark(#586070, #A3AAB6) ;
+    --line:       light-dark(#D9DDE3, #2E333C) ;
+    --accent:     light-dark(#7F1734, #DF537B) ;
+    --on-accent:  light-dark(#FFFFFF, #1B1E24) ;
+    --code-bg:    light-dark(#ECEEF2, #22262D) ;
+    --shadow:     light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4);) 
+
 	--edge: 		color-mix(in srgb, var(--ink) 30%, transparent);
 
-    /* Fonts */
-    --font-heading:     "TeX Gyre Pagella", "Palatino Linotype", Palatino, serif;
-    --font-body:        "TeX Gyre Schola", "Century Schoolbook", Georgia, serif;
-    --font-code:        "Fira Mono", ui-monospace, Consolas, monospace;
+	/* Fonts */
+	--font-heading:     "TeX Gyre Pagella", "Palatino Linotype", Palatino, serif;
+	--font-body:        "TeX Gyre Schola", "Century Schoolbook", Georgia, serif;
+	--font-code:        "Fira Mono", ui-monospace, Consolas, monospace;
 }
 
-/* Visitor's theme preference */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg:           #131519;
-        --surface:      #1B1E24;
-        --ink:          #E7E9ED;
-        --muted:        #A3AAB6;
-        --line:         #2E333C;
-        --accent:       #FF3E1C;
-        --on-accent:    #1B1E24;
-        --code-bg:      #22262D;
-        --shadow:       rgba(0, 0, 0, 0.4);
-        color-scheme: dark;
-    }
-}
+:root[data-mode="light"] { color-scheme: light; }
+:root[data-mode="dark"] { color-scheme: dark; }
 
 
 /* Fade to change looks */
@@ -604,3 +594,20 @@ footer {
 	.gallery { grid-template-columns: 1fr; }
 	.snippet .row { flex-direction: column; }
 }
+
+/* Mode button style, in the header */
+
+.mode-btn {
+	font: inherit;
+	font-size: .9rem;
+	color: var(--ink);
+	background: transparent;
+	border: 1px solid var(--line);
+	border-radius: 999px;
+	padding: 3px 12px;
+	cursor: pointer;
+}
+.mode-btn:hover { border-color: var(--muted); }
+.mode-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* A theme look sets its own colours, so the button would do nothing there */
+:root[data-look] .mode-btn { display: none; }
