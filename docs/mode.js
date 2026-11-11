@@ -7,8 +7,7 @@ Light/dark mode setting for the website
 (function () {
     var root = document.documentElement;
     var KEY = "themeforge:mode";
-    var MODES = ["auto", "light", "dark"];
-    var LABEL = { auto: "Auto", light: "Light", dark: "Dark" };
+    var MODES = ["light", "auto", "dark"];
 
     var mode = "auto";
     try {
@@ -20,26 +19,23 @@ Light/dark mode setting for the website
         if (mode === "auto") root.removeAttribute("data-mode");
         else root.setAttribute("data-mode", mode);
 
-        var btn = document.getElementById("mode-btn");
-        if (btn) {
-            var next = MODES[(MODES.indexOf(mode) + 1) % MODES.length];
-            btn.textContent = LABEL[mode];
-            btn.setAttribute("aria-label", "Colour mode: " + LABEL[mode] + ". Switch to " + LABEL[next] + ".");
-        }
+        document.querySelectorAll("[data-mode-btn]").forEach(function (b) {
+            b.setAttribute("aria-pressed", String(b.getAttribute("data-mode-btn") === mode));
+        });
     }
 
-    // Apply for at the beginning
+    // 1. Right away, while <head> is still loading: set data-mode.
     apply();
 
+    // 2. Once the page exists: mark the pressed buttons and make them work.
     document.addEventListener("DOMContentLoaded", function () {
-        var btn = document.getElementById("mode-btn");
-        if (!btn) return;
         apply();
-        btn.addEventListener("click", function () {
-            mode = MODES[(MODES.indexOf(mode) + 1) % MODES.length];
-            try { localStorage.setItem(KEY, mode); } catch (e) { /* not saved, still works */ }
-            apply();
+        document.querySelectorAll("[data-mode-btn]").forEach(function (b) {
+            b.addEventListener("click", function () {
+                mode = b.getAttribute("data-mode-btn");
+                try { localStorage.setItem(KEY, mode); } catch (e) { /* not saved, still works */ }
+                apply();
+            });
         });
     });
-
-}) ();
+})();

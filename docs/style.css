@@ -157,18 +157,33 @@ a { color: var(--accent); }
 }
 
 /* Theme pages */
-/* Site header and footer (theme pages). They sit outside <main>, so they
-   get the same width and gutter as main through their .wrap. */
-.site-head { border-bottom: 1px solid var(--line); }
+/* Sticky header: brand on the left, links and the mode button on the right.
+   --head-h is its height. Everything else that sticks to the top
+   (the floating look switcher) sits below it, using the same number. */
+:root { --head-h: 60px; }
+html { scroll-padding-top: calc(var(--head-h) + 12px); }   /* #links don't land under the header */
+
+.site-head {
+	position: sticky;
+	top: 0;
+	z-index: 20;                          /* above the look switcher (10) */
+	border-bottom: 1px solid var(--line);
+	background: color-mix(in srgb, var(--bg) 85%, transparent);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+	.site-head { background: var(--bg); }
+}
 .site-head .wrap {
-	max-width: 1280px;
+	max-width: 1100px;
+	min-height: var(--head-h);
 	margin: 0 auto;
-	padding: 16px 20px;
+	padding: 0 20px;
 	display: flex;
-	align-items: baseline;
+	align-items: center;
 	justify-content: space-between;
 	gap: 16px;
-	flex-wrap: wrap;
 }
 .brand {
 	font-family: var(--font-heading);
@@ -181,7 +196,14 @@ a { color: var(--accent); }
 	display: flex;
 	gap: 20px;
 	font-size: .95rem;
+	align-items: center;
 }
+
+@media (max-width: 480px) {
+	.brand { font-size: 1.15rem; }
+	.site-head nav { gap: 14px; }
+}
+
 main .wrap { padding-top: 40px; }
 main .wrap > * { min-width: 0; }   /* long code scrolls inside its box instead of widening the page */
 .intro {
@@ -313,7 +335,7 @@ code {
 .look-bar {
 	position: sticky;
 	display: flex;
-	top: 12px;
+	top: calc(var(--head-h) + 12px);
 	z-index: 10;
 	/* width: fit-content; */
 	margin-bottom: 48px;
@@ -595,19 +617,90 @@ footer {
 	.snippet .row { flex-direction: column; }
 }
 
-/* Mode button style, in the header */
-
-.mode-btn {
-	font: inherit;
-	font-size: .9rem;
-	color: var(--ink);
-	background: transparent;
+/* ---- Mode switch: sun, half and half, moon --------------------------- */
+/* Three icon buttons in a pill. The icons are files in docs/icons/, used as
+   masks: the file gives the shape, background-color gives the colour, so
+   the icons follow every look. Swap the files to change the drawings. */
+.mode-switch {
+	display: inline-flex;
+	gap: 2px;
+	padding: 2px;
 	border: 1px solid var(--line);
 	border-radius: 999px;
-	padding: 3px 12px;
-	cursor: pointer;
 }
-.mode-btn:hover { border-color: var(--muted); }
-.mode-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-/* A theme look sets its own colours, so the button would do nothing there */
-:root[data-look] .mode-btn { display: none; }
+.mode-switch button {
+	width: 32px;
+	height: 26px;
+	padding: 0;
+	border: 0;
+	border-radius: 999px;
+	background: transparent;
+	color: var(--muted);
+	cursor: pointer;
+	display: grid;
+	place-items: center;
+}
+.mode-switch button::before {
+	content: "";
+	width: 16px;
+	height: 16px;
+	background-color: currentColor;
+	-webkit-mask: center / contain no-repeat;
+	mask: center / contain no-repeat;
+}
+.mode-switch [data-mode-btn="light"]::before { -webkit-mask-image: url("icons/mode-light.svg"); mask-image: url("icons/mode-light.svg"); }
+.mode-switch [data-mode-btn="auto"]::before  { -webkit-mask-image: url("icons/mode-auto.svg");  mask-image: url("icons/mode-auto.svg"); }
+.mode-switch [data-mode-btn="dark"]::before  { -webkit-mask-image: url("icons/mode-dark.svg");  mask-image: url("icons/mode-dark.svg"); }
+.mode-switch button:hover { color: var(--ink); }
+.mode-switch button[aria-pressed="true"] {
+	background: color-mix(in srgb, var(--ink) 12%, transparent);
+	color: var(--ink);
+}
+.mode-switch button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+/* A theme look sets its own colours, so the switch would do nothing there */
+:root[data-look] .mode-switch { display: none; }
+
+/* ---- Home page: description line with the switch at its right end ---- */
+.hero-line {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px 24px;
+	flex-wrap: wrap;
+	margin-bottom: 24px;
+}
+.hero .hero-line p { margin: 0; }
+
+/* ---- Home page: the header slides in after the description ------------ */
+/* fixed instead of sticky, so it takes no room at the top while hidden */
+.site-head.reveal {
+	position: fixed;
+	left: 0;
+	right: 0;
+	background: transparent;
+	border-bottom-color: transparent;
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+	pointer-events: none;                 /* see-through header: clicks go to the page */
+	transition: background-color 200ms ease, border-color 200ms ease;
+}
+.site-head.reveal .brand { visibility: hidden; }
+.site-head.reveal.is-shown {
+	background: color-mix(in srgb, var(--bg) 85%, transparent);
+	border-bottom-color: var(--line);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+	pointer-events: auto;
+}
+.site-head.reveal.is-shown .brand { visibility: visible; }
+.site-head.reveal nav {
+	opacity: 0;
+	visibility: hidden;                   /* hidden links can't be reached with Tab */
+	transition: opacity 200ms ease, visibility 0s linear 200ms;
+}
+.site-head.reveal.has-nav nav {
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 200ms ease, visibility 0s;
+}
+.hero h1 { transform-origin: 0 0; }   

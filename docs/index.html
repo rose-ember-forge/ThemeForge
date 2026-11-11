@@ -5,19 +5,41 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> ThemeForge: modern Beamer themes</title>
+    <script src="mode.js"></script>
     <meta name="description" content="Free, modern themes for LaTeX Beamer presentations.">
     <link rel="stylesheet" href="style.css">
-    <script src="mode.js"></script>
+    <script src="home.js" defer></script>
 </head>
 
 <body>
+    <header class="site-head reveal">
+    <div class="wrap">
+        <a class="brand" href="./">ThemeForge</a>
+        <nav aria-label="Main">
+            <a href="https://github.com/rose-ember-forge/ThemeForge" target="_blank" rel="noopener">GitHub</a>
+            <!-- <button type="button" class="mode-btn" id="mode-btn">Auto</button> -->
+            <div class="mode-switch" role="group" aria-label="Colour mode">
+                <button type="button" data-mode-btn="light" aria-pressed="false" aria-label="Light" title="Light"></button>
+                <button type="button" data-mode-btn="auto"  aria-pressed="true"  aria-label="Auto: follow the system" title="Auto"></button>
+                <button type="button" data-mode-btn="dark"  aria-pressed="false" aria-label="Dark" title="Dark"></button>
+            </div>
+        </nav>
+    </div>
+    </header>
 
     <header class="hero">
     <h1>ThemeForge</h1>
-    <p>Modern themes for LaTeX Beamer. Free, open source, LPPL licensed.</p>
+    <div class="hero-line" id="hero-line">
+
+        <p>Modern themes for LaTeX Beamer. Free, open source, LPPL licensed.</p>
+        <!-- Add `rel="noopener" within <a...> if I ever want that the new tab GitHub not reach back to the ThemeForge page. -->
+        <div class="mode-switch" role="group" aria-label="Colour mode">
+            <button type="button" data-mode-btn="light" aria-pressed="false" aria-label="Light" title="Light"></button>
+            <button type="button" data-mode-btn="auto"  aria-pressed="true"  aria-label="Auto: follow the system" title="Auto"></button>
+            <button type="button" data-mode-btn="dark"  aria-pressed="false" aria-label="Dark" title="Dark"></button>
+        </div>
+    </div>
     <a class="button" href="https://github.com/rose-ember-forge/ThemeForge" target="_blank">View on GitHub</a>
-    <!-- Add `rel="noopener" within <a...> if I ever want that the new tab GitHub not reach back to the ThemeForge page. -->
-    <button type="button" class="mode-btn" id="mode-btn">Auto</button>
 </header>
 
 <main>
