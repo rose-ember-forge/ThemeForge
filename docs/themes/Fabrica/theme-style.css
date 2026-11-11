@@ -78,6 +78,7 @@ Loaded after main page style.css
 	overflow: hidden;
 	background: var(--s-paper);
 	color: var(--s-ink);
+	border-radius: 8px;
 	font-family: "Libertinus Serif", Georgia, serif;
 	font-size: var(--em);
 	line-height: calc(13.6 * var(--pt));

@@ -145,11 +145,12 @@ Functions for:
         document.getElementById("snippet").textContent =
             "\\usetheme" + (opts.length ? "[" + opts.join(", ") + "]" : "") + "{" + T.name + "}";
     }
-
+    
     // Internal wiring
 
     document.querySelectorAll("[data-look-btn]").forEach(function (b) {
         b.addEventListener("click", function () {
+            window.themeforgeFade();
             state.look = b.getAttribute("data-look-btn");
             render();
             save();
