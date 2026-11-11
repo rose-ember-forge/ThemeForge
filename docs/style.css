@@ -25,7 +25,7 @@
 	--edge: 		color-mix(in srgb, var(--ink) 30%, transparent); */
 
 	/* Verdigris Palette */	
- 	--bg:         light-dark(#F2F7F2, #111D15);
+ 	/* --bg:         light-dark(#F2F7F2, #111D15);
     --surface:    light-dark(#FFFFFF, #191F1E);
     --ink:        light-dark(#18201E, #E5EFE9);
     --muted:      light-dark(#55625E, #9EACA8);
@@ -33,18 +33,18 @@
     --accent:     light-dark(#0b6150, #5eddc2);
     --on-accent:  light-dark(#FFFFFF, #0C1F1B);
     --code-bg:    light-dark(#E6ECEA, #1F2726);
-    --shadow:     light-dark(rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.4));
+    --shadow:     light-dark(rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.4)); */
 
 	/* Temper Palette */
-	/* --bg:         light-dark(#F3F4F8, #13131A);
+	--bg:         light-dark(#F3F4F8, #13131A);
     --surface:    light-dark(#FFFFFF, #1B1C25);
     --ink:        light-dark(#1B1C26, #E8E8EF);
     --muted:      light-dark(#5A5E70, #A5A8BA);
     --line:       light-dark(#D6D9E4, #2E3040);
-    --accent:     light-dark(#54389A, #c3b3f7);
+    --accent:     light-dark(#5D15BB, #BAA8F5);
     --on-accent:  light-dark(#FFFFFF, #17132B);
     --code-bg:    light-dark(#E8EAF2, #222331);
-    --shadow:     light-dark(rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.4)); */
+    --shadow:     light-dark(rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.4));
 
 	/* Brass Palette */
 	/* --bg:         light-dark(#F5F4F0, #161513);
