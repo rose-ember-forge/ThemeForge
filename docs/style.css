@@ -78,6 +78,7 @@
 					color var(--fade) ease,
 		            border-color var(--fade) ease, 
 					box-shadow var(--fade) ease,
+					fill var(--fade) ease,
 		            outline-color var(--fade) ease !important;
 	}
 }
@@ -752,3 +753,18 @@ footer {
 	transition: opacity 200ms ease, visibility 0s;
 }
 .hero h1 { transform-origin: 0 0; }   
+
+/* ---- Logo before "ThemeForge" (header brand and home title) ---------- */
+.logo-anvil { fill: var(--ink); }
+.logo-slide { fill: var(--accent); }
+.logo-title { fill: var(--on-accent); }
+.brand, .hero h1 {
+	display: flex;
+	align-items: center;
+	gap: .3em;              /* in em, so the gap grows and shrinks with the text */
+}
+.brand .logo, .hero h1 .logo {
+	height: 1.1em;          /* a little taller than the capitals */
+	width: auto;
+	flex: none;             /* never squashed on a narrow screen */
+}
