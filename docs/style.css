@@ -437,6 +437,7 @@ code {
 	.look-bar {
 		display: grid;
 		grid-template-columns: max-content;
+		justify-content: center;
 	}
 	.look-bar .look-default { justify-self: stretch; }
 	.look-default button { width: 100%; }
