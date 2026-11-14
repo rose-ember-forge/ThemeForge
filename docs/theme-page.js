@@ -196,17 +196,38 @@ Functions for:
         });
     });
 
+    // Floating look switcher.
+    // A 1px marker sits just above the bar. Once it scrolls past the
+    // sticking point, the bar is stuck, so it gets the class is-floating.
     var bar = document.querySelector(".look-bar");
-    if (bar && "IntersectionObserver" in window) {
+    var variants = bar && bar.querySelector(".look-variants");
+    if (bar && variants && "IntersectionObserver" in window) {
         var marker = document.createElement("div");
         marker.setAttribute("aria-hidden", "true");
         marker.style.cssText = "height:1px; margin-bottom:-1px;";
         bar.before(marker);
-        var stickTop = parseFloat(getComputedStyle(bar).top) || 0;
-        new IntersectionObserver(function (entries) {
-            var e = entries[0];
-            bar.classList.toggle("is-floating", !e.isIntersecting && e.boundingClientRect.top < stickTop);
-        }, { rootMargin: "-" + (stickTop + 1) + "px 0px 0px 0px" }).observe(marker);
+
+        var observer = null;
+        var stickTop = null;
+        // Measure where the variants sit inside the bar, for style.css.
+        // Runs again on resize and once the fonts are in, because both
+        // change the default button's size (and side-by-side vs stacked).
+        function measure() {
+            bar.style.setProperty("--variants-x", variants.offsetLeft + "px");
+            bar.style.setProperty("--variants-y", variants.offsetTop + "px");
+            var top = parseFloat(getComputedStyle(bar).top) || 0;
+            if (top === stickTop) return;      // sticking point unchanged
+            stickTop = top;
+            if (observer) observer.disconnect();
+            observer = new IntersectionObserver(function (entries) {
+                var e = entries[0];
+                bar.classList.toggle("is-floating", !e.isIntersecting && e.boundingClientRect.top < stickTop);
+            }, { rootMargin: "-" + (stickTop + 1) + "px 0px 0px 0px" });
+            observer.observe(marker);
+        }
+        measure();
+        window.addEventListener("resize", measure);
+        if (document.fonts) document.fonts.ready.then(measure);
     }
 
     load();

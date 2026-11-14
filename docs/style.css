@@ -381,27 +381,50 @@ code {
 	font-size: 0.9rem;
 	color: var(--muted);
 }
+/* The look bar holds two pills: "ThemeForge default" on its own, and the
+   variants together. Side by side on wide screens, stacked on phones.
+   The whole bar is sticky, but only the variants float: the default fades
+   out and the variants slide to the middle.
+   Rule: nothing inside the bar may change size when it floats. If the bar
+   gets shorter, the browser shifts the page to make up for it, which
+   un-floats the bar, which makes it taller again... and the page judders.
+   So the default is hidden with opacity/visibility (it keeps its space),
+   never with display: none. */
 .look-bar {
 	position: sticky;
 	display: flex;
-	top: calc(var(--head-h) + 12px);
+	flex-wrap: wrap;
+	gap: 8px;
+	/* --variants-y is how far the variants sit below the top of the bar
+	   (0 when side by side, one row when stacked). theme-page.js measures it.
+	   Subtracting it makes the variants, not the hidden default, line up
+	   under the header. */
+	top: calc(var(--head-h) + 12px - var(--variants-y, 0px));
 	z-index: 10;
-	/* width: fit-content; */
 	margin-bottom: 48px;
 	container-type: inline-size;
 	pointer-events: none;
 }
-.look-bar .seg { 
-	/* box-shadow: 0 4px 14px var(--shadow);  */
-	pointer-events: auto;
-	transition: translate 500ms ease, 
+.look-bar .seg { pointer-events: auto; }
+
+.look-bar .look-default {
+	transition: opacity 300ms ease, visibility 300ms;
+}
+.look-bar.is-floating .look-default {
+	opacity: 0;
+	visibility: hidden;                   /* also takes it out of Tab order */
+}
+
+.look-bar .look-variants {
+	transition: translate 500ms ease,
 				background-color 500ms ease,
 				box-shadow 500ms ease,
 				border-color 500ms ease;
 }
-
-.look-bar.is-floating .seg {
-	translate: calc(50cqw - 50%) 0;
+/* --variants-x is how far the variants sit from the left of the bar
+   (the default's width + gap when side by side, 0 when stacked). */
+.look-bar.is-floating .look-variants {
+	translate: calc(50cqw - 50% - var(--variants-x, 0px)) 0;
 	background: color-mix(in srgb, var(--surface) 90%, transparent);
 	backdrop-filter: blur(12px) saturate(1.3);
 	-webkit-backdrop-filter: blur(12px) saturate(1.3);
@@ -409,17 +432,24 @@ code {
 	box-shadow: 0 1px 2px var(--shadow), 0 8px 24px var(--shadow);
 }
 
-.look-bar.is-floating [data-look-btn="default"] {display: none;}
-.look-bar.is-floating [data-look-btn="default"] + button { border-left: 0; }
+/* Phones: stack them, the default as wide as the variants. */
+@media (max-width: 520px) {
+	.look-bar {
+		display: grid;
+		grid-template-columns: max-content;
+	}
+	.look-bar .look-default { justify-self: stretch; }
+	.look-default button { width: 100%; }
+}
 
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-	.look-bar.is-floating .seg {
+	.look-bar.is-floating .look-variants {
 		background: color-mix(in srgb, var(--surface) 96%, transparent);
 	}
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.look-bar .seg { transition: none; }
+	.look-bar .look-default, .look-bar .look-variants { transition: none; }
 }
 
 .seg { 

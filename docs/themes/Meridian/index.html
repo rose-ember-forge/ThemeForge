@@ -44,9 +44,11 @@
     <!-- Look switcher. "Site default" removes data-look. -->
     <!-- <section class="look" aria-labelledby="look-label"> -->
     <span class="look-label" id="look-label">See this page in Meridian's colours</span>
-    <div class="look-bar">
-        <div class="seg" role="group" aria-labelledby="look-label">
+    <div class="look-bar" role="group" aria-labelledby="look-label">
+        <div class="seg look-default">
             <button type="button" data-look-btn="default" aria-pressed="true">ThemeForge default</button>
+        </div>
+        <div class="seg look-variants">
             <button type="button" data-look-btn="zenith" aria-pressed="false">Zenith</button>
             <button type="button" data-look-btn="horizon" aria-pressed="false">Horizon</button>
             <button type="button" data-look-btn="nadir" aria-pressed="false">Nadir</button>
