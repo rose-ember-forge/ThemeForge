@@ -20,9 +20,9 @@
     --accent:     light-dark(#7F1734, #DF537B) ;
     --on-accent:  light-dark(#FFFFFF, #1B1E24) ;
     --code-bg:    light-dark(#ECEEF2, #22262D) ;
-    --shadow:     light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4);) 
+    --shadow:     light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4);) */
 
-	--edge: 		color-mix(in srgb, var(--ink) 30%, transparent); */
+	--edge: 		color-mix(in srgb, var(--ink) 30%, transparent); 
 
 	/* Verdigris Palette */	
  	/* --bg:         light-dark(#F2F7F2, #111D15);
@@ -208,7 +208,7 @@ a { color: var(--accent); }
 /* A card for a theme still in the forge */
 .card.is-forging .thumbs { grid-template-columns: 1.5fr 1.5fr; }
 .card.is-forging:hover { box-shadow: 0 2px 10px var(--shadow); }
-.button.forg-btn {
+.button.forge-btn {
 	background: transparent;
 	color: var(--muted);
 	cursor: default;
