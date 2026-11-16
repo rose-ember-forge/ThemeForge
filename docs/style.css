@@ -36,7 +36,7 @@
     --shadow:     light-dark(rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.4)); */
 
 	/* Temper Palette */
-	--bg:         light-dark(#F3F4F8, #13131A);
+	--bg:         light-dark(#F3EDFD, #261325);
     --surface:    light-dark(#FFFFFF, #1B1C25);
     --ink:        light-dark(#1B1C26, #E8E8EF);
     --muted:      light-dark(#5A5E70, #A5A8BA);
@@ -44,7 +44,7 @@
     --accent:     light-dark(#5D15BB, #BAA8F5);
     --on-accent:  light-dark(#FFFFFF, #17132B);
     --code-bg:    light-dark(#E8EAF2, #222331);
-    --shadow:     light-dark(rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.4));
+    --shadow:     light-dark(rgba(0, 0, 0, 0.30), rgba(255, 255, 255, 0.2));
 
 	/* Brass Palette */
 	/* --bg:         light-dark(#F5F4F0, #161513);
