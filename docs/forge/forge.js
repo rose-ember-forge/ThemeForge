@@ -8,7 +8,7 @@ JS for the forge page. The wiring
     "use strict";
     var main = document.querySelector(".forge");
     if (!main || !document.getElementById("stage")) return;
-    var NAME = main.getAttribute("data-name") || "Next";
+    var NAME = main.getAttribute("data-name") || "In-the-Forge";
     var FILE = "In-the-Forge";
 
     // Stuff to print on the frame
@@ -63,7 +63,7 @@ JS for the forge page. The wiring
         title   = $("title");
 
     var still = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var busy = true, strikes = 0, prpgress = 33, canRestart = false;
+    var busy = true, strikes = 0, progress = 33, canRestart = false;
 
     function u() { return stage.getBoundingClientRect().width / 40; }
 
@@ -226,7 +226,7 @@ JS for the forge page. The wiring
 		li.textContent = text;
 		if (done) li.className = "done";
 		log.appendChild(li);
-		while (log.children.length > 7) log.removeChild(log.firstChild);
+		while (log.children.length > 4) log.removeChild(log.firstChild);
 	}
 	function advance() {
 		strikes++;
