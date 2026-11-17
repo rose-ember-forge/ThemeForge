@@ -1,0 +1,39 @@
+name: Something looks wrong
+description: A theme doesn't compile, or a slide doesn't look right.
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: theme
+    attributes:
+      label: Theme
+      options:
+        - Meridian
+        - Fabrica
+        - The website
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you expect, and what did you get instead? A screenshot helps.
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: A small example
+      description: The shortest .tex file that shows the problem.
+      render: latex
+  - type: input
+    id: setup
+    attributes:
+      label: Your setup
+      description: TeX Live, MiKTeX or Overleaf, the year, and pdfLaTeX, XeLaTeX or LuaLaTeX.
+      placeholder: TeX Live 2026, pdfLaTeX
+  - type: textarea
+    id: log
+    attributes:
+      label: Error messages
+      description: The lines from the .log file around the first error, if there is one.
+      render: text

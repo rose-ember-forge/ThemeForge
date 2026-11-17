@@ -1,0 +1,22 @@
+name: Idea or request
+description: A new option, a variant, or something for the website.
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: theme
+    attributes:
+      label: For
+      options:
+        - Meridian
+        - Fabrica
+        - A new theme
+        - The website
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea
+      description: What would you like, and what would you use it for?
+    validations:
+      required: true
