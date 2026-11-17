@@ -810,3 +810,10 @@ footer {
 	width: auto;
 	flex: none;             /* never squashed on a narrow screen */
 }
+
+/* version number style */
+.intro .version {
+	margin-top: -1.5em;
+	font-size: .9rem;
+	color: var(--muted);
+}
