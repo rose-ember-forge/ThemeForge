@@ -1,0 +1,45 @@
+% A short deck to start from, using the ThemeForge @THEME@ theme.
+% Compile with pdfLaTeX, XeLaTeX or LuaLaTeX.
+% Theme options, colour variants and fonts:
+%   https://rose-ember-forge.github.io/ThemeForge/themes/@THEME@/
+\documentclass[11pt, aspectratio=169]{beamer}
+\usetheme{@THEME@}
+%  Perhaps with options:
+% \usetheme[variant=..., accent=...]{@THEME@}
+
+\title{Your Title}
+\subtitle{A subtitle, if you want one}
+\author{Your Name}
+\institute{Where you are}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Getting started}
+
+\begin{frame}{One idea per slide}
+  \begin{itemize}
+    \item Keep the points short
+    \item Use \alert{alerted text} for the one takeaway
+    \item Change the variant in the \texttt{\textbackslash usetheme} line
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Blocks}
+  \begin{block}{A block}
+    For a definition or a key result.
+  \end{block}
+  \begin{exampleblock}{An example}
+    For a worked example.
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}[standout]
+  Questions?
+\end{frame}
+
+\end{document}

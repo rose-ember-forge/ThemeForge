@@ -53,6 +53,11 @@ copy /y "themes\%T%\beamertheme%T%.sty" "%STAGE%\" >nul
 if exist "themes\%T%\README.md" copy /y "themes\%T%\README.md" "%STAGE%\" >nul
 copy /y "LICENSE" "%STAGE%\" >nul
 
+rem The starter deck, with this theme's name filled in, saved as main.tex.
+rem main.tex is the name Overleaf looks for, and unzipping gives a folder
+rem that compiles straight away.
+powershell -NoProfile -Command "(Get-Content 'examples\overleaf-starter.tex') -replace '@THEME@','%T%' | Set-Content -Encoding ascii '%STAGE%\main.tex'"
+
 rem Windows has no zip command, but PowerShell does. Zipping the folder
 rem itself (not its contents) means people unzip to one tidy folder.
 powershell -NoProfile -Command "Compress-Archive -Path '%STAGE%' -DestinationPath '%ZIP%'"
