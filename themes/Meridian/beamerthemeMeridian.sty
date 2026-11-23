@@ -305,12 +305,28 @@
 % - - - - - - - - - - - -
 
 \tcbset{
-  meridian/base/.style={enhanced, sharp corners, frame hidden, boxrule=0pt,
-    left=8pt, right=8pt, top=3pt, bottom=5pt, toptitle=5pt, bottomtitle=0pt,
-    titlerule=0pt, before skip=0.8ex, after skip=0.8ex,
-    colupper=MeridianInk, fonttitle=\usebeamerfont{block title}},
-  meridian/block/.style={meridian/base, colback=#1!10!MeridianPaper, colbacktitle=#1!10!MeridianPaper,
-    coltitle=#1, borderline west={3pt}{0pt}{#1}},
+  meridian/base/.style={
+    enhanced, 
+    sharp corners, 
+    frame hidden, 
+    boxrule=0pt,
+    left=8pt, 
+    right=8pt, 
+    top=3pt, 
+    bottom=5pt, 
+    toptitle=5pt, 
+    bottomtitle=0pt,
+    titlerule=0pt, 
+    before skip=0.8ex, 
+    after skip=0.8ex,
+    colupper=MeridianInk, 
+    fonttitle=\usebeamerfont{block title}
+  },
+  meridian/block/.style={
+    meridian/base, 
+    colback=#1!10!MeridianPaper, colbacktitle=#1!10!MeridianPaper,
+    coltitle=#1, 
+    borderline west={3pt}{0pt}{#1}},
 }
 \newcommand\meridian@blockbegin[1]{%
   \par
