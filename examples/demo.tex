@@ -26,8 +26,8 @@
 \date[20260101]{1 January, 2026}
 
 % Listings style configuration
-\definecolor{CodeBG}{HTML}{FBF1C7}
-\definecolor{CodeFG}{HTML}{282828}
+% \definecolor{CodeBG}{HTML}{FBF1C7}
+% \definecolor{CodeFG}{HTML}{282828}
 \definecolor{CodeRed}{HTML}{CC241D}
 \definecolor{CodeGreen}{HTML}{98971E}
 \definecolor{CodeBlue}{HTML}{458588}
@@ -253,7 +253,9 @@ print(list(generate_fibonacci(100)))
 \end{frame}
 
 
-\input{themestats.tex}
+% Just a file that I use to print out the lengths in the slides.
+% Helps me build the web page for the theme.
+\IfFileExists{themestats.tex}{\input{themestats.tex}}{}
 
 
 \end{document}

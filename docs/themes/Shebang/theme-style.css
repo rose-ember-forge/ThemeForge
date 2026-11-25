@@ -1,0 +1,244 @@
+/*
+Shebang page theme.
+
+Loaded after main page style.css
+*/
+
+/* Fonts: IBM Plex Mono, the theme's own font (OFL, see ../../fonts/OFL_IBM_Plex_Mono.txt) */
+@font-face { font-family: "IBM Plex Mono"; font-weight: 400; font-style: normal; font-display: swap; src: url("../../fonts/IBMPlexMono-Regular-subset.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 400; font-style: italic; font-display: swap; src: url("../../fonts/IBMPlexMono-Italic-subset.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 700; font-style: normal; font-display: swap; src: url("../../fonts/IBMPlexMono-Bold-subset.woff2") format("woff2"); }
+
+/* Looks */
+:root[data-look^="Shebang-"] {
+	--font-heading: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+	--font-body:    "IBM Plex Mono", ui-monospace, Consolas, monospace;
+	--font-code:    "IBM Plex Mono", ui-monospace, Consolas, monospace;
+	font-size-adjust: 0.46;           /* monospace runs wide: a touch smaller than the serif looks */
+}
+:root[data-look="Shebang-env"] {
+	--bg:			#0D1117;
+	--surface:		#161B22;
+	--ink:			#E6EDF3;
+	--muted:		#8B949E;
+	--line:			#30363D;
+	--accent:		#25D5B8;
+	--on-accent:	#0D1117;
+	--code-bg:		#161B22;
+	--shadow:		rgba(0, 0, 0, .45);
+	color-scheme: dark;
+}
+:root[data-look="Shebang-light"] {
+	--bg:			#F1FFEF;
+	--surface:		#F7FFF6;
+	--ink:			#081C05;
+	--muted:		#52644F;
+	--line:			#C6D8C3;
+	--accent:		#0B5200;
+	--on-accent:	#F1FFEF;
+	--code-bg:		#E1EFDE;
+	--shadow:		rgba(0, 0, 0, .10);
+	color-scheme: light;
+}
+:root[data-look="Shebang-dark"] {
+	--bg:			#081C05;
+	--surface:		#0E230B;
+	--ink:			#F1FFEF;
+	--muted:		#9DAD9B;
+	--line:			#2C4628;
+	--accent:		#1CCE00;
+	--on-accent:	#081C05;
+	--code-bg:		#182C15;
+	--shadow:		rgba(0, 0, 0, .45);
+	color-scheme: dark;
+}
+
+
+/* ===== Live slides (the content frame and the title page) ===== */
+
+.live, .live * { box-sizing: border-box; }
+
+.live {
+	--pt: calc(100cqw / 455.24);          /* one TeX point */
+	--em: calc(10.95 * var(--pt));        /* body size, 11pt class */
+	--margin: calc(28.45 * var(--pt));    /* beamer's 1cm text margin */
+	--gap: calc(8.54 * var(--pt));        /* 0.3cm: status bar padding, block title inset */
+
+	/* env is the default variant */
+	--s-paper:     #0D1117;
+	--s-ink:       #E6EDF3;
+	--s-muted:     #8B949E;
+	--s-highlight: #D29922;
+	--s-track:     #21262D;
+	--s-accent:    #25D5B8;
+	--s-on-accent: #0D1117;               /* theme-page.js picks ink or paper when the accent changes */
+
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	display: grid;
+	grid-template-rows: auto 1fr auto;    /* frame title, body, status bar */
+	overflow: hidden;
+	background: var(--s-paper);
+	color: var(--s-ink);
+	border-radius: 8px;
+	font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+	font-size: var(--em);
+	line-height: calc(13.6 * var(--pt));
+	font-size-adjust: none;               /* the page's look shrinks Plex; the slide must not */
+	font-variant-ligatures: none;
+}
+.live[data-variant="light"] {
+	--s-paper:     #F1FFEF;
+	--s-ink:       #081C05;
+	--s-muted:     #52644F;
+	--s-highlight: #8A5300;
+	--s-track:     #D5E4D3;
+	--s-accent:    #0B5200;
+	--s-on-accent: #F1FFEF;
+}
+.live[data-variant="dark"] {
+	--s-paper:     #081C05;
+	--s-ink:       #F1FFEF;
+	--s-muted:     #9DAD9B;
+	--s-highlight: #F2C94C;
+	--s-track:     #243721;
+	--s-accent:    #1CCE00;
+	--s-on-accent: #081C05;
+}
+
+.live p { margin: 0; }
+.live .acc   { color: var(--s-accent); }
+.live .mut   { color: var(--s-muted); }
+
+/* The block cursor: \rule[-0.15em]{0.55em}{1.05em} */
+.live .cursor {
+	display: inline-block;
+	width: 0.55em;
+	height: 1.05em;
+	vertical-align: -0.15em;
+	background: var(--s-accent);
+}
+
+/* ---- Frame title: path prompt, title + cursor, "# subtitle" ---- */
+.live .ft      { padding: calc(19.6 * var(--pt)) var(--margin) 0; }
+.live .prompt  {
+	font-size: calc(8 * var(--pt));
+	line-height: calc(9.5 * var(--pt));
+	font-weight: 700;                     /* the frame title's bold carries over */
+	color: var(--s-muted);
+}
+.live .ftitle  {
+	margin-top: calc(5.6 * var(--pt));
+	font-size: calc(14.4 * var(--pt));
+	line-height: calc(18 * var(--pt));
+	font-weight: 700;
+}
+.live .fsub    {
+	margin-top: calc(3.2 * var(--pt));
+	color: var(--s-muted);
+}
+
+/* ---- Body: centred vertically, like beamer's [c] ---- */
+.live .body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0 var(--margin) calc(15.2 * var(--pt));
+}
+.live ul        { list-style: none; margin: 0; padding-left: calc(21.9 * var(--pt)); }
+.live li + li   { margin-top: calc(2.8 * var(--pt)); }
+.live li::before {
+	content: ">";
+	color: var(--s-accent);
+	display: inline-block;
+	width: calc(12.1 * var(--pt));
+	margin-left: calc(-12.1 * var(--pt));
+}
+
+/* Box-drawn block:  ┌─ # Takeaway ─────┐  (tcolorbox, 0.6pt rule) */
+.live .block {
+	position: relative;
+	margin-top: calc(14.2 * var(--pt));
+	padding: calc(7.9 * var(--pt)) calc(7.1 * var(--pt)) calc(5.4 * var(--pt)) calc(9.9 * var(--pt));
+	border: calc(0.6 * var(--pt)) solid var(--s-accent);
+}
+.live .block .btitle {
+	position: absolute;
+	top: calc(-8.3 * var(--pt));
+	left: calc(11.1 * var(--pt));
+	padding: 0 calc(2.85 * var(--pt));
+	background: var(--s-paper);           /* cuts the top line */
+	font-size: calc(10 * var(--pt));
+	line-height: calc(12 * var(--pt));
+	color: var(--s-accent);
+}
+
+/* ---- Status bar: name box | short title | section ... [####......] n/N ---- */
+.live .fl {
+	height: calc(15.65 * var(--pt));      /* 0.55cm */
+	display: flex;
+	align-items: center;
+	background: var(--s-track);
+	font-size: calc(8 * var(--pt));
+	line-height: 1;
+	white-space: nowrap;
+}
+.live .fl .name {
+	align-self: stretch;
+	display: flex;
+	align-items: center;
+	padding: 0 var(--gap);
+	background: var(--s-accent);
+	color: var(--s-on-accent);
+	font-weight: 700;
+}
+/* TikZ nodes add an inner sep of 0.3333em (2.67pt at 8pt) around their text */
+.live .fl .where    { margin-left: calc(11.2 * var(--pt)); }
+.live .fl .where, .live .fl .progress, .live .fl .num { position: relative; top: calc(-1 * var(--pt)); }
+.live .fl .sep      { color: var(--s-muted); }
+.live .fl .progress { margin-left: auto; margin-right: calc(8 * var(--pt)); }   /* \quad */
+.live .fl .num      { margin-right: calc(11.2 * var(--pt)); }
+
+
+/* ---- Live title page ---- */
+.live.title-page {
+	grid-template-rows: 1fr;
+	align-content: center;
+}
+.live .tp      { padding: 0 var(--margin); align-self: center; }
+.live .tp .cmd + p   { margin-top: calc(4.2 * var(--pt)); }
+.live .tp .title     {
+	margin-top: calc(6.6 * var(--pt));
+	font-size: calc(20.74 * var(--pt));
+	line-height: calc(25 * var(--pt));
+	font-weight: 700;
+}
+.live .tp .subtitle  { margin-top: calc(4.3 * var(--pt)); color: var(--s-highlight); }
+.live .tp .gap-big   { margin-top: calc(17 * var(--pt)); }
+.live .tp .gap       { margin-top: calc(11.6 * var(--pt)); }
+.live .tp .cmd       { white-space: pre; }
+.live .tp .cmd:first-child { position: relative; top: calc(-2.1 * var(--pt)); }
+.live .tp .file      { color: var(--s-muted); }
+
+/* fonts to use for the contrast squares */
+.pair-chip { font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace; }
+
+/* ---- The file-name field under "Use it" ---- */
+.filename { margin-top: 2rem; }
+.filename .field { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; margin: .75rem 0 1rem; }
+.filename input[type="text"] {
+	font: inherit;
+	font-family: var(--font-code);
+	padding: .45rem .6rem;
+	min-width: min(100%, 18rem);
+	color: var(--ink);
+	background: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: 6px;
+}
+.filename input[type="text"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.tp-figure { max-width: 46rem; margin: 0 auto; }
+#file-note { margin-top: 12px; }   /* gap between the live title page and its caption */
+.tp-figure .live { outline: 1px solid var(--line); }   /* like the gallery: keeps it visible on a page of the same colour */
+.filename input[type="checkbox"] { accent-color: var(--accent); width: 1.1em; height: 1.1em; margin: 0 .4em 0 0; vertical-align: -0.15em; }
+

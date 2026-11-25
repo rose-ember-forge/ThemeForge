@@ -103,8 +103,24 @@ Functions for:
         // Live slide and accent picker: only for themes with an accent option
         if (T.hasAccent) {
             var live = document.getElementById("live");
-            live.setAttribute("data-variant", v);
-            live.style.setProperty("--s-accent", accent);
+            // Every live slide on the page (Shebang also has a live title page)
+            // follows the variant and the accent.
+            document.querySelectorAll(".live").forEach(function (el) {
+                el.setAttribute("data-variant", v);
+                el.style.setProperty("--s-accent", accent);
+                el.style.removeProperty("--s-on-accent");
+            });
+
+            // Themes with onAccent: "auto" (Shebang) put ink or paper on the
+            // accent, whichever contrasts more, just like the .sty does.
+            if (T.onAccent === "auto") {
+                var vs = getComputedStyle(live);
+                var sInk = vs.getPropertyValue("--s-ink").trim(), sPaper = vs.getPropertyValue("--s-paper").trim();
+                var onAccent = contrast(accent, sInk) > contrast(accent, sPaper) ? sInk : sPaper;
+                document.querySelectorAll(".live").forEach(function (el) {
+                    el.style.setProperty("--s-on-accent", onAccent);
+                });
+            }
 
             document.getElementById("accent-input").value = accent.toLowerCase();
             document.querySelectorAll(".swatch").forEach(function (s) {
@@ -119,16 +135,17 @@ Functions for:
             msg.classList.toggle("warn", ratio < 4.5);
 
             var cs = getComputedStyle(live);
-            var colours = {
-                paper:  cs.getPropertyValue("--s-paper").trim(),
-                ink:    cs.getPropertyValue("--s-ink").trim(),
-                accent: accent
-            };
-            colours.tint = mix(colours.accent, colours.paper, 0.10);   // the block background
-            
+            // A square's colour: "accent" and "tint" are worked out here, any other
+            // name is read from the live slide's --s-<name> (e.g. "muted", "on-accent").
+            function colour(name) {
+                if (name === "accent") return accent;
+                if (name === "tint") return mix(accent, colour("paper"), 0.10);   // the block background
+                return cs.getPropertyValue("--s-" + name).trim();
+            }
+
             document.querySelectorAll(".pair").forEach(function (pair) {
                 var chip = pair.querySelector(".pair-chip");
-                var fg = colours[pair.dataset.fg], bg = colours[pair.dataset.bg];
+                var fg = colour(pair.dataset.fg), bg = colour(pair.dataset.bg);
                 chip.style.color = fg;
                 chip.style.background = bg;
                 var r = contrast(fg, bg);
