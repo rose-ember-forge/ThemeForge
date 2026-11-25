@@ -4,10 +4,11 @@ Modern themes for LaTeX Beamer.
 
 ## Themes
 
-| Theme    | Style            | Variants             |
-| -------- | ---------------- | -------------------- |
-| Meridian | light, minimal   | light, paper, dark   |
-| Fabrica  | editorial, serif | paper, linen, walnut |
+| Theme    | Style            | Variants                 |
+| -------- | ---------------- | -----------------------  |
+| Meridian | light, minimal   | zenith, horizon, nadir   |
+| Fabrica  | editorial, serif | paper, linen, walnut     |
+| Shebang  | code, monospace  | light, env, dark         |
 <!-- | OldMoney | vintage feel     | ivory, emerald, ink  | -->
 
 ## Install

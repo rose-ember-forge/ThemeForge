@@ -1,0 +1,587 @@
+%
+% This work has the LPPL maintenance status `maintained'.
+% The Current Maintainer of this work is Raghunandan Rajkumar.
+% This work consists of the file beamerthemeShebang.sty.
+%
+% - - - - - - - - - - - -
+% - - - - - - - - - - - -
+%
+%
+% A monospace-based theme
+%
+%
+%
+% - - - - - - - - - - - -
+% - - - - - - - - - - - -
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemeShebang}[2026/11/25 v0.1 ThemeForge Shebang theme]
+
+\mode<presentation>
+
+\RequirePackage{tikz}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{iftex}
+\RequirePackage{colortbl}
+
+
+% - - - - - - - - - - - -
+% 1. Options 
+% - - - - - - - - - - - -
+
+\def\shebang@variant{env}
+\def\shebang@accent{}
+
+\DeclareOptionBeamer{variant}{\def\shebang@variant{#1}}
+\DeclareOptionBeamer{accent}{\def\shebang@accent{#1}}
+
+\newif\ifshebang@progressbar \shebang@progressbartrue
+\DeclareOptionBeamer{progressbar}[true]{\csname shebang@progressbar#1\endcsname}
+
+\newif\ifshebang@sectionpage \shebang@sectionpagetrue
+\DeclareOptionBeamer{sectionpage}[true]{\csname shebang@sectionpage#1\endcsname}
+
+\newif\ifshebang@fonts \shebang@fontstrue
+\DeclareOptionBeamer{fonts}[true]{\csname shebang@fonts#1\endcsname}
+
+\ProcessOptionsBeamer
+
+
+
+\ifshebang@fonts
+  \iftutex\else
+    \RequirePackage[T1]{fontenc}
+  \fi
+  % Body text: IBM Plex Mono. plex-mono picks the right method for each
+  % engine by itself.
+  \IfFileExists{plex-mono.sty}{%
+    \RequirePackage{plex-mono}%
+  }{%
+    \PackageWarning{beamerthemeShebang}{IBM Plex Mono not found, using
+      the default monospace font. Install it with:
+      tlmgr install plex}%
+  }
+  % Maths: newtxmath, a sturdy serif that holds its own next to Plex Mono.
+  \IfFileExists{newtxmath.sty}{%
+    \RequirePackage{newtxmath}%
+  }{%
+    \PackageWarning{beamerthemeShebang}{newtxmath not found, using the
+      default maths font. Install it with:
+      tlmgr install newtx}%
+  }
+\fi
+
+% - - - - - - - - - - - -
+% 2. Colours 
+% - - - - - - - - - - - -
+
+\def\shebang@variant@light{%
+    \definecolor{ShebangPaper}{HTML}{F1FFEF}    %Bg
+    \definecolor{ShebangInk}{HTML}{081C05}      %Text
+    \definecolor{ShebangAccent}{HTML}{0B5200}   %Chrome
+    \definecolor{ShebangMuted}{HTML}{52644F}    %Comment
+    \definecolor{ShebangHighlight}{HTML}{8A5300}     %Hi
+    \definecolor{ShebangPanel}{HTML}{E1EFDE}    %Panel
+    \definecolor{ShebangAlert}{HTML}{B4235A}    %Alert
+    \definecolor{ShebangTrack}{HTML}{D5E4D3}  %Bar, 
+    \definecolor{ShebangLink}{HTML}{0A5C9E}
+    \definecolor{ShebangOnAccent}{HTML}{F1FFEF}
+}
+
+\def\shebang@variant@env{%
+    \definecolor{ShebangPaper}{HTML}{0D1117}
+    \definecolor{ShebangInk}{HTML}{E6EDF3}
+    \definecolor{ShebangAccent}{HTML}{25D5B8}
+    \definecolor{ShebangMuted}{HTML}{8B949E}
+    \definecolor{ShebangHighlight}{HTML}{D29922}
+    \definecolor{ShebangPanel}{HTML}{161B22}
+    \definecolor{ShebangAlert}{HTML}{FF7B72}
+    \definecolor{ShebangTrack}{HTML}{21262D}
+    \definecolor{ShebangLink}{HTML}{59A6FF}
+    \definecolor{ShebangOnAccent}{HTML}{0D1117}
+}
+    
+\def\shebang@variant@dark{%
+    \definecolor{ShebangPaper}{HTML}{081C05}
+    \definecolor{ShebangInk}{HTML}{F1FFEF}
+    \definecolor{ShebangAccent}{HTML}{1CCE00}
+    \definecolor{ShebangMuted}{HTML}{9DAD9B}
+    \definecolor{ShebangHighlight}{HTML}{F2C94C}
+    \definecolor{ShebangPanel}{HTML}{182C15}
+    \definecolor{ShebangAlert}{HTML}{FF6B9A}
+    \definecolor{ShebangTrack}{HTML}{243721}
+    \definecolor{ShebangLink}{HTML}{5CC8FF}
+    \definecolor{ShebangOnAccent}{HTML}{081C05}
+}
+
+\ifcsname shebang@variant@\shebang@variant\endcsname
+    \csname shebang@variant@\shebang@variant\endcsname
+\else
+    \PackageWarning{beamerthemeShebang}{Unknown variant '\shebang@variant', using 'env'. Choose light, dark, or env.}%
+    \shebang@variant@env
+\fi
+
+\setbeamercolor{background canvas}{bg=ShebangPaper}
+\setbeamercolor{normal text}{fg=ShebangInk, bg=ShebangPaper}
+\setbeamercolor{structure}{fg=ShebangAccent}
+\setbeamercolor{alerted text}{fg=ShebangAlert}
+\setbeamercolor{example text}{fg=ShebangAccent}
+\setbeamercolor{frametitle}{fg=ShebangInk}
+\setbeamercolor{title}{fg=ShebangInk}
+\setbeamercolor{subtitle}{fg=ShebangHighlight}
+\setbeamercolor{footline}{fg=ShebangInk, bg=ShebangTrack}
+\setbeamercolor{block title}{fg=ShebangMuted, bg=ShebangPanel}
+\setbeamercolor{block body}{fg=ShebangInk, bg=ShebangPanel}
+\setbeamercolor{block title alerted}{fg=ShebangAlert, bg=ShebangTrack}
+\setbeamercolor{block body alerted}{fg=ShebangInk, bg=ShebangPanel}
+\setbeamercolor{block title example}{fg=ShebangAccent, bg=ShebangTrack}
+\setbeamercolor{block body example}{fg=ShebangInk, bg=ShebangPanel}
+\usebeamercolor[fg]{normal text}
+
+% Colour for hyperlinks (only matters if the colorlinks option is on)
+
+\AtBeginDocument{\@ifpackageloaded{hyperref}{\hypersetup{urlcolor=ShebangLink, linkcolor=ShebangLink}}{}}
+
+% Contrast check for custom accent colours
+\ExplSyntaxOn
+\cs_new_protected:Npn \shebang@luminance #1#2
+  {
+    % ask xcolor for the colour as "r,g,b" with values from 0 to 1
+    \extractcolorspecs {#1} \l_tmpa_tl \l_tmpb_tl
+    \convertcolorspec {\l_tmpa_tl} {\l_tmpb_tl} {rgb} \l_tmpa_tl
+    \exp_after:wN \shebang@luminance@rgb \l_tmpa_tl \q_stop #2
+  }
+\cs_new_protected:Npn \shebang@luminance@rgb #1,#2,#3 \q_stop #4
+  {
+    % undo the screen's gamma curve for each channel, then weight them the
+    % way the eye does: green counts most, blue least
+    \cs_set:Npn \shebang@lin ##1
+      { ( ##1 <= 0.03928 ? ##1 / 12.92 : ( ( ##1 + 0.055 ) / 1.055 ) ^ 2.4 ) }
+    \tl_set:Ne #4
+      {
+        \fp_eval:n
+          { 0.2126 * \shebang@lin{#1} + 0.7152 * \shebang@lin{#2}
+            + 0.0722 * \shebang@lin{#3} }
+      }
+  }
+
+% contrast ratio of two luminances: (lighter + 0.05) / (darker + 0.05)
+\cs_new:Npn \shebang@contrast #1#2
+  { \fp_eval:n { ( max(#1,#2) + 0.05 ) / ( min(#1,#2) + 0.05 ) } }
+\ExplSyntaxOff
+
+
+\ifx\shebang@accent\@empty\else
+  \definecolor{ShebangAccent}{HTML}{\shebang@accent}
+  \shebang@luminance{ShebangAccent}\shebang@L@accent
+  \shebang@luminance{ShebangInk}\shebang@L@ink
+  \shebang@luminance{ShebangPaper}\shebang@L@paper
+  \edef\shebang@C@ink{\shebang@contrast{\shebang@L@accent}{\shebang@L@ink}}
+  \edef\shebang@C@paper{\shebang@contrast{\shebang@L@accent}{\shebang@L@paper}}
+  % keep whichever contrasts more
+  \ExplSyntaxOn
+  \fp_compare:nNnTF { \shebang@C@ink } > { \shebang@C@paper }
+    { \colorlet{ShebangOnAccent}{ShebangInk}
+      \cs_set:Npe \shebang@C@best { \shebang@C@ink } }
+    { \colorlet{ShebangOnAccent}{ShebangPaper}
+      \cs_set:Npe \shebang@C@best { \shebang@C@paper } }
+  \fp_compare:nNnT { \shebang@C@best } < { 4.5 }
+    {
+      \PackageWarning{beamerthemeShebang}{accent=\shebang@accent\space
+        is~hard~to~read~text~on~(best~contrast~
+        \fp_eval:n { round(\shebang@C@best, 1) }:1,~WCAG~AA~needs~4.5:1)}
+    }
+  % The accent is also used AS text on the slide background (bullets, the
+  % prompt $, code keywords), so check that direction too.
+  \fp_compare:nNnT { \shebang@C@paper } < { 4.5 }
+    {
+      \PackageWarning{beamerthemeShebang}{accent=\shebang@accent\space
+        is~faint~as~text~on~this~variant's~background~(
+        \fp_eval:n { round(\shebang@C@paper, 1) }:1,~WCAG~AA~needs~4.5:1)}
+    }
+  \ExplSyntaxOff
+\fi
+
+
+% - - - - - - - - - - - -
+% 3. Fonts 
+% - - - - - - - - - - - -
+
+\renewcommand*{\sfdefault}{\ttdefault}
+\usefonttheme[onlymath]{serif}
+\AtBeginDocument{\frenchspacing}
+
+
+\setbeamerfont{title}{size=\huge, series=\bfseries}
+\setbeamerfont{subtitle}{size=\normalsize, series=\mdseries}
+\setbeamerfont{frametitle}{size=\Large, series=\bfseries}
+\setbeamerfont{framesubtitle}{size=\normalsize, series=\mdseries}
+\setbeamerfont{prompt}{size=\scriptsize}
+\setbeamerfont{footline}{size=\scriptsize}
+\setbeamerfont{section title}{size=\huge, series=\bfseries}
+\setbeamerfont{standout}{size=\Huge, series=\bfseries}
+\setbeamerfont{block title}{size=\small}
+\setbeamerfont{block body}{size=\normalsize}
+\setbeamerfont{itemize/enumerate subbody}{size=\small}
+\setbeamerfont{itemize/enumerate subsubbody}{size=\small}
+
+
+
+
+% - - - - - - - - - - - -
+% 4. Some helpers
+% - - - - - - - - - - - -
+
+\def\shebang@file{}
+\newcommand\shebangfile[1]{\def\shebang@file{#1}}
+
+% Helper function to manage spaces in the name.
+\ExplSyntaxOn
+\cs_new:Npn \shebang@jobname
+    {
+        \tl_set:Nx \l_tmpa_tl { \jobname }
+        \tl_remove_all:Nn \l_tmpa_tl { " }
+        \tl_if_in:NnTF \l_tmpa_tl { ~ }
+            { \textquotesingle \tl_use:N \l_tmpa_tl .tex \textquotesingle }
+            { \tl_use:N \l_tmpa_tl .tex }
+    }
+\ExplSyntaxOff
+
+\newcommand\shebang@filename{%
+    \ifx\shebang@file\@empty \shebang@jobname
+    \else \shebang@file \fi
+}
+
+
+% The terminal cursor, as a pre-defined item
+\newcommand\shebang@cursor{{\color{ShebangAccent}\rule[-0.15em]{0.55em}{1.05em}}}
+
+% prompt line
+\newcommand\shebang@cmd[1]{%
+    {\color{ShebangAccent}\$}\ {\color{ShebangMuted}#1}\par%
+    \vskip0.15cm%
+}
+
+% if blank
+\newcommand\shebang@ifblank[3]{%
+    \setbox0\hbox{#1}%
+    \ifdim\wd0=0pt #2\else #3\fi%
+}
+
+
+
+% - - - - - - - - - - - -
+% 5. Title Page
+% - - - - - - - - - - - -
+
+% title CLI line
+% "head -n 2" if there is a subtitle,
+% "head -n 1" if there isn't.
+
+\setbeamertemplate{title page}{%
+    \vskip0.4cm
+    \shebang@ifblank{\insertsubtitle}%
+        {\shebang@cmd{head -n 1 \shebang@filename}}%
+        {\shebang@cmd{head -n 2 \shebang@filename}}%
+    {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par}%
+    \shebang@ifblank{\insertsubtitle}{}{%
+        \vskip0.2cm
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+    }%
+    \vskip0.6cm
+    \shebang@ifblank{\insertauthor}{}{%
+        \shebang@cmd{whoami}%
+        {\insertauthor
+        \shebang@ifblank{\insertinstitute}{}%
+            {\ {\color{ShebangMuted}@ \insertinstitute}}\par}%
+        \vskip0.4cm}%
+    \shebang@ifblank{\insertdate}{}{%
+        \shebang@cmd{date}%
+        {\insertdate\par}%
+        \vskip0.4cm}%
+    {\color{ShebangAccent}\$}\ \shebang@cursor%
+
+}
+
+\setbeamertemplate{section page}{%
+    \raggedright
+    \shebang@cmd{cd \shebang@path}%
+    \vskip0.1cm
+    {\usebeamerfont{section title}\color{ShebangInk}%
+    \insertsectionhead\ \shebang@cursor\par}
+}
+
+
+\ExplSyntaxOn
+\cs_new_protected:Npn \shebang@slug #1
+    {
+        \tl_set:Ne \l_tmpa_tl { \text_purify:n {#1} }
+        \tl_set:Ne \l_tmpa_tl { \text_lowercase:V \l_tmpa_tl }
+        \tl_replace_all:Nnn \l_tmpa_tl { ~ } { - }
+        \tl_use:N \l_tmpa_tl
+    }
+\cs_generate_variant:Nn \text_lowercase:n { V }
+\cs_new:Npn \shebang@twodigits #1
+    { \int_compare:nNnT {#1} < { 10 } { 0 } \int_eval:n {#1} }
+\ExplSyntaxOff
+
+\newcommand\shebang@path{%
+    \ifbeamer@inappendix
+        \textasciitilde/appendix%
+    \else\ifnum\insertsectionnumber>0
+        \textasciitilde/\shebang@twodigits{\insertsectionnumber}-\shebang@slug{\secname}%
+    \else
+        \textasciitilde
+    \fi\fi%
+}
+
+\newcommand\shebang@where{%
+  \ifbeamer@inappendix
+    \ {\color{ShebangMuted}|}\ Appendix%
+  \else\ifnum\insertsectionnumber>0
+    \ {\color{ShebangMuted}|}\ \insertsectionhead
+  \fi\fi%
+}
+
+% - - - - - - - - - - - -
+%  6. Frame Title 
+% - - - - - - - - - - - -
+
+\setbeamertemplate{frametitle}{%
+    \vskip0.7cm
+    {\usebeamerfont{prompt}\color{ShebangMuted}%
+    \shebang@path\ {\color{ShebangAccent}\$}\par}%
+    \vskip0.12cm
+    {\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}%
+    \insertframetitle\ \shebang@cursor\par}%
+    \shebang@ifblank{\insertframesubtitle}{}{%
+        \vskip0.1cm
+        {\usebeamerfont{framesubtitle}\color{ShebangMuted}%
+        \#\ \insertframesubtitle\par}%
+    }%
+    \vskip0.1cm%
+}
+
+% - - - - - - - - - - - -
+% 7. Footline 
+% - - - - - - - - - - - -
+
+\ExplSyntaxOn
+\cs_new:Npn \shebang@progress
+    {
+        \int_set:Nn \l_tmpa_int
+            { \int_min:nn { 10 } 
+            { ( 10* \insertframenumber ) / \int_max:nn { 1 } { \inserttotalframenumber } } }
+        [
+            { \color{ShebangAccent} \prg_replicate:nn { \l_tmpa_int } { \# } }
+            { \color{ShebangMuted} \prg_replicate:nn { 10 - \l_tmpa_int } { . } }
+        ]
+            
+    }
+\ExplSyntaxOff
+
+\setbeamerfont{footline}{size=\scriptsize}
+\setbeamertemplate{navigation symbols}{}       % no beamer nav icons
+
+\setbeamertemplate{footline}{%
+  \begin{tikzpicture}[x=1cm, y=1cm]
+    % the bar itself, full width
+    \fill[ShebangTrack] (0,0) rectangle (\paperwidth,0.55);
+    % name box on the left, in the chrome colour
+    \node[fill=ShebangAccent, text=ShebangOnAccent, anchor=west,
+          minimum height=0.55cm, inner xsep=0.3cm,
+          font=\usebeamerfont{footline}\bfseries] (mode) at (0,0.275)
+         {\insertshortauthor};
+    % short title | section, just after the box
+    \node[text=ShebangInk, anchor=west] at ([xshift=0.3cm]mode.east)
+         {\insertshorttitle\shebang@where};
+    % progress and frame count on the right
+    \node[text=ShebangInk, anchor=east] at (\paperwidth-0.3cm,0.275)
+         {\ifshebang@progressbar\shebang@progress\quad\fi
+          \insertframenumber/\inserttotalframenumber};
+  \end{tikzpicture}
+}
+
+% - - - - - - - - - - - -
+% 8. Lists 
+% - - - - - - - - - - - -
+
+% itemize, three levels
+\setbeamertemplate{itemize item}{{\color{ShebangAccent}\textgreater}}
+\setbeamertemplate{itemize subitem}{{\color{ShebangHighlight}-}}
+\setbeamertemplate{itemize subsubitem}{{\color{ShebangMuted}*}}
+
+% enumerate, three levels
+\setbeamertemplate{enumerate item}{{\color{ShebangAccent}[\insertenumlabel]}}
+\setbeamertemplate{enumerate subitem}{{\color{ShebangHighlight}[\alph{enumii}]}}
+\setbeamertemplate{enumerate subsubitem}{{\color{ShebangMuted}[\roman{enumiii}]}}
+
+
+% - - - - - - - - - - - -
+% 9. Table of Contents 
+% - - - - - - - - - - - -
+
+\pretocmd{\tableofcontents}{%
+  {\color{ShebangAccent}\$}\ {\color{ShebangMuted}ls}\par
+  \vskip0.25cm
+}{}{%
+  \PackageWarning{beamerthemeShebang}{Could not add `ls' to the agenda}
+}
+
+
+\newcommand\shebang@tocentry[3]{%
+  \begingroup
+    \let\shebang@hyperlink\hyperlink                % remember the real one
+    \renewcommand\hyperlink[2]{%                    % same link, new text
+      \shebang@hyperlink{##1}{#1\shebang@slug{##2}#2}}%
+    #3%
+  \endgroup
+}
+
+
+\patchcmd{\beamer@sectionintoc}{\vfill}{\vskip0.35em}{}{%
+  \PackageWarning{beamerthemeShebang}{Could not tighten the agenda spacing}
+}
+
+\setbeamertemplate{section in toc}{%
+  {\color{ShebangAccent}%
+   \shebang@tocentry{\shebang@twodigits{\inserttocsectionnumber}-}{/}{\inserttocsection}}\par%
+}
+
+\setbeamertemplate{section in toc shaded}{%
+  {\color{ShebangMuted}%
+   \shebang@tocentry{\shebang@twodigits{\inserttocsectionnumber}-}{/}{\inserttocsection}}\par%
+}
+
+\setbeamertemplate{subsection in toc}{%
+  \hspace*{2ex}{\color{ShebangInk}%
+   \shebang@tocentry{}{}{\inserttocsubsection}}\par%
+}
+
+\setbeamertemplate{subsection in toc shaded}{%
+  \hspace*{2ex}{\color{ShebangMuted}%
+   \shebang@tocentry{}{}{\inserttocsubsection}}\par%
+}
+
+
+% - - - - - - - - - - - -
+% 10. Section page 
+% - - - - - - - - - - - -
+
+
+\AtBeginSection{%
+  \ifshebang@sectionpage
+    \begingroup
+      \setbeamertemplate{footline}{}%
+      \frame[c, noframenumbering]{\sectionpage}%
+    \endgroup
+  \fi
+}
+
+% - - - - - - - - - - - -
+% 11. Standout page 
+% - - - - - - - - - - - -
+
+
+\setbeamerfont{standout}{size=\Huge, series=\bfseries}
+
+\newcommand\shebangprompt[1][Y/n]{%
+  \if\relax\detokenize{#1}\relax\else 
+    {\mdseries[#1]}%
+  \fi
+  \par
+  {\mdseries\textgreater}}
+
+\newcommand\shebangcursor{\rule[-0.15em]{0.55em}{1.05em}}
+
+\newif\ifshebang@standout
+\define@key{beamerframe}{standout}[true]{%
+  \setkeys{beamerframe}{c, noframenumbering}% centred vertically, not counted
+  \shebang@standouttrue
+  \begingroup                                % closed again after the frame
+    \setbeamercolor{background canvas}{bg=ShebangAccent}%
+    \setbeamercolor{normal text}{fg=ShebangOnAccent, bg=ShebangAccent}%
+    \setbeamercolor{alerted text}{fg=ShebangOnAccent}%
+    \setbeamertemplate{footline}{}%
+    \raggedright\usebeamerfont{standout}\color{ShebangOnAccent}
+}
+
+% - - - - - - - - - - - -
+% 12. Blocks 
+% - - - - - - - - - - - -
+
+
+\tcbset{
+  shebang block/.style={
+    enhanced,                     
+    sharp corners,                
+    boxrule=0.6pt,               
+    colframe=#1,
+    colback=ShebangPaper,        
+    coltext=ShebangInk,
+    fontupper=\usebeamerfont{block body},
+    left=2.5mm, right=2.5mm, top=2.6mm, bottom=1.5mm,
+    before skip=0.8ex, after skip=0.8ex,
+    % the title sits ON the top line, with a patch of background colour
+    % behind it that "cuts" the line:  ┌─ Title ───┐
+    attach boxed title to top left={xshift=3mm, yshift=-2mm},
+    boxed title style={
+      sharp corners, boxrule=0pt,
+      colback=ShebangPaper, colframe=ShebangPaper,
+      left=1mm, right=1mm, top=0pt, bottom=0pt},
+    coltitle=#1,
+    fonttitle=\usebeamerfont{block title},
+  },
+}
+
+\newcommand\shebang@blockbox[2]{%
+  \shebang@ifblank{\insertblocktitle}%
+    {\begin{tcolorbox}[shebang block=#1, top=1.5mm]}%
+    {\begin{tcolorbox}[shebang block=#1, title={#2\insertblocktitle}]}}
+
+\setbeamertemplate{block begin}{\shebang@blockbox{ShebangMuted}{}}
+\setbeamertemplate{block end}{\end{tcolorbox}}
+
+\setbeamertemplate{block alerted begin}{\shebang@blockbox{ShebangAlert}{error: }}
+\setbeamertemplate{block alerted end}{\end{tcolorbox}}
+
+\setbeamertemplate{block example begin}{\shebang@blockbox{ShebangAccent}{\#\ }}
+\setbeamertemplate{block example end}{\end{tcolorbox}}
+
+
+% - - - - - - - - - - - -
+% 13. Tables 
+% - - - - - - - - - - - -
+
+
+\AtBeginDocument{\arrayrulecolor{ShebangMuted}}
+
+\newif\ifshebang@tablehead
+
+\protected\def\shebang@cellhook{%
+  \ifshebang@tablehead\color{ShebangAccent}\fi
+}
+
+\pretocmd{\insert@column}{\shebang@cellhook}{}{%
+  \PackageWarning{beamerthemeShebang}{Could not colour table headers}
+}
+
+
+\AtBeginDocument{%
+  \makeatletter
+  \@ifpackageloaded{booktabs}{%
+    \pretocmd{\toprule}{\noalign{\global\shebang@tableheadtrue}}{}{}%
+    \pretocmd{\midrule}{\noalign{\global\shebang@tableheadfalse}}{}{}%
+    \pretocmd{\bottomrule}{\noalign{\global\shebang@tableheadfalse}}{}{}%
+  }{}%
+  \makeatother
+}
+
+
+\apptocmd{\beamer@reseteecodes}{%
+  \ifshebang@standout\endgroup\global\shebang@standoutfalse\fi%
+}{}{%
+  \PackageWarning{beamerthemeShebang}{Could not set up the standout frame}
+}
+
+\mode<all>
+\endinput

@@ -540,6 +540,9 @@ code {
 	display: grid; 
 	gap: 14px; 
 }
+
+.panel .inner, .panel .inner * { transition: none !important; }
+
 .panel[open] > summary { background: linear-gradient(var(--line), var(--line)) center bottom / 95% 1px no-repeat; }
 .panel[open] .inner { padding-top: 18px; }
 .swatches { 
@@ -598,6 +601,9 @@ code {
 	line-height: 1.45;
 	color: var(--muted);
 }
+
+.grades, .grades * { transition: none !important; }
+
 .grades h3 { margin: 0 0 6px; font-size: .95rem; color: var(--ink); }
 .grades p { margin: 0 0 8px; }
 .grades dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; }

@@ -3,5 +3,6 @@
 # Lines starting with # are ignored.
 Meridian zenith horizon nadir
 # Nocturne slate midnight aubergine
-Fabrica  paper linen walnut
+Fabrica paper linen walnut
 # OldMoney ink emerald ivory
+Shebang light env dark

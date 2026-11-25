@@ -1,13 +1,17 @@
 # Changelog
 
-## v0.1 (2026-10-22)
+## 2026-11-25
 
-First remote push: Meridian, Atelier and OldMoney.
+Shebang version 0.1 is live.
+
+## 2026-11-08
+
+Renamed Atelier to Fabrica. Variant names remain.
 
 ## 2026-11-04
 
 Renamed Meridian variants: light -> zenith, paper -> horizon, dark -> nadir
 
-## 2026-11-08
+## v0.1 (2026-10-22)
 
-Renamed Atelier to Fabrica. Variant names remain.
+First remote push: Meridian, Atelier and OldMoney.
