@@ -647,6 +647,7 @@ code {
 .live-slot { 
 	container-type: inline-size; /* the slide's 100cqw = this box */
 }   
+.live-slot .live { outline: 3px solid var(--line); }   /* keeps the slide's edge visible on the tray, like .gallery img */
 
 .pairs {
 	--t: min(9cqw, 104px);           /* square side: 9% of the stage, at most 104px */
