@@ -239,6 +239,6 @@ Loaded after main page style.css
 .filename input[type="text"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .tp-figure { max-width: 46rem; margin: 0 auto; }
 #file-note { margin-top: 12px; }   /* gap between the live title page and its caption */
-.tp-figure .live { outline: 1px solid var(--line); }   /* like the gallery: keeps it visible on a page of the same colour */
+/* .tp-figure .live { outline: 1px solid var(--line); }   like the gallery: keeps it visible on a page of the same colour */
 .filename input[type="checkbox"] { accent-color: var(--accent); width: 1.1em; height: 1.1em; margin: 0 .4em 0 0; vertical-align: -0.15em; }
 
