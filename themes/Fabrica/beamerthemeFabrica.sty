@@ -154,14 +154,14 @@
         \setmainfont{LibertinusSerif}[%
             Extension = .otf,
             UprightFont = *-Regular,
-            Boldfont = *-Semibold,
+            BoldFont = *-Semibold,
             ItalicFont = *-Italic, 
             BoldItalicFont = *-SemiboldItalic
             ]%
         \setsansfont{LibertinusSans}[%
             Extension = .otf,
             UprightFont = *-Regular,
-            Boldfont = *-Semibold,
+            BoldFont = *-Bold,
             ItalicFont = *-Italic
         ]
         \setmonofont{LibertinusMono}[%
@@ -269,7 +269,7 @@
     }%
     \begin{tikzpicture}
         \fill[FabricaRule] (0,0) rectangle (\paperwidth,1pt);
-        \fill[FabricaAccent] (0,0) rectangle ({\aterlier@ratio*\paperwidth},1pt);
+        \fill[FabricaAccent] (0,0) rectangle ({\fabrica@ratio*\paperwidth},1pt);
     \end{tikzpicture}}
 
 \setbeamertemplate{footline}{%
